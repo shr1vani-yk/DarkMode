@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Cat } from "./Cat";
 
 const NAV_ITEMS = [
   { id: "work", label: "Selected Work", count: "04", href: "#work" },
@@ -58,15 +59,9 @@ export function Sidebar() {
           </p>
         </Link>
 
-        {/* Live Availability Status Pill */}
-        <div className="inline-flex items-center gap-2 pt-1">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-          </span>
-          <span className="text-[0.6875rem] font-mono text-muted-foreground tracking-wide uppercase">
-            Available for Q2/Q3 roles
-          </span>
+        {/* Animated Cat Mascot from Framer reference (Desktop only) */}
+        <div className="hidden lg:flex items-center pt-1">
+          <Cat className="w-24 h-20" />
         </div>
       </div>
 
@@ -143,7 +138,7 @@ export function Sidebar() {
       <div className="p-4 lg:p-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-mono text-subtle-foreground">
         <div className="flex items-center justify-between">
           <span>&copy; 2026. All rights reserved</span>
-          {/* <span>{timeStr || "LOCAL"}</span> */}
+          {timeStr && <span>{timeStr}</span>}
         </div>
         <div className="text-[0.625rem] text-muted-foreground/80 flex items-center justify-between">
           
