@@ -1,29 +1,61 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const stackSans = localFont({
+  src: [
+    {
+      path: "../../public/fonts/StackSans/StackSansHeadline-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/StackSans/StackSansHeadline-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/StackSans/StackSansHeadline-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/StackSans/StackSansHeadline-SemiBold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/StackSans/StackSansHeadline-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-stack-sans",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const geistPixel = localFont({
+  src: "../../public/fonts/GeistPixel/GeistPixel-Square.otf",
+  variable: "--font-geist-pixel",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Shravani Sutar - Product Designer",
+  title: "Shravani Sutar — Product Designer",
   description: "Product | UI/UX | Visual Designer",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${stackSans.variable} ${geistPixel.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col font-sans">{children}</body>
     </html>
   );
 }
