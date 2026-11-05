@@ -44,13 +44,13 @@ export function TopNav({ currentSection = "Overview" }: TopNavProps) {
             </svg>
           </a>
 
-          <a
+          {/* <a
             href="mailto:hello@shravani.design"
             className="inline-flex items-center gap-2 text-xs font-sans font-medium px-3.5 py-1.5 rounded-full bg-foreground text-background hover:opacity-90 transition-opacity"
           >
             <span>Get in touch</span>
             <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          </a>
+          </a> */}
         </div>
       </div>
     </header>

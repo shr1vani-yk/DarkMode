@@ -6,29 +6,29 @@ import { EditorialHero } from "@/components/EditorialHero";
 const FEATURED_PROJECTS = [
   {
     id: "01",
-    title: "Apex Design System",
+    title: "Nepali Tales",
     subtitle: "Multi-platform design token architecture and tactile UI components",
     category: "Design Systems / Engineering",
-    year: "2025",
-    tags: ["Tokens", "React 19", "Figma Variables"],
+    year: "2026",
+    tags: ["Visuals", "NextJS", "Prototyped"],
     featured: true,
   },
   {
     id: "02",
-    title: "Prism Workspace",
-    subtitle: "Contextual AI canvas for product thinkers and systems designers",
-    category: "Product & Interaction Design",
-    year: "2025",
+    title: "PlixLife",
+    subtitle: "Marketive & Sales Creatives with UI/UX, Web & Motion Design",
+    category: "Brand & Visual Design",
+    year: "2026",
     tags: ["Generative UI", "Spatial Canvas", "TypeScript"],
     featured: false,
   },
   {
     id: "03",
-    title: "Kinetics Lab",
+    title: "Digimedic",
     subtitle: "Physics-based spring animation engine for tactile web interactions",
-    category: "Frontend Exploration",
+    category: "UI/UX & Frontend Developer Intern",
     year: "2024",
-    tags: ["Motion", "Web Standards", "Prototyping"],
+    tags: ["React", "Web Standards", "Prototyping"],
     featured: false,
   },
   {
@@ -151,7 +151,7 @@ export default function Home() {
           {/* Footer Colophon in Main Area */}
           <footer className="pt-8 pb-16 border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-subtle-foreground">
             <div>
-              <span>Shravani Sutar Portfolio Foundation</span>
+              <span>Shravani Sutar Portfolio </span>
               <span className="mx-2">•</span>
               <span>2026</span>
             </div>

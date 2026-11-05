@@ -15,7 +15,7 @@ export function EditorialHero() {
       />
 
       {/* Top Tagline & Status Pill */}
-      <div className="flex flex-wrap items-center justify-between gap-4">
+      {/* <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-border-subtle bg-surface/80 text-[0.6875rem] font-mono text-muted-foreground backdrop-blur-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           <span>Product Design &amp; Interface Engineering</span>
@@ -28,7 +28,7 @@ export function EditorialHero() {
           <span>•</span>
           <span>INDEX &apos;26</span>
         </div>
-      </div>
+      </div> */}
 
       {/* Asymmetrical Editorial Hero Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
@@ -158,7 +158,7 @@ export function EditorialHero() {
           </div>
 
           {/* Overlapping Floating Element */}
-          <div className="hidden sm:flex absolute -bottom-5 -left-6 rounded-lg border border-border-strong bg-background/95 backdrop-blur-md px-3.5 py-2 shadow-lg items-center gap-3">
+          {/* <div className="hidden sm:flex absolute -bottom-5 -left-6 rounded-lg border border-border-strong bg-background/95 backdrop-blur-md px-3.5 py-2 shadow-lg items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-accent animate-ping" />
             <div className="flex flex-col">
               <span className="text-[0.6875rem] font-mono uppercase tracking-wide text-foreground font-medium">
@@ -168,7 +168,7 @@ export function EditorialHero() {
                 Zero abstraction waste
               </span>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -206,7 +206,7 @@ export function EditorialHero() {
             Location
           </span>
           <span className="text-xs font-sans font-medium text-foreground">
-            San Francisco, CA (Remote)
+            Mumbai, India 
           </span>
         </div>
       </div>

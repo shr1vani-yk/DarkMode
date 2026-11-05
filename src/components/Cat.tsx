@@ -17,6 +17,13 @@ export interface CatProps {
   className?: string;
 }
 
+const SPEECH_MESSAGES = [
+  "Meow! Nice to meet you.",
+  "Glad our paths crossed.",
+  "Psst… I'm open to opportunities.",
+  "Stay a little, have a look around.",
+];
+
 export function Cat({
   furColor = "currentColor",
   followCursor = true,
@@ -41,20 +48,33 @@ export function Cat({
   const openEyesRef = useRef<SVGGElement>(null);
 
   const pokeRef = useRef(0);
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  const [messageIndex, setMessageIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 1024px)");
-    const updateDesktop = () => setIsDesktop(desktopQuery.matches);
-    updateDesktop();
+    const sidebarQuery = window.matchMedia("(min-width: 768px)");
+    const updateSidebarVisibility = () => setIsSidebarVisible(sidebarQuery.matches);
+    updateSidebarVisibility();
 
-    desktopQuery.addEventListener("change", updateDesktop);
-    return () => desktopQuery.removeEventListener("change", updateDesktop);
+    sidebarQuery.addEventListener("change", updateSidebarVisibility);
+    return () => sidebarQuery.removeEventListener("change", updateSidebarVisibility);
   }, []);
+
+  const handleMouseEnter = () => {
+    if (!isSidebarVisible) return;
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    if (!isSidebarVisible) return;
+    setIsHovered(false);
+    setMessageIndex((prev) => (prev + 1) % SPEECH_MESSAGES.length);
+  };
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || !isDesktop) return;
+    if (!container || !isSidebarVisible) return;
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let isReducedMotion = motionQuery.matches;
@@ -229,14 +249,58 @@ export function Cat({
       window.removeEventListener("scroll", handleScroll);
       motionQuery.removeEventListener("change", onMotionChange);
     };
-  }, [followCursor, blink, tiltOnScroll, isDesktop]);
+  }, [followCursor, blink, tiltOnScroll, isSidebarVisible]);
 
   return (
     <div
       ref={containerRef}
-      className={`relative select-none flex flex-col items-center justify-end ${className}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`relative select-none flex flex-col items-start justify-end ${className}`}
       style={{ overflow: "visible" }}
     >
+      {/* Speech Bubble - Positioned to the right of the cat at eye level */}
+      {isSidebarVisible && (
+        <div
+          aria-hidden={!isHovered}
+          className={`absolute left-[calc(100%+6px)] lg:left-[calc(100%+8px)] top-[58%] -translate-y-1/2 z-40 pointer-events-none transition-all duration-200 ease-out origin-[left_center] motion-reduce:transition-none ${
+            isHovered
+              ? "opacity-100 scale-100 translate-x-0"
+              : "opacity-0 scale-90 -translate-x-2"
+          }`}
+        >
+          {/* Left-pointing tiny speech pointer */}
+          <svg
+            viewBox="0 0 20 20"
+            className="absolute right-full top-1/2 -translate-y-1/2 pointer-events-none z-0 w-3.5 h-3 lg:w-[18px] lg:h-4"
+            style={{
+              marginRight: -2.5,
+              filter: "drop-shadow(-2px 1px 2px rgba(0,0,0,0.06))",
+            }}
+          >
+            <path
+              d="M 16 5 L 6 10 L 16 15 Z"
+              fill="#FFFFFF"
+              stroke="#FFFFFF"
+              strokeWidth="4"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* White rounded pill body */}
+          <div
+            className="relative z-10 w-max max-w-[106px] lg:max-w-[111px] rounded-xl lg:rounded-2xl bg-[#FFFFFF] px-2.5 py-1 lg:px-3 lg:py-1.5 text-center font-sans text-[9.5px] lg:text-[10px] font-medium leading-[1.25] lg:leading-[1.3] text-[#111014] select-none text-balance"
+            style={{
+              boxShadow:
+                "0 6px 18px rgba(0, 0, 0, 0.08), 0 2px 5px rgba(0, 0, 0, 0.04)",
+            }}
+          >
+            {SPEECH_MESSAGES[messageIndex]}
+          </div>
+        </div>
+      )}
+
       <svg
         ref={svgRef}
         viewBox="0 0 268 214"

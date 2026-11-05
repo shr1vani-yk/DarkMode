@@ -43,10 +43,10 @@ export function MobileNav() {
           <span className="font-sans font-semibold tracking-tight text-sm text-foreground">
             Shravani Sutar
           </span>
-          <span className="relative flex h-1.5 w-1.5">
+          {/* <span className="relative flex h-1.5 w-1.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
             <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent" />
-          </span>
+          </span> */}
         </Link>
 
         {/* Menu Toggle Button */}
@@ -83,7 +83,7 @@ export function MobileNav() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
               <span className="text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
-                Navigation
+                Mobile Nav
               </span>
               <nav className="flex flex-col gap-1">
                 {MOBILE_NAV_ITEMS.map((item, index) => (

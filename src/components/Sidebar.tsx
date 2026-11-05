@@ -59,9 +59,9 @@ export function Sidebar() {
           </p>
         </Link>
 
-        {/* Animated Cat Mascot from Framer reference (Desktop only) */}
-        <div className="hidden lg:flex items-center pt-1">
-          <Cat className="w-24 h-20" />
+        {/* Animated Cat Mascot from Framer reference */}
+        <div className="hidden md:flex items-center pt-1">
+          <Cat className="w-[70px] h-[58px] lg:w-24 lg:h-20" />
         </div>
       </div>
 
@@ -98,9 +98,7 @@ export function Sidebar() {
               </a>
             );
           })}
-        </div>
-
-        {/* Connect & Socials */}
+           {/* Connect & Socials */}
         <div className="flex flex-col gap-1 pt-6 border-t border-border-subtle">
           <span className="px-2 pb-2 text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
             Connect
@@ -132,13 +130,16 @@ export function Sidebar() {
             </a>
           ))}
         </div>
+        </div>
+
+       
       </nav>
 
       {/* Footer Colophon */}
       <div className="p-4 lg:p-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-mono text-subtle-foreground">
         <div className="flex items-center justify-between">
-          <span>&copy; 2026. All rights reserved</span>
-          {timeStr && <span>{timeStr}</span>}
+          <span>&copy; 2026 · Made with Caffeine & Antigravity All Rights Reserved</span>
+          {/* {timeStr && <span>{timeStr}</span>} */}
         </div>
         <div className="text-[0.625rem] text-muted-foreground/80 flex items-center justify-between">
           
