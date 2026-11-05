@@ -17,6 +17,14 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async rewrites() {
+    return [
+      {
+        source: "/images/projects/plix.",
+        destination: "/images/projects/plix.png",
+      },
+    ];
+  },
 };
 
 export default nextConfig;

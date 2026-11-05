@@ -264,13 +264,14 @@ export function WorkShowcase() {
                     ? "border-border-strong shadow-lg"
                     : "border-border-subtle shadow-xs hover:border-border-strong/60"
                 }`}
+                style={{ aspectRatio: "16 / 10" }}
               >
                 {project.hasAsset ? (
                   <Image
                     src={project.image}
                     alt={project.displayTitle}
                     fill
-                    sizes="(max-width: 1024px) 50vw, 62vw"
+                    sizes="(max-width: 1024px) calc((100vw - 14rem) * 0.62), (max-width: 1536px) calc((100vw - 17.5rem) * 0.62), 850px"
                     priority={idx === 0}
                     className="object-cover object-center group-hover:scale-[1.015] transition-transform duration-700 ease-out motion-reduce:transition-none"
                   />
@@ -292,7 +293,7 @@ export function WorkShowcase() {
 
       {/* Mobile Adapted Composition (< 768px) */}
       <div className="flex md:hidden flex-col gap-12 sm:gap-14">
-        {filteredProjects.map((project) => (
+        {filteredProjects.map((project, idx) => (
           <article
             key={project.id}
             className="flex flex-col gap-4 border-b border-border-subtle/60 pb-10 last:border-b-0"
@@ -341,13 +342,15 @@ export function WorkShowcase() {
             <Link
               href={`/work/${project.slug}`}
               className="relative w-full aspect-[16/10] rounded-2xl overflow-hidden border border-border-subtle bg-surface shadow-xs block"
+              style={{ aspectRatio: "16 / 10" }}
             >
               {project.hasAsset ? (
                 <Image
                   src={project.image}
                   alt={project.displayTitle}
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 768px) calc(100vw - 3rem), 100vw"
+                  priority={idx === 0}
                   className="object-cover object-center"
                 />
               ) : (

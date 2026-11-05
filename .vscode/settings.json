@@ -19,6 +19,7 @@
     "**/app/**/template.jsx": "${dirname(1)}/${dirname} - template.jsx",
     "**/app/**/default.jsx": "${dirname(1)}/${dirname} - default.jsx",
     "**/app/**/route.js": "${dirname(1)}/${dirname} - route.js"
-  }
+  },
+  "css.lint.unknownAtRules": "ignore"
 }
 

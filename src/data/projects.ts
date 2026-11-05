@@ -32,7 +32,7 @@ export const PROJECTS: ProjectItem[] = [
     metric: "5k+ Visitors",
     metricSub: "2026, FOODTECH",
     tags: ["Visuals", "NextJS", "Prototyped"],
-    image: "/images/projects/nepali-tales.jpg",
+    image: "/images/projects/nepaliTalesThumbnail.jpg",
     hasAsset: true,
   },
   {
