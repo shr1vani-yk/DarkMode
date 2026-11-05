@@ -39,7 +39,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Colors - Editorial Minimalist Palette (Dark Mode) */
-    --background: #09090b;
+    --background: #151515;
     --foreground: #ededef;
     --surface: #111114;
     --surface-elevated: #16161a;
