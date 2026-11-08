@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Cat } from "./Cat";
 
 const NAV_ITEMS = [
@@ -20,23 +20,6 @@ const SOCIAL_LINKS = [
 
 export function Sidebar() {
   const [activeSection, setActiveSection] = useState("work");
-  const [timeStr, setTimeStr] = useState<string>("");
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTimeStr(
-        now.toLocaleTimeString("en-US", {
-          hour: "2-digit",
-          minute: "2-digit",
-          timeZoneName: "short",
-        })
-      );
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 60000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <aside
@@ -44,7 +27,7 @@ export function Sidebar() {
       className="hidden md:flex flex-col fixed inset-y-0 left-0 z-30 w-[var(--sidebar-width-md)] lg:w-[var(--sidebar-width)] border-r border-border-subtle bg-background/90 backdrop-blur-md select-none transition-all duration-300"
     >
       {/* Top Identity Block */}
-      <div className="p-6 lg:p-8 border-b border-border-subtle flex flex-col gap-3">
+      <div className="p-5 lg:p-8 border-b border-border-subtle flex flex-col gap-3">
         <Link href="/" className="group flex flex-col gap-1">
           <div className="flex items-center justify-between">
             <span className="font-sans font-semibold tracking-tight text-[1.05rem] text-foreground group-hover:text-muted-foreground transition-colors">
@@ -139,10 +122,6 @@ export function Sidebar() {
       <div className="p-4 lg:p-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-mono text-subtle-foreground">
         <div className="flex items-center justify-between">
           <span>&copy; 2026 · Made with Caffeine & Antigravity All Rights Reserved</span>
-          {/* {timeStr && <span>{timeStr}</span>} */}
-        </div>
-        <div className="text-[0.625rem] text-muted-foreground/80 flex items-center justify-between">
-          
         </div>
       </div>
     </aside>

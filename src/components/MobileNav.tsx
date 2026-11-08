@@ -3,52 +3,79 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
+import { Cat } from "./Cat";
 
-const MOBILE_NAV_ITEMS = [
-  { id: "work", label: "Selected Work", count: "04", href: "#work" },
-  { id: "about", label: "About & Craft", count: "", href: "#about" },
-  { id: "lab", label: "Interface Lab", count: "12", href: "#lab" },
-  { id: "archive", label: "Writing & Notes", count: "", href: "#archive" },
+interface MobileNavProps {
+  currentSection?: string;
+}
+
+const NAV_ITEMS = [
+  { id: "work", label: "Selected Work", count: "04", href: "/#work" },
+  { id: "about", label: "About & Craft", count: "", href: "/#about" },
+  { id: "lab", label: "Interface Lab", count: "12", href: "/#lab" },
 ];
 
-const MOBILE_SOCIALS = [
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "X / Twitter", href: "https://x.com" },
-  { label: "GitHub", href: "https://github.com" },
-  { label: "Email", href: "mailto:hello@shravani.design" },
+const SOCIAL_LINKS = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/shravanisutar",
+    external: true,
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/designft.shrav?mdxt=ZDNlZDc0MzIxNw==",
+    external: true,
+  },
+  {
+    label: "Email",
+    href: "mailto:digital.shravanisutar@gmail.com",
+    external: true,
+  },
 ];
 
-export function MobileNav() {
+export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("work");
   const { theme, toggleTheme } = useTheme();
 
+  // Close navigation on Escape key
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
     };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+      return () => window.removeEventListener("keydown", handleKeyDown);
+    }
   }, [isOpen]);
 
   return (
-    <div className="md:hidden sticky top-0 z-40 w-full border-b border-border-subtle bg-background/90 backdrop-blur-md">
-      {/* Top Bar for Mobile */}
-      <div className="h-14 px-4 flex items-center justify-between">
+    <div className="md:hidden sticky top-0 z-30 w-full bg-background border-b border-border-subtle select-none">
+      {/* 1. Mobile Top Bar */}
+      <div className="h-14 px-4 sm:px-6 flex items-center justify-between">
+        {/* Left: Brand Identity */}
         <Link
           href="/"
           onClick={() => setIsOpen(false)}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 group min-w-0"
         >
-          <span className="font-sans font-semibold tracking-tight text-sm text-foreground">
+          <span className="font-sans font-semibold tracking-tight text-sm text-foreground group-hover:text-muted-foreground transition-colors shrink-0">
             Shravani Sutar
           </span>
+          <span className="font-mono text-[0.625rem] px-1.5 py-0.5 rounded bg-surface-hover text-subtle-foreground border border-border-subtle shrink-0">
+            ’26
+          </span>
+          {currentSection && currentSection !== "Selected Work" && (
+            <span className="hidden min-[480px]:inline font-mono text-xs text-muted-foreground truncate">
+              / {currentSection}
+            </span>
+          )}
         </Link>
 
-        {/* Right: Theme Toggle & Menu Button */}
-        <div className="flex items-center gap-1">
+        {/* Right: Theme Toggle (Cup Icon) & Animated Hamburger / Close Button */}
+        <div className="flex items-center gap-1 shrink-0">
           <button
             type="button"
             suppressHydrationWarning
@@ -69,13 +96,13 @@ export function MobileNav() {
             </svg>
           </button>
 
-          {/* Menu Toggle Button */}
+          {/* Menu Toggle: Animates between ☰ (Hamburger) and ✕ (Close) */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
             aria-expanded={isOpen}
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            className="p-2 rounded-md text-foreground hover:bg-surface-hover transition-colors"
+            aria-label={isOpen ? "Collapse navigation menu" : "Expand navigation menu"}
+            className="p-2 rounded-md text-foreground hover:bg-surface-hover transition-colors cursor-pointer"
           >
             <div className="w-5 h-4 flex flex-col justify-between">
               <span
@@ -98,52 +125,71 @@ export function MobileNav() {
         </div>
       </div>
 
-      {/* Drawer Overlay */}
-      {isOpen && (
-        <div className="fixed inset-x-0 top-14 bottom-0 bg-background/98 backdrop-blur-xl z-50 flex flex-col justify-between p-6 overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <span className="text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
-                Mobile Nav
+      {/* 2. In-flow Vertically Stacked Navigation (Replicating ggkim.com's stacking behaviour) */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-in-out motion-reduce:transition-none ${
+          isOpen ? "grid-rows-[1fr] border-t border-border-subtle" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <nav
+            aria-label="Expanded Mobile Navigation"
+            className="p-5 sm:p-6 flex flex-col gap-6 bg-background"
+          >
+
+            {/* Navigation Index */}
+            <div className="flex flex-col gap-1">
+              <span className="px-2 pb-2 text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
+                Index
               </span>
-              <nav className="flex flex-col gap-1">
-                {MOBILE_NAV_ITEMS.map((item, index) => (
+              {NAV_ITEMS.map((item, index) => {
+                const isActive = activeSection === item.id;
+                return (
                   <a
                     key={item.id}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-between py-3 text-lg font-sans font-medium text-foreground border-b border-border-subtle"
+                    onClick={() => {
+                      setActiveSection(item.id);
+                      setIsOpen(false);
+                    }}
+                    className={`group flex items-center justify-between px-2.5 py-2.5 rounded-md text-xs sm:text-sm font-sans transition-all duration-150 ${
+                      isActive
+                        ? "bg-surface-hover text-foreground font-medium"
+                        : "text-muted-foreground hover:text-foreground hover:bg-surface-hover/60"
+                    }`}
                   >
-                    <div className="flex items-center gap-3">
-                      <span className="font-mono text-xs text-subtle-foreground">
+                    <div className="flex items-center gap-2.5">
+                      <span className="font-mono text-[0.6875rem] text-subtle-foreground group-hover:text-foreground transition-colors">
                         0{index + 1}
                       </span>
                       <span>{item.label}</span>
                     </div>
                     {item.count && (
-                      <span className="font-mono text-xs text-subtle-foreground">
+                      <span className="font-mono text-[0.6875rem] text-subtle-foreground opacity-75">
                         [{item.count}]
                       </span>
                     )}
                   </a>
-                ))}
-              </nav>
+                );
+              })}
             </div>
 
-            <div className="flex flex-col gap-2 pt-4">
-              <span className="text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
+            {/* Connect & Socials */}
+            <div className="flex flex-col gap-1 pt-6 border-t border-border-subtle">
+              <span className="px-2 pb-2 text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
                 Connect
               </span>
-              <div className="grid grid-cols-2 gap-2">
-                {MOBILE_SOCIALS.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2.5 rounded-lg border border-border-subtle bg-surface text-xs font-sans text-muted-foreground hover:text-foreground hover:border-border-strong transition-colors"
-                  >
-                    <span>{social.label}</span>
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center justify-between px-2.5 py-2 rounded text-xs sm:text-sm text-muted-foreground hover:text-foreground hover:bg-surface-hover/60 transition-colors"
+                >
+                  <span>{link.label}</span>
+                  {link.external && (
                     <svg
                       className="w-3 h-3 text-subtle-foreground"
                       fill="none"
@@ -157,18 +203,20 @@ export function MobileNav() {
                         d="M7 17L17 7M17 7H7M17 7V17"
                       />
                     </svg>
-                  </a>
-                ))}
+                  )}
+                </a>
+              ))}
+            </div>
+
+            {/* Footer Colophon */}
+            <div className="pt-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-mono text-subtle-foreground">
+              <div className="flex items-center justify-between">
+                <span>&copy; 2026 · Made with Caffeine &amp; Antigravity All Rights Reserved</span>
               </div>
             </div>
-          </div>
-
-          <div className="pt-6 border-t border-border-subtle flex items-center justify-between text-[0.6875rem] font-mono text-subtle-foreground">
-            <span>&copy; 2026 Shravani Sutar</span>
-            <span>All Rights Reserved</span>
-          </div>
+          </nav>
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -15,6 +15,8 @@ export interface CatProps {
   tiltOnScroll?: boolean;
   /** Custom class name */
   className?: string;
+  /** Force active even if sidebar media query is false (e.g. inside mobile full-screen nav overlay) */
+  forceActive?: boolean;
 }
 
 const SPEECH_MESSAGES = [
@@ -31,6 +33,7 @@ export function Cat({
   squintOnClick = true,
   tiltOnScroll = true,
   className = "",
+  forceActive = false,
 }: CatProps) {
   const rawId = useId();
   const id = rawId.replace(/:/g, "");
@@ -52,6 +55,8 @@ export function Cat({
   const [messageIndex, setMessageIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
+  const isComponentActive = forceActive || isSidebarVisible;
+
   useEffect(() => {
     const sidebarQuery = window.matchMedia("(min-width: 768px)");
     const updateSidebarVisibility = () => setIsSidebarVisible(sidebarQuery.matches);
@@ -62,19 +67,19 @@ export function Cat({
   }, []);
 
   const handleMouseEnter = () => {
-    if (!isSidebarVisible) return;
+    if (!isComponentActive) return;
     setIsHovered(true);
   };
 
   const handleMouseLeave = () => {
-    if (!isSidebarVisible) return;
+    if (!isComponentActive) return;
     setIsHovered(false);
     setMessageIndex((prev) => (prev + 1) % SPEECH_MESSAGES.length);
   };
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container || !isSidebarVisible) return;
+    if (!container || !isComponentActive) return;
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     let isReducedMotion = motionQuery.matches;
@@ -249,7 +254,7 @@ export function Cat({
       window.removeEventListener("scroll", handleScroll);
       motionQuery.removeEventListener("change", onMotionChange);
     };
-  }, [followCursor, blink, tiltOnScroll, isSidebarVisible]);
+  }, [followCursor, blink, tiltOnScroll, isComponentActive]);
 
   return (
     <div
@@ -260,7 +265,7 @@ export function Cat({
       style={{ overflow: "visible" }}
     >
       {/* Speech Bubble - Positioned to the right of the cat at eye level */}
-      {isSidebarVisible && (
+      {isComponentActive && (
         <div
           aria-hidden={!isHovered}
           className={`absolute left-[calc(100%+6px)] lg:left-[calc(100%+8px)] top-[58%] -translate-y-1/2 z-40 pointer-events-none transition-all duration-200 ease-out origin-[left_center] motion-reduce:transition-none ${
@@ -309,6 +314,8 @@ export function Cat({
         preserveAspectRatio="xMidYMid meet"
         onPointerDown={() => {
           if (squintOnClick) pokeRef.current = 1;
+          setIsHovered((prev) => !prev);
+          setMessageIndex((prev) => (prev + 1) % SPEECH_MESSAGES.length);
         }}
         onKeyDown={(e) => {
           if (squintOnClick && (e.key === "Enter" || e.key === " ")) {

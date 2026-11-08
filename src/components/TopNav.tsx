@@ -23,7 +23,7 @@ export function TopNav({ currentSection = "Selected Work" }: TopNavProps) {
 
   return (
     <header
-      className={`sticky top-0 z-20 h-[var(--topbar-height)] w-full border-b transition-all duration-200 ${
+      className={`hidden md:block sticky top-0 z-20 h-[var(--topbar-height)] w-full border-b transition-all duration-200 ${
         isScrolled
           ? "bg-background/70 backdrop-blur-md border-border-subtle shadow-xs"
           : "bg-background border-border-subtle"
@@ -36,7 +36,7 @@ export function TopNav({ currentSection = "Selected Work" }: TopNavProps) {
             href="/"
             className="hover:text-foreground transition-colors hidden sm:inline"
           >
-            Portfolio
+            Home
           </Link>
           <span className="text-subtle-foreground hidden sm:inline">/</span>
           <span className="text-foreground font-medium">{currentSection}</span>

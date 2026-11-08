@@ -119,7 +119,7 @@ export default function CaseStudyPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
       {/* Mobile Top Navigation (< 768px) */}
-      <MobileNav />
+      <MobileNav currentSection="Case Study" />
 
       {/* Desktop & Tablet Fixed Vertical Sidebar (>= 768px) */}
       <Sidebar />
