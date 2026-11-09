@@ -256,3 +256,12 @@ body {
   background-size: 24px 24px;
   background-image: radial-gradient(circle, var(--border-subtle) 1px, transparent 1px);
 }
+
+/* Hide scrollbars across browsers while preserving scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
