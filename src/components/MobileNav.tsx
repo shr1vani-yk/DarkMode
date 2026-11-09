@@ -136,6 +136,25 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
             aria-label="Expanded Mobile Navigation"
             className="p-5 sm:p-6 flex flex-col gap-6 bg-background"
           >
+            {/* Profile / Intro with Cat Mascot */}
+            <div className="flex items-center justify-between pb-4 border-b border-border-subtle">
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="font-sans font-semibold tracking-tight text-sm text-foreground">
+                    Shravani Sutar
+                  </span>
+                  <span className="font-mono text-[0.625rem] px-1.5 py-0.5 rounded bg-surface-hover text-subtle-foreground border border-border-subtle">
+                    ’26
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground font-sans">
+                  Product Designer &amp; Design Engineer
+                </p>
+              </div>
+              <div className="shrink-0 flex items-center justify-center">
+                <Cat forceActive className="w-[60px] h-[50px]" />
+              </div>
+            </div>
 
             {/* Navigation Index */}
             <div className="flex flex-col gap-1">
