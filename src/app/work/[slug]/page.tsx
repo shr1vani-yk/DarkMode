@@ -189,15 +189,26 @@ async function CaseStudyContent({ params }: Props) {
               <div className="flex flex-col">
                 <span className="font-sans text-xs text-muted-foreground mb-1">Live</span>
                 <a
-                  href="https://nepalitales.in"
+                  href="https://www.nepalitales.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-base font-semibold text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-1 group w-fit"
+                  className="font-sans text-base font-light text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-1 group w-fit"
                 >
                   <span>Shipped</span>
                   <span className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                    &nearr;
+                  
+                  
+
+            
                   </span>
+                </a>
+                <a
+                  href="https://www.nepalitales.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-sans text-base font-light text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-1 group w-fit"
+                >
+                <span>Overview in Figma</span>
                 </a>
               </div>
 
@@ -232,7 +243,7 @@ async function CaseStudyContent({ params }: Props) {
             className="flex flex-col gap-4 pt-10 border-t border-border-subtle/70"
           >
             <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-medium">
-              02 / CONTEXT
+              Some Overview
             </span>
             <h2
               id="heading-context"
@@ -246,46 +257,15 @@ async function CaseStudyContent({ params }: Props) {
                 conversations. What began as an intimate chat-based catering service quickly scaled to hundreds of
                 orders per evening.
               </p>
+
               <p>
-                The kitchen operates on small-batch artisan steaming cycles: every 25 minutes, fresh batches are
-                prepped, steamed, and packed. Because food quality degrades if steamed items sit waiting for couriers,
-                synchronization between kitchen timing and delivery pickup was essential.
-              </p>
-              <p>
-                WhatsApp gave customers zero visibility into kitchen capacity. Customers sent messages at 8:15 PM
-                expecting instant delivery, while the kitchen was already fully committed until 9:30 PM. The resulting
+                WhatsApp gave customers zero visibility into kitchen capacity. The resulting
                 manual messaging loop caused lost orders and kitchen confusion.
               </p>
             </div>
           </section>
 
-          {/* Section 03: About Nepali Tales */}
-          <section
-            id="about-project"
-            aria-labelledby="heading-about"
-            className="flex flex-col gap-4 pt-10 border-t border-border-subtle/70"
-          >
-            <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-medium">
-              03 / OVERVIEW
-            </span>
-            <h2
-              id="heading-about"
-              className="text-xl sm:text-2xl font-semibold text-foreground font-sans tracking-tight"
-            >
-              About {project.title}
-            </h2>
-            <div className="flex flex-col gap-4 text-[15px] sm:text-base text-muted-foreground font-sans leading-[1.8]">
-              <p>
-                Nepali Tales crafts Himalayan specialties—from classic Jhol momos to bespoke chili-oil
-                infusions—using traditional hand-folding techniques that demand precise batch scheduling.
-              </p>
-              <p>
-                Unlike traditional aggregator listings on Zomato and Swiggy where steep 30% commission cuts and
-                uncoordinated dispatchers hurt food quality, Nepali Tales prioritizes direct relationships with repeat
-                neighborhood diners.
-              </p>
-            </div>
-          </section>
+          
 
           {/* Section 04: Problem Statement (Exact structured sentence breakdown matching screenshot) */}
           <section

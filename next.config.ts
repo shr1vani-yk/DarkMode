@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
         source: "/images/projects/plix.",
         destination: "/images/projects/plix.png",
       },
+      {
+        source: "/aboutMe",
+        destination: "/about",
+      },
     ];
   },
 };
