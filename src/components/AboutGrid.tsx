@@ -34,6 +34,24 @@ const QUOTE_IMAGES = [
   "/images/about/quote/quote-3.webp",
 ];
 
+const EXPERIENCES = [
+  {
+    year: "2026",
+    company: "Kairos.artifex (Freelancing)",
+    role: "Product & Visual Designer",
+  },
+  {
+    year: "2026",
+    company: "Plixlife",
+    role: "Visual Designer Intern",
+  },
+  {
+    year: "2024",
+    company: "I2IT, (PCRC)",
+    role: "Design & Engineering Intern",
+  },
+];
+
 interface ImageCellProps {
   images: string[];
   alt: string;
@@ -72,32 +90,42 @@ function ImageCell({ images, alt, priority = false, className = "" }: ImageCellP
       }}
       aria-label={`${alt} - Click to cycle (${index + 1}/${images.length})`}
     >
-      {images.map((src, idx) => (
-        <div
-          key={src}
-          className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-            idx === index ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
-          }`}
-        >
-          <Image
-            src={src}
-            alt={`${alt} ${idx + 1}`}
-            fill
-            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 320px"
-            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-[1.02]"
-            priority={priority && idx === 0}
-          />
-        </div>
-      ))}
+      {images.map((src, idx) => {
+        const isCurrent = idx === index;
+        // Priority (preload in <head> with fetchPriority="high") is strictly for the first visible image (me-1.webp)
+        const isPriority = priority && idx === 0;
+        // For the above-the-fold priority gallery (WHO cell), eagerly load the upcoming second image (me-2.webp)
+        // so it transitions smoothly without lazy-loading delay or LCP warnings, while avoiding preloading all images.
+        // Below-the-fold images retain lazy loading.
+        const loadingMode = isPriority ? undefined : (priority && idx === 1 ? "eager" : "lazy");
+
+        return (
+          <div
+            key={src}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${
+              isCurrent ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
+            }`}
+          >
+            <Image
+              src={src}
+              alt={`${alt} ${idx + 1}`}
+              fill
+              sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 320px"
+              className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-[1.02]"
+              priority={isPriority}
+              loading={loadingMode}
+            />
+          </div>
+        );
+      })}
 
       {/* Subtle indicator dots on hover */}
       <div className="absolute bottom-2 right-2 z-20 flex gap-1 opacity-0 group-hover:opacity-80 transition-opacity bg-background/60 backdrop-blur-xs px-1.5 py-0.5 rounded-full">
         {images.map((_, dotIdx) => (
           <span
             key={dotIdx}
-            className={`w-1.5 h-1.5 rounded-full transition-colors ${
-              dotIdx === index ? "bg-foreground" : "bg-foreground/30"
-            }`}
+            className={`w-1.5 h-1.5 rounded-full transition-colors ${dotIdx === index ? "bg-foreground" : "bg-foreground/30"
+              }`}
           />
         ))}
       </div>
@@ -106,14 +134,24 @@ function ImageCell({ images, alt, priority = false, className = "" }: ImageCellP
 }
 
 export function AboutGrid() {
+  const [isExperienceOpen, setIsExperienceOpen] = useState(false);
+
   return (
     <div className="w-full flex flex-col text-foreground select-none">
       {/* 1. Header & Lead-in Paragraph matching screenshots exactly */}
       <section className="flex flex-col gap-3 max-w-2xl sm:max-w-3xl pb-8 sm:pb-12">
-        <h1 className="font-mono text-sm sm:text-base text-foreground font-regular tracking-tight ">
-          /aboutMe <span> <PhosphorIcons.LegoIcon size={24} /> </span>
-          
-        </h1>
+        <div className="flex items-center gap-2">
+          <span className="font-mono text-sm sm:text-base text-foreground tracking-tight">
+            /aboutMe
+          </span>
+
+          <PhosphorIcons.LegoIcon
+            size={24}
+            
+            className="surface"
+            aria-hidden="true"
+          />
+        </div>
         <div className="flex flex-col gap-3 font-sans text-xs sm:text-sm text-foreground/90 leading-relaxed">
           <p>
             I&apos;m an engineer turned designer. My curiosity about design started during my engineering days, where I found myself drawn to the intersection of design and logic.
@@ -124,6 +162,61 @@ export function AboutGrid() {
             Looking ahead, I want to work with teams tackling genuinely complex problems, with a few
             crack designers in the room.
           </p>
+        </div>
+
+        {/* Collapsible Experience Section */}
+        <div className="pt-1 flex flex-col">
+          <button
+            type="button"
+            onClick={() => setIsExperienceOpen((prev) => !prev)}
+            aria-expanded={isExperienceOpen}
+            aria-controls="experience-details"
+            className="group flex items-center gap-1.5 font-mono text-xs sm:text-sm text-foreground hover:text-muted-foreground transition-colors cursor-pointer text-left select-none focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-foreground/50 rounded-xs w-fit"
+          >
+            <span
+              className={`inline-block transition-transform duration-200 ease-out font-mono ${isExperienceOpen ? "rotate-90" : "rotate-0"
+                }`}
+              aria-hidden="true"
+            >
+              &gt;
+            </span>
+            <span className="font-mono underline decoration-dashed underline-offset-4 decoration-foreground/50 group-hover: transition-all duration-200 cursor-pointer ">experience</span>
+            <span className="text-[#cca404] dark:text-[#facc15] font-mono">
+              [open for work]
+            </span>
+          </button>
+
+          {/* Smooth In-Flow Collapsible Content Container */}
+          <div
+            id="experience-details"
+            className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isExperienceOpen
+                ? "grid-rows-[1fr] opacity-100"
+                : "grid-rows-[0fr] opacity-0 pointer-events-none"
+              }`}
+          >
+            <div className="overflow-hidden">
+              <div className="pt-4 sm:pt-5 pb-1 flex flex-col gap-4 sm:gap-5">
+                {EXPERIENCES.map((exp) => (
+                  <div
+                    key={exp.company}
+                    className="grid grid-cols-[85px_1fr] sm:grid-cols-[120px_1fr] md:grid-cols-[140px_1fr] items-start"
+                  >
+                    <span className="font-mono text-xs sm:text-sm text-foreground/80 pt-0.5">
+                      {exp.year}
+                    </span>
+                    <div className="flex flex-col">
+                      <span className="font-sans text-xs sm:text-sm font-semibold text-foreground">
+                        {exp.company}
+                      </span>
+                      <span className="font-sans text-xs text-muted-foreground">
+                        {exp.role}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -196,7 +289,6 @@ export function AboutGrid() {
         <ImageCell
           images={ALBUM_IMAGES}
           alt="Album artwork"
-          priority
           className="order-3 lg:order-none lg:col-start-4 lg:row-start-2"
         />
 
@@ -298,10 +390,10 @@ export function AboutGrid() {
             >
               <span>LinkedIn</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-              <PhosphorIcons.ArrowUpRightIcon size={14} />
+                <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
-            
+
 
             <a
               href="mailto:digital.shravanisutar@gmail.com"
@@ -309,7 +401,7 @@ export function AboutGrid() {
             >
               <span>Email</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-              <PhosphorIcons.ArrowUpRightIcon size={14} />
+                <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
             <a
@@ -320,7 +412,7 @@ export function AboutGrid() {
             >
               <span>Substack</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-              <PhosphorIcons.ArrowUpRightIcon size={14} />
+                <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
             <a
@@ -331,7 +423,7 @@ export function AboutGrid() {
             >
               <span>Instagram</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-              <PhosphorIcons.ArrowUpRightIcon size={14} />
+                <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
           </div>

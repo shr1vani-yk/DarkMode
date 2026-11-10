@@ -6,8 +6,8 @@ import { Cat } from "./Cat";
 
 const NAV_ITEMS = [
   { id: "work", label: "Selected Work", count: "04", href: "/#work" },
-  { id: "about", label: "About & Craft", count: "", href: "/about" },
-  { id: "lab", label: "Interface Lab", count: "12", href: "/#lab" },
+  { id: "about", label: "About Me", count: "", href: "/about" },
+  { id: "lab", label: "Playground", count: "12", href: "/#lab" },
   // { id: "archive", label: "Writing & Notes", count: "", href: "#archive" },
 ];
 

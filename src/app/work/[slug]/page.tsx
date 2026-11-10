@@ -10,7 +10,7 @@ import {
 import { NextProjectCard } from "@/components/NextProjectCard";
 import { PROJECTS, ProjectItem } from "@/data/projects";
 import { CaseStudyThemeToggle } from "@/components/CaseStudyThemeToggle";
-
+import * as PhosphorIcons from "@phosphor-icons/react/ssr";
 interface Props {
   params: Promise<{ slug: string }>;
 }
@@ -192,23 +192,22 @@ async function CaseStudyContent({ params }: Props) {
                   href="https://www.nepalitales.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-base font-light text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-1 group w-fit"
+                  className="font-sans text-base font-light text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-4 group w-fit underline decoration-solid underline-offset-6 decoration-foreground/70 mb-2"
                 >
                   <span>Shipped</span>
+                  <PhosphorIcons.ArrowUpRightIcon size={18} weight="bold" />                  
                   <span className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                  
-                  
 
-            
                   </span>
                 </a>
                 <a
-                  href="https://www.nepalitales.com/"
+                  href="https://www.figma.com/design/LToyJJhPoV5N1o849XoXVq/Nepali-Tales-Designs?node-id=0-1&t=zOpOflksZn7iZo4V-1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-sans text-base font-light text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-1 group w-fit"
+                  className="font-sans text-base font-light text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-4 group w-fit"
                 >
-                <span>Overview in Figma</span>
+                  <span>Overview in Figma</span>
+                  <PhosphorIcons.ArrowUpRightIcon size={18} weight="bold" />
                 </a>
               </div>
 
@@ -265,7 +264,7 @@ async function CaseStudyContent({ params }: Props) {
             </div>
           </section>
 
-          
+
 
           {/* Section 04: Problem Statement (Exact structured sentence breakdown matching screenshot) */}
           <section
