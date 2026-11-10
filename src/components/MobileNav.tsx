@@ -12,8 +12,8 @@ interface MobileNavProps {
 
 const NAV_ITEMS = [
   { id: "work", label: "Selected Work", count: "04", href: "/#work" },
-  { id: "about", label: "About & Craft", count: "", href: "/about" },
-  { id: "lab", label: "Interface Lab", count: "12", href: "/#lab" },
+  { id: "about", label: "About Me", count: "", href: "/about" },
+  { id: "playground", label: "Playground", count: "12", href: "/playground" },
 ];
 
 const SOCIAL_LINKS = [
@@ -36,7 +36,11 @@ const SOCIAL_LINKS = [
 
 export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) {
   const pathname = usePathname();
-  const activeSection = pathname?.startsWith("/about") ? "about" : "work";
+  const activeSection = pathname?.startsWith("/about")
+    ? "about"
+    : pathname?.startsWith("/playground")
+    ? "playground"
+    : "work";
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
