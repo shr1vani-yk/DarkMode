@@ -1,5 +1,5 @@
 "use client";
-
+import * as PhosphorIcons from "@phosphor-icons/react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
@@ -110,13 +110,13 @@ export function AboutGrid() {
     <div className="w-full flex flex-col text-foreground select-none">
       {/* 1. Header & Lead-in Paragraph matching screenshots exactly */}
       <section className="flex flex-col gap-3 max-w-2xl sm:max-w-3xl pb-8 sm:pb-12">
-        <h1 className="font-mono text-sm sm:text-base text-foreground font-medium tracking-tight">
-          /aboutMe
+        <h1 className="font-mono text-sm sm:text-base text-foreground font-regular tracking-tight ">
+          /aboutMe <span> <PhosphorIcons.LegoIcon size={24} /> </span>
+          
         </h1>
         <div className="flex flex-col gap-3 font-sans text-xs sm:text-sm text-foreground/90 leading-relaxed">
           <p>
-            I&apos;m an engineer turned designer. My curiosity about design started during my
-            engineering days, where I found myself drawn to the intersection of design and logic.
+            I&apos;m an engineer turned designer. My curiosity about design started during my engineering days, where I found myself drawn to the intersection of design and logic.
             From I2IT (PPCRC) to freelancing, early-stage startups, and Plix, I&apos;ve been
             exploring that intersection ever since.
           </p>
@@ -139,7 +139,7 @@ export function AboutGrid() {
 
         {/* 1. WHO */}
         <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
+          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
             WHO
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
@@ -165,7 +165,7 @@ export function AboutGrid() {
 
         {/* 4. LISTENING */}
         <div className="order-4 lg:order-none lg:col-start-4 lg:row-start-1 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
+          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
             LISTENING
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
@@ -207,7 +207,7 @@ export function AboutGrid() {
 
         {/* 9. CREATE */}
         <div className="order-5 lg:order-none lg:col-start-1 lg:row-start-3 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
+          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
             CREATE
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
@@ -230,7 +230,7 @@ export function AboutGrid() {
 
         {/* 12. WITH */}
         <div className="order-8 lg:order-none lg:col-start-4 lg:row-start-3 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
+          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
             WITH
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
@@ -286,7 +286,7 @@ export function AboutGrid() {
 
         {/* 19. CONTACT */}
         <div className="order-9 lg:order-none lg:col-start-3 lg:row-start-5 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
+          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
             CONTACT
           </span>
           <div className="flex flex-col gap-1 text-xs sm:text-sm font-sans">
@@ -298,27 +298,29 @@ export function AboutGrid() {
             >
               <span>LinkedIn</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                ↗
+              <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
+            
+
             <a
               href="mailto:digital.shravanisutar@gmail.com"
               className="text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-1 group w-fit"
             >
               <span>Email</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                ↗
+              <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
             <a
-              href="https://substack.com/@sreedotee"
+              href="https://substack.com/@shr1vani"
               target="_blank"
               rel="noreferrer"
               className="text-foreground hover:text-muted-foreground transition-colors inline-flex items-center gap-1 group w-fit"
             >
               <span>Substack</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                ↗
+              <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
             <a
@@ -329,7 +331,7 @@ export function AboutGrid() {
             >
               <span>Instagram</span>
               <span className="text-subtle-foreground group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
-                ↗
+              <PhosphorIcons.ArrowUpRightIcon size={14} />
               </span>
             </a>
           </div>

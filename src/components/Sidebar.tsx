@@ -1,5 +1,5 @@
 "use client";
-
+import * as PhosphorIcons from "@phosphor-icons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Cat } from "./Cat";
@@ -12,10 +12,9 @@ const NAV_ITEMS = [
 ];
 
 const SOCIAL_LINKS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/shravanisutar", external: true },
-  // { label: "X / Twitter", href: "https://x.com/chaosNchai", external: true },
-  { label: "Instagram", href: "https://www.instagram.com/designft.shrav?mdxt=ZDNlZDc0MzIxNw==", external: true },
-  { label: "Email", href: "mailto:digital.shravanisutar@gmail.com", external: true },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/shravanisutar", external: true, icon: PhosphorIcons.LinkedinLogoIcon },
+  { label: "Instagram", href: "https://www.instagram.com/designft.shrav?mdxt=ZDNlZDc0MzIxNw==", external: true, icon: PhosphorIcons.InstagramLogoIcon },
+  { label: "Email", href: "mailto:digital.shravanisutar@gmail.com", external: true, icon: PhosphorIcons.EnvelopeIcon },
 ];
 
 export function Sidebar() {
@@ -61,11 +60,10 @@ export function Sidebar() {
               <Link
                 key={item.id}
                 href={item.href}
-                className={`group flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-sans transition-all duration-150 ${
-                  isActive
+                className={`group flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-sans transition-all duration-150 ${isActive
                     ? "bg-surface-hover text-foreground font-medium"
                     : "text-muted-foreground hover:text-foreground hover:bg-surface-hover/60"
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="font-mono text-[0.6875rem] text-subtle-foreground group-hover:text-foreground transition-colors">
@@ -81,41 +79,37 @@ export function Sidebar() {
               </Link>
             );
           })}
-           {/* Connect & Socials */}
-        <div className="flex flex-col gap-1 pt-6 border-t border-border-subtle">
-          <span className="px-2 pb-2 text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
-            Connect
-          </span>
-          {SOCIAL_LINKS.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.external ? "_blank" : undefined}
-              rel={link.external ? "noopener noreferrer" : undefined}
-              className="flex items-center justify-between px-2.5 py-1.5 rounded text-xs text-muted-foreground hover:text-foreground hover:bg-surface-hover/60 transition-colors"
-            >
-              <span>{link.label}</span>
-              {link.external && (
-                <svg
-                  className="w-3 h-3 text-subtle-foreground"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
+          {/* Connect & Socials */}
+          <div className="flex flex-col gap-1 pt-6 border-t border-border-subtle">
+            <span className="px-2 pb-2 text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
+              Connect
+            </span>
+            {SOCIAL_LINKS.map((link) => {
+              const Icon = link.icon;
+
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noopener noreferrer" : undefined}
+                  className="flex items-center justify-between px-2.5 py-1.5 rounded text-xs text-muted-foreground hover:text-foreground hover:bg-surface-hover/60 transition-colors"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M7 17L17 7M17 7H7M17 7V17"
-                  />
-                </svg>
-              )}
-            </a>
-          ))}
-        </div>
+                  <span className="flex items-center gap-2.5">
+                    <Icon size={16} weight="regular" />
+                    {link.label}
+                  </span>
+
+                  {link.external && (
+                    <PhosphorIcons.ArrowUpRightIcon size={14} />
+                  )}
+                </a>
+              );
+            })}
+          </div>
         </div>
 
-       
+
       </nav>
 
       {/* Footer Colophon */}
