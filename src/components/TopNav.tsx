@@ -36,7 +36,7 @@ export function TopNav({ currentSection = "Selected Work" }: TopNavProps) {
             href="/"
             className="hover:text-foreground transition-colors hidden sm:inline"
           >
-            Home
+            Portfolio
           </Link>
           <span className="text-subtle-foreground hidden sm:inline">/</span>
           <span className="text-foreground font-medium">{currentSection}</span>

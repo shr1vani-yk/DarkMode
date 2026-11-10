@@ -38,9 +38,10 @@ interface ImageCellProps {
   images: string[];
   alt: string;
   priority?: boolean;
+  className?: string;
 }
 
-function ImageCell({ images, alt, priority = false }: ImageCellProps) {
+function ImageCell({ images, alt, priority = false, className = "" }: ImageCellProps) {
   const [index, setIndex] = useState(0);
 
   // Click / tap to advance image
@@ -59,7 +60,7 @@ function ImageCell({ images, alt, priority = false }: ImageCellProps) {
   return (
     <div
       onClick={handleAdvance}
-      className="relative aspect-square w-full h-full overflow-hidden bg-surface cursor-pointer group select-none"
+      className={`relative aspect-square w-full h-full overflow-hidden bg-surface cursor-pointer group select-none ${className}`}
       title="Click to advance image"
       role="button"
       tabIndex={0}
@@ -126,14 +127,18 @@ export function AboutGrid() {
         </div>
       </section>
 
-      {/* 2. 4x5 Editorial Grid with Crisp Single 1px Grid Lines */}
+      {/* 2. Editorial Grid:
+          - Desktop (lg:): 4x5 grid matching screenshots exactly with negative-space cells.
+          - Tablet & Mobile (< lg): 2-column layout alternating image positions (Right -> Left -> Right -> Left -> Right)
+            to preserve the Sree Designs staggered zigzag rhythm. */}
       <section className="w-full border border-border-subtle bg-border-subtle grid grid-cols-2 lg:grid-cols-4 gap-[1px]">
         {/* =================================================================== */}
-        {/* ROW 1: WHO (1) | ME (2) | Empty (3) | LISTENING (4)                */}
+        {/* ROW 1: WHO (Text) | ME (Image)                                      */}
+        {/* Desktop: Row 1, Cols 1-2 | Mobile: Row 1, Cols 1-2 (Image on Right) */}
         {/* =================================================================== */}
 
         {/* 1. WHO */}
-        <div className="aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
+        <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
           <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
             WHO
           </span>
@@ -144,14 +149,22 @@ export function AboutGrid() {
           </p>
         </div>
 
-        {/* 2. ME (Images) */}
-        <ImageCell images={ME_IMAGES} alt="Shravani Sutar portrait" priority />
+        {/* 2. ME (Image - Right on mobile) */}
+        <ImageCell
+          images={ME_IMAGES}
+          alt="Shravani Sutar portrait"
+          priority
+          className="order-2 lg:order-none lg:col-start-2 lg:row-start-1"
+        />
 
-        {/* 3. Empty Spacer (Row 1, Col 3 on desktop) */}
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
+        {/* 3. Spacer (Desktop: Row 1, Col 3) */}
+        <div
+          className="hidden lg:flex lg:col-start-3 lg:row-start-1 aspect-square bg-background"
+          aria-hidden="true"
+        />
 
         {/* 4. LISTENING */}
-        <div className="aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
+        <div className="order-4 lg:order-none lg:col-start-4 lg:row-start-1 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
           <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
             LISTENING
           </span>
@@ -161,23 +174,39 @@ export function AboutGrid() {
         </div>
 
         {/* =================================================================== */}
-        {/* ROW 2: Empty (5) | Empty (6) | Empty (7) | ALBUM (8)                */}
+        {/* ROW 2: ALBUM (Image) | Empty Spacers                                */}
+        {/* Desktop: Row 2, Col 4 | Mobile: Row 2, Col 1 (Image on Left)        */}
         {/* =================================================================== */}
 
-        {/* 5, 6, 7. Empty Spacers (Row 2, Cols 1-3 on desktop) */}
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
+        {/* 5, 6, 7. Spacers (Desktop: Row 2, Cols 1-3) */}
+        <div
+          className="hidden lg:flex lg:col-start-1 lg:row-start-2 aspect-square bg-background"
+          aria-hidden="true"
+        />
+        <div
+          className="hidden lg:flex lg:col-start-2 lg:row-start-2 aspect-square bg-background"
+          aria-hidden="true"
+        />
+        <div
+          className="hidden lg:flex lg:col-start-3 lg:row-start-2 aspect-square bg-background"
+          aria-hidden="true"
+        />
 
-        {/* 8. ALBUM (Images) */}
-        <ImageCell images={ALBUM_IMAGES} alt="Album artwork" priority />
+        {/* 8. ALBUM (Image - Left on mobile, creating the zigzag!) */}
+        <ImageCell
+          images={ALBUM_IMAGES}
+          alt="Album artwork"
+          priority
+          className="order-3 lg:order-none lg:col-start-4 lg:row-start-2"
+        />
 
         {/* =================================================================== */}
-        {/* ROW 3: CREATE (9) | SEE (10) | Empty (11) | WITH (12)               */}
+        {/* ROW 3: CREATE (Text) | SEE (Image) | WITH (Text)                   */}
+        {/* Desktop: Row 3, Cols 1, 2, 4 | Mobile: Row 3 (Image on Right)       */}
         {/* =================================================================== */}
 
         {/* 9. CREATE */}
-        <div className="aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
+        <div className="order-5 lg:order-none lg:col-start-1 lg:row-start-3 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
           <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
             CREATE
           </span>
@@ -186,14 +215,21 @@ export function AboutGrid() {
           </p>
         </div>
 
-        {/* 10. SEE (Images) */}
-        <ImageCell images={SEE_IMAGES} alt="Creative explorations" />
+        {/* 10. SEE (Image - Right on mobile) */}
+        <ImageCell
+          images={SEE_IMAGES}
+          alt="Creative explorations"
+          className="order-6 lg:order-none lg:col-start-2 lg:row-start-3"
+        />
 
-        {/* 11. Empty Spacer (Row 3, Col 3 on desktop) */}
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
+        {/* 11. Spacer (Desktop: Row 3, Col 3) */}
+        <div
+          className="hidden lg:flex lg:col-start-3 lg:row-start-3 aspect-square bg-background"
+          aria-hidden="true"
+        />
 
         {/* 12. WITH */}
-        <div className="aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
+        <div className="order-8 lg:order-none lg:col-start-4 lg:row-start-3 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
           <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
             WITH
           </span>
@@ -203,31 +239,53 @@ export function AboutGrid() {
         </div>
 
         {/* =================================================================== */}
-        {/* ROW 4: Empty (13) | Empty (14) | FREN (15) | Empty (16)             */}
+        {/* ROW 4: FREN (Image) | Empty Spacers                                 */}
+        {/* Desktop: Row 4, Col 3 | Mobile: Row 4, Col 1 (Image on Left)        */}
         {/* =================================================================== */}
 
-        {/* 13, 14. Empty Spacers (Row 4, Cols 1-2 on desktop) */}
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
+        {/* 13, 14. Spacers (Desktop: Row 4, Cols 1-2) */}
+        <div
+          className="hidden lg:flex lg:col-start-1 lg:row-start-4 aspect-square bg-background"
+          aria-hidden="true"
+        />
+        <div
+          className="hidden lg:flex lg:col-start-2 lg:row-start-4 aspect-square bg-background"
+          aria-hidden="true"
+        />
 
-        {/* 15. FREN (Images) */}
-        <ImageCell images={FREN_IMAGES} alt="Creative friends" />
+        {/* 15. FREN (Image - Left on mobile, continuing zigzag!) */}
+        <ImageCell
+          images={FREN_IMAGES}
+          alt="Creative friends"
+          className="order-7 lg:order-none lg:col-start-3 lg:row-start-4"
+        />
 
-        {/* 16. Empty Spacer (Row 4, Col 4 on desktop) */}
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
+        {/* 16. Spacer (Desktop: Row 4, Col 4) */}
+        <div
+          className="hidden lg:flex lg:col-start-4 lg:row-start-4 aspect-square bg-background"
+          aria-hidden="true"
+        />
 
         {/* =================================================================== */}
-        {/* ROW 5: QUOTE (17) | Empty (18) | CONTACT (19) | Empty (20)          */}
+        {/* ROW 5: QUOTE (Image) | CONTACT (Text)                               */}
+        {/* Desktop: Row 5, Cols 1, 3 | Mobile: Row 5 (Image on Right)          */}
         {/* =================================================================== */}
 
-        {/* 17. QUOTE (Images) */}
-        <ImageCell images={QUOTE_IMAGES} alt="Quote inspiration" />
+        {/* 17. QUOTE (Image - Right on mobile, desktop: Row 5, Col 1) */}
+        <ImageCell
+          images={QUOTE_IMAGES}
+          alt="Quote inspiration"
+          className="order-10 lg:order-none lg:col-start-1 lg:row-start-5"
+        />
 
-        {/* 18. Empty Spacer (Row 5, Col 2 on desktop) */}
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
+        {/* 18. Spacer (Desktop: Row 5, Col 2) */}
+        <div
+          className="hidden lg:flex lg:col-start-2 lg:row-start-5 aspect-square bg-background"
+          aria-hidden="true"
+        />
 
         {/* 19. CONTACT */}
-        <div className="aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
+        <div className="order-9 lg:order-none lg:col-start-3 lg:row-start-5 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
           <span className="font-mono text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-foreground">
             CONTACT
           </span>
@@ -277,8 +335,11 @@ export function AboutGrid() {
           </div>
         </div>
 
-        {/* 20. Empty Spacer (Row 5, Col 4 on desktop) */}
-        <div className="hidden lg:flex aspect-square bg-background" aria-hidden="true" />
+        {/* 20. Spacer (Desktop: Row 5, Col 4) */}
+        <div
+          className="hidden lg:flex lg:col-start-4 lg:row-start-5 aspect-square bg-background"
+          aria-hidden="true"
+        />
       </section>
     </div>
   );

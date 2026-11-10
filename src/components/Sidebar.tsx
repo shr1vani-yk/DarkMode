@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Cat } from "./Cat";
 
 const NAV_ITEMS = [
-  { id: "work", label: "Selected Work", count: "04", href: "#work" },
-  { id: "about", label: "About & Craft", count: "", href: "#about" },
-  { id: "lab", label: "Interface Lab", count: "12", href: "#lab" },
+  { id: "work", label: "Selected Work", count: "04", href: "/#work" },
+  { id: "about", label: "About & Craft", count: "", href: "/about" },
+  { id: "lab", label: "Interface Lab", count: "12", href: "/#lab" },
   // { id: "archive", label: "Writing & Notes", count: "", href: "#archive" },
 ];
 
@@ -19,7 +19,8 @@ const SOCIAL_LINKS = [
 ];
 
 export function Sidebar() {
-  const [activeSection, setActiveSection] = useState("work");
+  const pathname = usePathname();
+  const activeSection = pathname?.startsWith("/about") ? "about" : "work";
 
   return (
     <aside
@@ -57,10 +58,9 @@ export function Sidebar() {
           {NAV_ITEMS.map((item, index) => {
             const isActive = activeSection === item.id;
             return (
-              <a
+              <Link
                 key={item.id}
                 href={item.href}
-                onClick={() => setActiveSection(item.id)}
                 className={`group flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-sans transition-all duration-150 ${
                   isActive
                     ? "bg-surface-hover text-foreground font-medium"
@@ -78,7 +78,7 @@ export function Sidebar() {
                     [{item.count}]
                   </span>
                 )}
-              </a>
+              </Link>
             );
           })}
            {/* Connect & Socials */}

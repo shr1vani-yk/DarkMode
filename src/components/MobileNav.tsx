@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { Cat } from "./Cat";
 
@@ -11,7 +12,7 @@ interface MobileNavProps {
 
 const NAV_ITEMS = [
   { id: "work", label: "Selected Work", count: "04", href: "/#work" },
-  { id: "about", label: "About & Craft", count: "", href: "/#about" },
+  { id: "about", label: "About & Craft", count: "", href: "/about" },
   { id: "lab", label: "Interface Lab", count: "12", href: "/#lab" },
 ];
 
@@ -34,8 +35,9 @@ const SOCIAL_LINKS = [
 ];
 
 export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) {
+  const pathname = usePathname();
+  const activeSection = pathname?.startsWith("/about") ? "about" : "work";
   const [isOpen, setIsOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("work");
   const { theme, toggleTheme } = useTheme();
 
   // Close navigation on Escape key
@@ -164,11 +166,10 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
               {NAV_ITEMS.map((item, index) => {
                 const isActive = activeSection === item.id;
                 return (
-                  <a
+                  <Link
                     key={item.id}
                     href={item.href}
                     onClick={() => {
-                      setActiveSection(item.id);
                       setIsOpen(false);
                     }}
                     className={`group flex items-center justify-between px-2.5 py-2.5 rounded-md text-xs sm:text-sm font-sans transition-all duration-150 ${
@@ -188,7 +189,7 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
                         [{item.count}]
                       </span>
                     )}
-                  </a>
+                  </Link>
                 );
               })}
             </div>
