@@ -129,7 +129,7 @@ export function PlaygroundGallery() {
                   <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight group-hover:text-muted-foreground transition-colors">
                     {item.title}
                   </h3>
-                  <p className="font-sans font-medium text-[11px] sm:text-xs text-muted-foreground">
+                  <p className="cd ">
                     {item.categoryLabel}
                   </p>
                 </div>

@@ -102,9 +102,8 @@ function ImageCell({ images, alt, priority = false, className = "" }: ImageCellP
         return (
           <div
             key={src}
-            className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${
-              isCurrent ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
-            }`}
+            className={`absolute inset-0 w-full h-full transition-opacity duration-500 ease-in-out ${isCurrent ? "opacity-100 z-10" : "opacity-0 pointer-events-none z-0"
+              }`}
           >
             <Image
               src={src}
@@ -147,7 +146,7 @@ export function AboutGrid() {
 
           <PhosphorIcons.LegoIcon
             size={24}
-            
+
             className="surface"
             aria-hidden="true"
           />
@@ -190,8 +189,8 @@ export function AboutGrid() {
           <div
             id="experience-details"
             className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${isExperienceOpen
-                ? "grid-rows-[1fr] opacity-100"
-                : "grid-rows-[0fr] opacity-0 pointer-events-none"
+              ? "grid-rows-[1fr] opacity-100"
+              : "grid-rows-[0fr] opacity-0 pointer-events-none"
               }`}
           >
             <div className="overflow-hidden">
@@ -205,11 +204,12 @@ export function AboutGrid() {
                       {exp.year}
                     </span>
                     <div className="flex flex-col">
-                      <span className="font-sans text-xs sm:text-sm font-semibold text-foreground">
-                        {exp.company}
+
+                      <span className="font-sans text-xs sm:text-sm font-regular text-foreground">
+                        {exp.role}
                       </span>
                       <span className="font-sans text-xs text-muted-foreground">
-                        {exp.role}
+                        {exp.company}
                       </span>
                     </div>
                   </div>
@@ -232,8 +232,9 @@ export function AboutGrid() {
 
         {/* 1. WHO */}
         <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
-            WHO
+          <span className="font-pixel text-[11px] sm:text-xs font-regular lowercase tracking-wider text-foreground/80">
+            <PhosphorIcons.GhostIcon size={18} />
+            [Who]
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
             Oh,
@@ -258,8 +259,9 @@ export function AboutGrid() {
 
         {/* 4. LISTENING */}
         <div className="order-4 lg:order-none lg:col-start-4 lg:row-start-1 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
-            LISTENING
+          <span className="font-pixel text-[11px] sm:text-xs font-regular lowercase tracking-wider text-foreground/80">
+            <PhosphorIcons.CassetteTapeIcon size={18} />
+            [music]
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
             Always humming something.
@@ -299,8 +301,9 @@ export function AboutGrid() {
 
         {/* 9. CREATE */}
         <div className="order-5 lg:order-none lg:col-start-1 lg:row-start-3 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
-            CREATE
+          <span className="font-pixel text-[11px] sm:text-xs font-regular lowercase tracking-wider text-foreground/80">
+            <PhosphorIcons.PaletteIcon size={18} />
+            [CREATE]
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
             Beyond work, I find myself exploring all kinds of creative corners.
@@ -322,8 +325,9 @@ export function AboutGrid() {
 
         {/* 12. WITH */}
         <div className="order-8 lg:order-none lg:col-start-4 lg:row-start-3 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
-            WITH
+          <span className="font-pixel text-[11px] sm:text-xs font-regular lowercase tracking-wider text-foreground/80">
+            <PhosphorIcons.BaseballHelmetIcon size={18} />
+            [WITH]
           </span>
           <p className="font-sans text-xs sm:text-sm text-foreground leading-snug">
             Always surrounded by incredibly creative friends.
@@ -378,8 +382,9 @@ export function AboutGrid() {
 
         {/* 19. CONTACT */}
         <div className="order-9 lg:order-none lg:col-start-3 lg:row-start-5 aspect-square bg-background p-3.5 sm:p-5 md:p-6 flex flex-col justify-between">
-          <span className="font-pixel text-[11px] sm:text-xs font-regular uppercase tracking-wider text-foreground/80">
-            CONTACT
+          <span className="font-pixel text-[11px] sm:text-xs font-regular lowercase tracking-wider text-foreground/80">
+            <PhosphorIcons.CoffeeIcon size={18} />
+            [CONTACT]
           </span>
           <div className="flex flex-col gap-1 text-xs sm:text-sm font-sans">
             <a
