@@ -126,10 +126,10 @@ export function PlaygroundGallery() {
 
                 {/* Microcopy & Hierarchy matching screenshots */}
                 <div className="flex flex-col gap-0.5 pt-0.5">
-                  <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight group-hover:text-muted-foreground transition-colors">
+                  <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight  transition-colors">
                     {item.title}
                   </h3>
-                  <p className="cd ">
+                  <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
                     {item.categoryLabel}
                   </p>
                 </div>

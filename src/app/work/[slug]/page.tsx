@@ -8,6 +8,7 @@ import {
   TopicItem,
 } from "@/components/CaseStudyTopicNav";
 import { NextProjectCard } from "@/components/NextProjectCard";
+import { PlixCaseStudy } from "@/components/PlixCaseStudy";
 import { PROJECTS, ProjectItem } from "@/data/projects";
 import { CaseStudyThemeToggle } from "@/components/CaseStudyThemeToggle";
 import * as PhosphorIcons from "@phosphor-icons/react/ssr";
@@ -42,6 +43,11 @@ async function CaseStudyContent({ params }: Props) {
   }
 
   const project: ProjectItem = PROJECTS[projectIndex];
+
+  if (project.slug === "plixlife") {
+    return <PlixCaseStudy />;
+  }
+
   const nextProject: ProjectItem = PROJECTS[(projectIndex + 1) % PROJECTS.length];
 
   // Topics matching the exact sidebar blueprint from the attached reference screenshot

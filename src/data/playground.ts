@@ -45,7 +45,7 @@ export const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   },
   {
     id: "portrait-practice",
-    title: "Portrait Practice",
+    title: "Face Portrait Practice",
     category: "visuals",
     categoryLabel: "Visual",
     image: "/images/playground/visuals/portrait-practice.webp",
@@ -56,7 +56,7 @@ export const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   },
   {
     id: "typography-style",
-    title: "Typography-Style",
+    title: "Typography-Masking",
     category: "visuals",
     categoryLabel: "Visual",
     image: "/images/playground/visuals/typography-style.webp",
@@ -69,7 +69,7 @@ export const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   // --- Visuals (Row 2: 3 cards, 1/3 width each) ---
   {
     id: "subject-priority-space",
-    title: "Subject Priority",
+    title: "Blend",
     category: "visuals",
     categoryLabel: "Visual",
     image: "/images/playground/visuals/subject-priority-space.webp",
@@ -80,7 +80,7 @@ export const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   },
   {
     id: "subject-priority-red",
-    title: "Subject Priority",
+    title: "Subject Oriented",
     category: "visuals",
     categoryLabel: "Visual",
     image: "/images/playground/visuals/subject-priority-red.webp",
