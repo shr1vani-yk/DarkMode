@@ -2,6 +2,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { TopNav } from "@/components/TopNav";
 import { MobileNav } from "@/components/MobileNav";
 import { WorkShowcase } from "@/components/WorkShowcase";
+import { Hero } from "@/components/hero/Hero";
 
 export default function Home() {
   return (
@@ -17,8 +18,11 @@ export default function Home() {
         {/* Top Navigation Bar Across Main Content */}
         <TopNav currentSection="Selected Work" />
 
-        {/* Scrollable Content Area: Starts Directly With Selected Work */}
-        <main className="flex-1 w-full max-w-[var(--content-max-width)] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-8 sm:pt-10 flex flex-col gap-12 sm:gap-16">
+        {/* Scrollable Content Area */}
+        <main className="flex-1 w-full max-w-[var(--content-max-width)] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 sm:pt-6 flex flex-col gap-12 sm:gap-16">
+          {/* Portfolio Hero Section: Morphing Title, Sticker, Note, & Enter Keycap */}
+          <Hero />
+
           {/* Section: Selected Work */}
           <section id="work" className="w-full">
             <WorkShowcase />

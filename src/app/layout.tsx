@@ -2,12 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
-import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
-import { SmoothCursor } from "@/components/ui/smooth-cursor";
 import CursorLoader from "@/components/cursor-loader";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const stackSans = localFont({
   src: [
@@ -62,7 +58,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={cn("h-full", "antialiased", stackSans.variable, geistPixel.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", stackSans.variable, geistPixel.variable, "font-sans")}
     >
       <head>
         <script
