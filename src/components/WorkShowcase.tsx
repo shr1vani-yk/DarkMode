@@ -113,7 +113,7 @@ export function WorkShowcase() {
           transform: "translate(-50%, -50%)",
         }}
       >
-        <span className="inline-block px-3.5 py-1.5 rounded-full bg-foreground text-background font-sans text-xs font-medium tracking-tight shadow-lg border border-border-strong/20 whitespace-nowrap">
+        <span className="inline-block px-3.5 py-1.5 rounded-full bg-foreground/90 text-background font-sans text-xs font-regular tracking-tight shadow-lg border border-border-strong/20 whitespace-nowrap">
           View Case Study
         </span>
       </div>
@@ -136,7 +136,7 @@ export function WorkShowcase() {
 
       {/* Section Header: Title & Filter Pills (Direct visual match to Image 1) */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h2 className="text-2xl sm:text-3xl font-semibold tracking-tight text-foreground font-sans">
+        <h2 className="text-2xl sm:text-3xl font-regular tracking-tight text-foreground font-sans">
           Selected Work
         </h2>
 
@@ -157,7 +157,7 @@ export function WorkShowcase() {
                 onClick={() => handleFilterChange(item.value)}
                 className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "bg-surface-elevated text-foreground font-medium border border-border-strong shadow-xs"
+                    ? "bg-foreground text-background font-medium border border-border-strong shadow-xs"
                     : "bg-transparent text-muted-foreground border border-border-subtle hover:text-foreground hover:border-border-strong"
                 }`}
               >
@@ -185,7 +185,7 @@ export function WorkShowcase() {
             {/* Read Time & Outbound Arrow */}
             <Link
               href={`/work/${currentProject.slug}`}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors group/link w-fit"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-regular text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors group/link w-fit"
             >
               <span>{currentProject.readTime}</span>
               <svg
@@ -205,13 +205,13 @@ export function WorkShowcase() {
 
             {/* Display Title (Clickable) */}
             <Link href={`/work/${currentProject.slug}`}>
-              <h3 className="text-xl md:text-2xl lg:text-[1.85rem] font-semibold tracking-tight text-foreground leading-[1.22] font-sans hover:text-muted-foreground transition-colors">
+              <h3 className="text-xl md:text-2xl lg:text-[1.85rem] font-medium tracking-tight text-foreground leading-[1.22] font-sans  transition-colors">
                 {currentProject.displayTitle}
               </h3>
             </Link>
 
             {/* Description */}
-            <p className="text-xs md:text-sm lg:text-[0.9375rem] text-muted-foreground font-sans leading-relaxed">
+            <p className="text-xs md:text-sm lg:text-[0.9375rem] text-muted-foreground font-sans font-light leading-relaxed">
               {currentProject.description}
             </p>
           </div>

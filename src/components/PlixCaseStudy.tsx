@@ -126,21 +126,21 @@ export function PlixCaseStudy() {
             {/* Header Block */}
             <div className="flex flex-col gap-3 sm:gap-4 lg:max-w-[78%]">
               <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] sm:text-xs text-muted-foreground tracking-wider uppercase">
-                <span>{overview.brand}</span>
-                <span aria-hidden="true">/</span>
-                <span>{overview.discipline}</span>
+                <span>case study</span>
+                {/* <span aria-hidden="true">/</span> */}
+                {/* <span>{overview.discipline}</span> */}
                 <span aria-hidden="true">&middot;</span>
                 <span>{overview.readTime}</span>
               </div>
 
               <h1
                 id="heading-overview"
-                className="font-sans font-semibold text-[1.85rem] sm:text-4xl lg:text-[2.65rem] text-foreground tracking-tight leading-[1.12]"
+                className="font-sans font-regular text-[1.85rem] sm:text-3xl lg:text-[1.79rem] text-foreground tracking-tight leading-[1.12]"
               >
                 {overview.title}
               </h1>
 
-              <p className="font-sans text-[15px] sm:text-base text-muted-foreground leading-[1.65] max-w-2xl">
+              <p className="font-sans font-light text-[15px] sm:text-base text-muted-foreground leading-[1.65] max-w-2xl">
                 {overview.description}
               </p>
             </div>
@@ -149,7 +149,7 @@ export function PlixCaseStudy() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 py-6 border-y border-border-subtle/70">
               {/* Column 1: Deliverables Pills */}
               <div className="col-span-2 md:col-span-1 flex flex-col gap-2.5">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                <span className="font-pixel text-[11px] uppercase tracking-wider text-muted-foreground">
                   Deliverables
                 </span>
                 <div className="flex flex-wrap md:flex-col items-start gap-1.5">
@@ -166,33 +166,33 @@ export function PlixCaseStudy() {
 
               {/* Column 2: Role */}
               <div className="flex flex-col gap-2">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                <span className="font-pixel text-[11px] uppercase tracking-wider text-muted-foreground">
                   Role
                 </span>
-                <span className="font-sans text-xs sm:text-sm text-foreground leading-snug">
+                <span className="font-sans font-light text-xs sm:text-sm text-foreground leading-snug">
                   {overview.role}
                 </span>
               </div>
 
               {/* Column 3: Timeline */}
               <div className="flex flex-col gap-2">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                <span className="font-pixel text-[11px] uppercase tracking-wider text-muted-foreground">
                   Timeline
                 </span>
-                <span className="font-sans text-xs sm:text-sm text-foreground leading-snug">
+                <span className="font-sans font-light text-xs sm:text-sm text-foreground leading-snug">
                   {overview.timeline}
                 </span>
               </div>
 
               {/* Column 4: Year & Team */}
               <div className="col-span-2 md:col-span-1 flex flex-col gap-2">
-                <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+                <span className="font-pixel text-[11px] uppercase tracking-wider text-muted-foreground">
                   Year &amp; Team
                 </span>
-                <span className="font-sans text-xs sm:text-sm text-foreground font-medium">
+                <span className="font-sans font-light text-xs sm:text-sm text-foreground font-medium">
                   {overview.year}
                 </span>
-                <span className="font-sans text-xs text-muted-foreground leading-relaxed whitespace-pre-line">
+                <span className="font-sans font-light text-xs text-muted-foreground leading-relaxed whitespace-pre-line">
                   {overview.teamCollaboration}
                 </span>
               </div>
@@ -206,16 +206,16 @@ export function PlixCaseStudy() {
             className="scroll-mt-24 flex flex-col gap-6 sm:gap-8"
           >
             <div className="flex flex-col gap-2 lg:max-w-[78%]">
-              <span className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
+              <span className="font-pixel text-[11px]  tracking-wider text-muted-foreground">
                 {concept.eyebrow}
               </span>
               <h2
                 id="heading-concept"
-                className="font-sans font-semibold text-xl sm:text-2xl lg:text-[1.75rem] text-foreground tracking-tight leading-snug"
+                className="font-sans font-regular text-xl sm:text-2xl lg:text-[1.75rem] text-foreground tracking-tight leading-snug"
               >
                 {concept.title}
               </h2>
-              <p className="font-sans text-sm sm:text-[15px] text-muted-foreground leading-[1.7] pt-1">
+              <p className="font-sans font-light text-sm sm:text-[14 px] text-muted-foreground leading-[1.7] pt-1">
                 {concept.body}
               </p>
             </div>

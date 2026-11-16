@@ -34,14 +34,14 @@ export function Sidebar() {
       <div className="p-5 lg:p-8 border-b border-border-subtle flex flex-col gap-3">
         <Link href="/" className="group flex flex-col gap-1">
           <div className="flex items-center justify-between">
-            <span className="font-sans font-semibold tracking-tight text-[1.05rem] text-foreground group-hover:text-muted-foreground transition-colors">
+            <span className="font-sans font-regular tracking-tight text-[1.05rem] text-foreground group-hover:text-muted-foreground transition-colors">
               Shravani Sutar
             </span>
             <span className="font-mono text-[0.6875rem] px-1.5 py-0.5 rounded bg-surface-hover text-subtle-foreground border border-border-subtle">
               ’26
             </span>
           </div>
-          <p className="text-xs text-muted-foreground font-sans tracking-normal">
+          <p className="text-xs text-muted-foreground font-sans font-regular tracking-normal">
             Product Designer &amp; Design Engineer
           </p>
         </Link>
@@ -85,7 +85,7 @@ export function Sidebar() {
           })}
           {/* Connect & Socials */}
           <div className="flex flex-col gap-1 pt-6 border-t border-border-subtle">
-            <span className="px-2 pb-2 text-[0.6875rem] font-mono uppercase tracking-widest text-subtle-foreground">
+            <span className="px-2 pb-2 text-[0.6875rem] font-pixel uppercase tracking-widest text-subtle-foreground">
               Connect
             </span>
             {SOCIAL_LINKS.map((link) => {
@@ -117,7 +117,7 @@ export function Sidebar() {
       </nav>
 
       {/* Footer Colophon */}
-      <div className="p-4 lg:p-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-mono text-subtle-foreground">
+      <div className="p-4 lg:p-6 border-t border-border-subtle flex flex-col gap-1.5 text-[0.6875rem] font-pixel text-subtle-foreground">
         <div className="flex items-center justify-between">
           <span>&copy; 2026 · Made with Caffeine & Antigravity All Rights Reserved</span>
         </div>
