@@ -123,11 +123,11 @@ export const PROJECTS: ProjectItem[] = [
     year: "2026",
     readTime: "3 min read",
     description:
-      "Nepali Tales is a well-known Thane cloud kitchen that had outgrown taking orders on WhatsApp. I redesigned ordering as a pre-order website built around time, with delivery slots & clear states for when ordering is closed or a slot is full, which reduced engineering rework, and we shipped an MVP in a few weeks.",
+      "Nepali Tales was outgrowing its manual ordering process. We built a unified digital ordering platform to simplify preorders, streamline operations and improve discoverability helping the business turn growing demand into a more scalable experience.",
     metric: "5k+ Visitors",
     metricSub: "2026, FOODTECH",
     tags: ["Visuals", "NextJS", "Prototyped"],
-    image: "/images/projects/nepaliTalesThumbnail.jpg",
+    image: "/images/projects/thumbnails/nepaliTalesThumbnail.jpg",
     hasAsset: true,
     caseStudy: {
       heroTagline:
@@ -138,7 +138,7 @@ export const PROJECTS: ProjectItem[] = [
       deliverables: "UX Research, Design Tokens, Web Application, Webhook Pipeline",
       summary: {
         tldr:
-          "Nepali Tales is a beloved cloud kitchen in Thane renowned for authentic artisanal momos. Rapid word-of-mouth growth turned their WhatsApp ordering into an operational bottleneck—orders were lost, customer queries backed up during peak rush hours, and kitchen staff were overwhelmed manually tracking delivery slots. I architected and designed a dedicated pre-order web application with slot-based ordering, transparent batch capacity states, and zero-friction checkout.",
+          "Nepali Tales is a cloud kitchen serving freshly prepared food through a preorder-based model. As demand grew, the founders needed a better way to manage orders, customizations, etc  while keeping the experience simple for customers.",
         keyStats: [
           { value: "5,200+", label: "Monthly Orders", subtext: "Zero WhatsApp Dropoff" },
           { value: "3.4x", label: "Peak Capacity", subtext: "Handled Seamlessly" },
@@ -350,11 +350,11 @@ export const PROJECTS: ProjectItem[] = [
     year: "2026",
     readTime: "4 min read",
     description:
-      "Directed marketive visual systems, high-converting digital storefront experiences, and tactile motion narratives for plant-based wellness brand Plix, elevating product adoption and brand recall across key consumer touchpoints.",
+      "A collection of creative work, behind Plix's marketing communication, from campaign assets to day-to-day visual content.",
     metric: "40% CVR Uplift",
     metricSub: "2026, WELLNESS / D2C",
     tags: ["Generative UI", "Spatial Canvas", "TypeScript"],
-    image: "/images/projects/plix.jpg",
+    image: "/images/projects/thumbnails/plixThumbnail.png",
     hasAsset: true,
     caseStudy: {
       heroTagline:
@@ -565,454 +565,454 @@ export const PROJECTS: ProjectItem[] = [
       },
     },
   },
-  {
-    id: "03",
-    slug: "digimedic",
-    title: "Digimedic",
-    displayTitle: "Digimedic: Clinical Telemetry & Patient Dispatch",
-    subtitle: "Physics-based spring animation engine for tactile web interactions",
-    category: "Product",
-    categoryLabel: "UI/UX & Frontend Developer Intern",
-    year: "2024",
-    readTime: "3 min read",
-    description:
-      "Engineered responsive healthcare workflows, appointment dispatch systems, and diagnostic telemetry dashboards with sub-millisecond interaction feedback, improving triage speed and clinical data clarity.",
-    metric: "12k+ Active Patients",
-    metricSub: "2024, HEALTHTECH",
-    tags: ["React", "Web Standards", "Prototyping"],
-    image: "",
-    hasAsset: false,
-    caseStudy: {
-      heroTagline:
-        "Architecting high-density clinical telemetry dashboards and rapid triage dispatch systems for emergency healthcare providers and remote clinical telemetry.",
-      role: "UI/UX & Frontend Developer Intern",
-      timeline: "8 Weeks (Requirements Gathering, Prototype, Production Rollout)",
-      team: "1 UX Engineer, 2 Clinical Advisors, 3 Backend Engineers",
-      deliverables: "Telemetry Dashboard, Dispatch Matrix, Clinical Design System",
-      summary: {
-        tldr:
-          "Digimedic is a telemetry and patient dispatch platform used by triage teams and remote clinics. Medical teams were hindered by cluttered legacy enterprise interfaces with slow response times and confusing alert hierarchies. I redesigned the telemetry dashboard into a high-density, accessible interface with instant visual triage indicators, keyboard shortcuts, and zero-latency state synchronization.",
-        keyStats: [
-          { value: "12,000+", label: "Active Patients", subtext: "Monitored Concurrently" },
-          { value: "-45%", label: "Triage Latency", subtext: "Faster Emergency Dispatch" },
-          { value: "99.98%", label: "System Uptime", subtext: "Mission-Critical Stability" },
-          { value: "0", label: "Reported Input Errors", subtext: "In Medication Entries" },
-        ],
-      },
-      requirementContext: {
-        title: "High-Stakes Clinical Telemetry Under Pressure",
-        paragraphs: [
-          "In emergency healthcare dispatch, seconds directly impact patient outcomes. Medical operators monitor real-time vitals—heart rate, oxygen saturation, and blood pressure—across multiple patient streams simultaneously.",
-          "Legacy systems suffered from sensory clutter: alarms beeped continuously with identical audio tones, and critical deviations were buried within pages of dense tables.",
-          "Our objective was to introduce calm visual ergonomics: high-contrast dark mode interfaces for low-light clinical control rooms, tiered severity coloring, and instant dispatch triggers.",
-        ],
-      },
-      aboutProject: {
-        title: "About Digimedic Healthcare Solutions",
-        paragraphs: [
-          "Digimedic connects decentralized community health clinics with central regional hospital networks, enabling real-time remote telemetry and specialized physician consultation.",
-        ],
-      },
-      problemStatement: {
-        title: "Cognitive Overload in Emergency Triage",
-        client: "Digimedic Health Systems",
-        distribution: "Web Dashboard & Hospital Tablet Terminals",
-        paragraphs: [
-          "Interviews with 14 emergency room triage nurses and dispatchers revealed that cognitive fatigue during 12-hour shifts caused delayed recognition of vital deteriorations.",
-        ],
-        bottlenecks: [
-          {
-            title: "Alarm Fatigue",
-            description:
-              "Non-critical alerts triggered the same flashing banners as life-threatening cardiac alerts, desensitizing staff to genuine crises.",
-          },
-          {
-            title: "Deep Navigation Hierarchies",
-            description:
-              "Accessing patient medical history or dispatching an emergency ambulance required clicking through five separate sub-menus.",
-          },
-          {
-            title: "Poor Dark Room Ergonomics",
-            description:
-              "Blinding white backgrounds caused severe eye fatigue in dimly lit 24/7 monitoring hubs.",
-          },
-        ],
-      },
-      understandingInterface: {
-        title: "Shadowing Triage Shifts & Emergency Calls",
-        paragraphs: [
-          "I shadowed medical dispatchers through four overnight shifts to observe firsthand how information was received, verified, and acted upon.",
-        ],
-        insightQuote:
-          "In mission-critical software, design isn't about artistic flair; it is about cognitive economy. Every pixel must serve to reduce hesitation, eliminate ambiguity, and protect human life.",
-        observations: [
-          {
-            title: "Keyboard-First Speed",
-            description:
-              "Trained dispatchers navigate far faster with keyboard shortcuts than mouse clicks. Adding complete keyboard navigation reduced triage time by 45%.",
-          },
-          {
-            title: "Three-Tier Color Hierarchy",
-            description:
-              "Strictly reserving red for active patient emergencies and amber for impending thresholds restored alarm urgency.",
-          },
-          {
-            title: "Progressive Information Density",
-            description:
-              "Displaying summary health scores at a glance while keeping comprehensive ECG logs one click away kept the screen organized.",
-          },
-        ],
-      },
-      aligningStrategy: {
-        title: "Engineering Resilience & Human Safety",
-        paragraphs: [
-          "Working alongside clinical advisors, we adopted stringent accessibility and data-integrity principles to ensure zero data loss and maximum situational awareness.",
-        ],
-        pillars: [
-          {
-            title: "Sub-Millisecond UI Latency",
-            description:
-              "Optimized canvas rendering and WebSocket state updates that render incoming telemetry at 60fps.",
-            tag: "Performance",
-          },
-          {
-            title: "Tactile Audio-Visual Feedback",
-            description:
-              "Harmonized subtle visual pulses with distinct frequency-modulated auditory tones for clear alert classification.",
-            tag: "Accessibility",
-          },
-          {
-            title: "Fail-Safe Confirmation Dialogs",
-            description:
-              "Two-step tactile confirmation for medication dispatch to prevent accidental mouse slip inputs.",
-            tag: "Safety",
-          },
-        ],
-      },
-      finalProduct: {
-        title: "The Digimedic Telemetry Matrix",
-        paragraphs: [
-          "The redesigned interface organizes patient streams into modular telemetry cards with real-time waveform visualization, status indicators, and one-touch dispatch actions.",
-        ],
-        features: [
-          {
-            title: "Multi-Patient Live Waveform Grid",
-            description:
-              "Concurrent rendering of ECG, SpO2, and respiratory waves with real-time anomaly detection markers.",
-            tag: "Telemetry",
-          },
-          {
-            title: "Rapid Dispatch Command Bar",
-            description:
-              "Global command palette accessible via Cmd+K / Ctrl+K to immediately assign ambulances, notify specialists, or update patient triage levels.",
-            tag: "Workflows",
-          },
-          {
-            title: "Historical Trend Comparison",
-            description:
-              "Instant time-scrubber allowing clinicians to correlate vital dips with administered medication dosages.",
-            tag: "Analytics",
-          },
-        ],
-      },
-      interfaceCraft: {
-        title: "Ergonomic Contrast, Monospace Data, & Tactile Controls",
-        paragraphs: [
-          "Designed specifically for both 27-inch multi-monitor control centers and 10-inch rugged ambulance tablets.",
-        ],
-        highlights: [
-          {
-            title: "Tabular Monospace Numerics",
-            description:
-              "All clinical metrics utilize tabular figures to prevent jitter as numerical values update dynamically.",
-          },
-          {
-            title: "Glanceable Health Score Badges",
-            description:
-              "Custom geometric badge shapes allowing colorblind clinicians to discern triage states without relying solely on hue.",
-          },
-          {
-            title: "Adaptive Ambient Dark Mode",
-            description:
-              "Deep charcoal surfaces with low-glare borders engineered to prevent screen reflections in dark clinical control stations.",
-          },
-        ],
-      },
-      impact: {
-        title: "Real-World Clinical Speed & Error Reduction",
-        metrics: [
-          {
-            value: "-45%",
-            label: "Triage Response Time",
-            detail: "Dispatchers triage and mobilize emergency resources in nearly half the previous time",
-          },
-          {
-            value: "100%",
-            label: "Emergency Protocol Compliance",
-            detail: "Zero missed mandatory verification steps since deploying the guided checklist",
-          },
-          {
-            value: "12,000+",
-            label: "Patients Monitored",
-            detail: "Platform reliably handles multi-clinic loads across three regional healthcare networks",
-          },
-          {
-            value: "< 50ms",
-            label: "State Synchronization",
-            detail: "Real-time WebSocket data updates render seamlessly across connected devices",
-          },
-        ],
-      },
-      reflection: {
-        title: "Pausing to Reflect",
-        learnings: [
-          "01 / Designing for experts requires deep restraint. Healthcare dispatchers do not want decorative whitespace or oversized cards; they want high information density and keyboard predictability.",
-          "02 / Color coding is dangerous when used casually. In medical interfaces, red must be protected at all costs—if everything is highlighted, nothing is urgent.",
-          "03 / Micro-interactions can prevent real mistakes. Adding intentional physical resistance to irreversible dispatch actions saved operators from unintentional clicks.",
-        ],
-      },
-      testimonials: {
-        title: "What They Said",
-        quotes: [
-          {
-            quote:
-              "The new interface brought order to what used to be pure chaos. In our control room, the dark ergonomic dashboard reduced eye strain immediately, and the command palette lets our dispatchers act in seconds.",
-            author: "Dr. Ananya Sharma",
-            role: "Chief Medical Officer & Triage Director",
-          },
-          {
-            quote:
-              "The attention to monospace figures, waveform clarity, and keyboard navigation showed a rare depth of engineering craft.",
-            author: "Vikram R.",
-            role: "Senior Systems Architect, Digimedic",
-          },
-        ],
-      },
-    },
-  },
-  {
-    id: "04",
-    slug: "chronicle-journal",
-    title: "Chronicle Journal",
-    displayTitle: "Chronicle Journal: Editorial Typography Engine",
-    subtitle: "High-density editorial writing platform with typography-first hierarchy",
-    category: "Branding",
-    categoryLabel: "Editorial Design",
-    year: "2024",
-    readTime: "5 min read",
-    description:
-      "A high-density publication layout system built around optical typography sizing, modular column geometry, and minimal distraction reading modes for long-form essays and architectural criticism.",
-    metric: "99.8% Read Completion",
-    metricSub: "2024, PUBLISHING",
-    tags: ["Typography", "Grid Systems", "Accessibility"],
-    image: "",
-    hasAsset: false,
-    caseStudy: {
-      heroTagline:
-        "Crafting a minimal distraction, high-density editorial publication engine optimized for deep reading, optical typographic rhythm, and architectural discourse.",
-      role: "Lead Editorial & Typography Designer",
-      timeline: "4 Weeks (Type Exploration, Layout Grids, Web Engine)",
-      team: "1 Typography Designer, 1 Editorial Director, 1 Frontend Engineer",
-      deliverables: "Custom Grid System, Typography Engine, Reading Experience",
-      summary: {
-        tldr:
-          "Chronicle Journal is an independent digital publication dedicated to architecture, urbanism, and design philosophy. Modern web publications often sacrifice reading depth for intrusive ads, erratic column widths, and jarring animations. I designed a typography-first editorial platform centered on classical book layout proportions, optical line lengths, and distraction-free dark/light reading palettes.",
-        keyStats: [
-          { value: "99.8%", label: "Reading Completion", subtext: "For Long-Form Essays" },
-          { value: "8.5 min", label: "Average Session", subtext: "Deep Focus Reading" },
-          { value: "65ch", label: "Optical Measure", subtext: "Golden Ratio Layout" },
-          { value: "0", label: "Third-Party Ads", subtext: "Purity of Editorial Focus" },
-        ],
-      },
-      requirementContext: {
-        title: "Reclaiming the Quiet Dignity of the Printed Page",
-        paragraphs: [
-          "The modern internet has largely eroded the contemplative pacing of traditional print publications. Sticky video overlays, floating newsletter modals, and low-contrast typography distract from deep intellectual engagement.",
-          "Chronicle Journal sought to establish a sanctuary for essays of substance: architectural criticism, philosophical inquiries, and monograph reviews spanning 3,000 to 10,000 words.",
-          "Our design brief was simple yet uncompromising: create a digital reading environment so serene and typographically refined that readers forget they are looking at an electronic display.",
-        ],
-      },
-      aboutProject: {
-        title: "About Chronicle Journal of Architecture",
-        paragraphs: [
-          "Founded by architectural historians and urban critics, Chronicle Journal publishes quarterly monographs dissecting spatial memory, structural craft, and material culture.",
-        ],
-      },
-      problemStatement: {
-        title: "Reader Fatigue in Digital Long-Form Publishing",
-        client: "Chronicle Publishing Collective",
-        distribution: "Web Publication & Digital Reader",
-        paragraphs: [
-          "Surveying over 400 dedicated readers revealed that 78% preferred reading on paper or dedicated e-ink devices due to poor line-measure formatting and eye strain on contemporary web layouts.",
-        ],
-        bottlenecks: [
-          {
-            title: "Excessive Measure (Line Length)",
-            description:
-              "Web articles stretched to 120+ characters per line on widescreen displays, forcing readers' eyes to wander and lose their place between line wraps.",
-          },
-          {
-            title: "Neglected Typographic Rhythm",
-            description:
-              "Inconsistent leading, lack of optical margin alignment, and harsh pure-black on pure-white contrast created rapid ocular fatigue.",
-          },
-          {
-            title: "Incoherent Footnote Interactions",
-            description:
-              "Navigating references jumped the user to the bottom of the page, completely breaking the narrative train of thought.",
-          },
-        ],
-      },
-      understandingInterface: {
-        title: "Analyzing Classical Book Proportion Grids",
-        paragraphs: [
-          "We turned to the timeless principles of Jan Tschichold's Golden Canon of book design and Bringhurst's The Elements of Typographic Style to establish our digital geometry.",
-        ],
-        insightQuote:
-          "Typography exists to honor content. A well-set page doesn't draw attention to its cleverness; it creates an invisible bridge between the author's mind and the reader's imagination.",
-        observations: [
-          {
-            title: "The 65-Character Golden Measure",
-            description:
-              "Constraining maximum prose width to 65-72 characters per line ensures optimal eye tracking without backtracking.",
-          },
-          {
-            title: "In-Margin Sidenotes",
-            description:
-              "Moving citations and commentary into adjacent margins on desktop allows uninterrupted reading without jump links.",
-          },
-          {
-            title: "Warm Paper Tokens",
-            description:
-              "Subtle off-white and warm charcoal color tokens mimic unbleached archival paper stock, drastically reducing glare.",
-          },
-        ],
-      },
-      aligningStrategy: {
-        title: "Balancing Print Purity with Modern Web Flexibility",
-        paragraphs: [
-          "While honoring classical book design, we embraced the unique strengths of responsive web technology: instant theme adaptation, font-size adjustment, and progressive asset loading.",
-        ],
-        pillars: [
-          {
-            title: "Fluid Typographic Scale",
-            description:
-              "CSS clamp-based font sizing that scales smoothly across mobile, tablet, and high-DPI desktop screens.",
-            tag: "Typography",
-          },
-          {
-            title: "Distraction-Free Focus Mode",
-            description:
-              "Optional reading mode that dims non-active paragraphs and hides peripheral UI during sustained reading.",
-            tag: "Reading UX",
-          },
-          {
-            title: "Zero-Jank Image Galleries",
-            description:
-              "Architectural drawings and blueprints render with high-definition deep zoom without layout shifts.",
-            tag: "Media Engine",
-          },
-        ],
-      },
-      finalProduct: {
-        title: "The Editorial Reading System",
-        paragraphs: [
-          "The resulting platform delivers a reading experience celebrated by readers and critics alike for its calm visual authority and typographic grace.",
-        ],
-        features: [
-          {
-            title: "Dual-Column Sidenote Grid",
-            description:
-              "Desktop layouts pair the main text column with an intelligent margin column that positions footnotes beside their references.",
-            tag: "Layout",
-          },
-          {
-            title: "Archival Paper Dark & Light Modes",
-            description:
-              "Carefully calibrated warm-tinted dark and light color palettes optimized for day and nighttime reading.",
-            tag: "Tokens",
-          },
-          {
-            title: "Estimated Time-to-Read Progress",
-            description:
-              "A delicate, unobtrusive hairline reading bar at the top of the viewport indicating chapter progression.",
-            tag: "Navigation",
-          },
-        ],
-      },
-      interfaceCraft: {
-        title: "Optical Kerning, Vertical Baseline Rhythm, & Serifs",
-        paragraphs: [
-          "Every element sits on a strict 4px/8px vertical rhythm baseline. Heading margins, blockquotes, and pull-quotes harmonize with paragraph leading.",
-        ],
-        highlights: [
-          {
-            title: "Drop Caps & Editorial Openers",
-            description:
-              "Classically proportioned initial caps aligned perfectly to three lines of body text with zero horizontal overhang.",
-          },
-          {
-            title: "True Small Caps & Ligatures",
-            description:
-              "OpenType font features enabled for historical ligatures, old-style figures, and true small caps.",
-          },
-          {
-            title: "Subtle Paragraph Spacing",
-            description:
-              "Paragraph indentation replaces blank vertical gaps in continuous reading mode, preserving visual flow.",
-          },
-        ],
-      },
-      impact: {
-        title: "Unprecedented Reader Engagement & Longevity",
-        metrics: [
-          {
-            value: "99.8%",
-            label: "Reading Completion",
-            detail: "Readers who begin an essay read past 80% scroll depth on average",
-          },
-          {
-            value: "8.5 min",
-            label: "Average Reading Time",
-            detail: "Unusually high engagement metric for digital long-form articles",
-          },
-          {
-            value: "42,000+",
-            label: "Monthly Readers",
-            detail: "Global audience of architects, designers, and cultural theorists",
-          },
-          {
-            value: "100%",
-            label: "Lighthouse Performance",
-            detail: "Zero external ad trackers or bloated scripts; lightning-fast page delivery",
-          },
-        ],
-      },
-      reflection: {
-        title: "Pausing to Reflect",
-        learnings: [
-          "01 / The best digital design is often what you choose to remove. Eliminating sidebar distractions, popups, and clickbait widgets immediately transformed the perceived quality of the writing.",
-          "02 / Typography is software. Setting up a bulletproof CSS baseline rhythm and optical type scale required as much mathematical precision as writing complex application state.",
-          "03 / Readers crave quiet spaces. In an internet dominated by algorithmic feeds and visual noise, a dignified, typography-focused publication stands out like an oasis.",
-        ],
-      },
-      testimonials: {
-        title: "What They Said",
-        quotes: [
-          {
-            quote:
-              "Chronicle Journal is the first website in ten years that makes reading an essay on a screen feel like holding a beautifully bound monograph. The typography and layout pacing are masterclasses in editorial design.",
-            author: "Elena Rostova",
-            role: "Professor of Architectural Theory",
-          },
-          {
-            quote:
-              "The margin sidenotes and warm paper tones make reading long essays effortless. A remarkable achievement in digital typography.",
-            author: "Marcus Lindqvist",
-            role: "Contributing Editor, Chronicle",
-          },
-        ],
-      },
-    },
-  },
+  // {
+  //   id: "03",
+  //   slug: "digimedic",
+  //   title: "Digimedic",
+  //   displayTitle: "Digimedic: Clinical Telemetry & Patient Dispatch",
+  //   subtitle: "Physics-based spring animation engine for tactile web interactions",
+  //   category: "Product",
+  //   categoryLabel: "UI/UX & Frontend Developer Intern",
+  //   year: "2024",
+  //   readTime: "3 min read",
+  //   description:
+  //     "Engineered responsive healthcare workflows, appointment dispatch systems, and diagnostic telemetry dashboards with sub-millisecond interaction feedback, improving triage speed and clinical data clarity.",
+  //   metric: "12k+ Active Patients",
+  //   metricSub: "2024, HEALTHTECH",
+  //   tags: ["React", "Web Standards", "Prototyping"],
+  //   image: "",
+  //   hasAsset: false,
+  //   caseStudy: {
+  //     heroTagline:
+  //       "Architecting high-density clinical telemetry dashboards and rapid triage dispatch systems for emergency healthcare providers and remote clinical telemetry.",
+  //     role: "UI/UX & Frontend Developer Intern",
+  //     timeline: "8 Weeks (Requirements Gathering, Prototype, Production Rollout)",
+  //     team: "1 UX Engineer, 2 Clinical Advisors, 3 Backend Engineers",
+  //     deliverables: "Telemetry Dashboard, Dispatch Matrix, Clinical Design System",
+  //     summary: {
+  //       tldr:
+  //         "Digimedic is a telemetry and patient dispatch platform used by triage teams and remote clinics. Medical teams were hindered by cluttered legacy enterprise interfaces with slow response times and confusing alert hierarchies. I redesigned the telemetry dashboard into a high-density, accessible interface with instant visual triage indicators, keyboard shortcuts, and zero-latency state synchronization.",
+  //       keyStats: [
+  //         { value: "12,000+", label: "Active Patients", subtext: "Monitored Concurrently" },
+  //         { value: "-45%", label: "Triage Latency", subtext: "Faster Emergency Dispatch" },
+  //         { value: "99.98%", label: "System Uptime", subtext: "Mission-Critical Stability" },
+  //         { value: "0", label: "Reported Input Errors", subtext: "In Medication Entries" },
+  //       ],
+  //     },
+  //     requirementContext: {
+  //       title: "High-Stakes Clinical Telemetry Under Pressure",
+  //       paragraphs: [
+  //         "In emergency healthcare dispatch, seconds directly impact patient outcomes. Medical operators monitor real-time vitals—heart rate, oxygen saturation, and blood pressure—across multiple patient streams simultaneously.",
+  //         "Legacy systems suffered from sensory clutter: alarms beeped continuously with identical audio tones, and critical deviations were buried within pages of dense tables.",
+  //         "Our objective was to introduce calm visual ergonomics: high-contrast dark mode interfaces for low-light clinical control rooms, tiered severity coloring, and instant dispatch triggers.",
+  //       ],
+  //     },
+  //     aboutProject: {
+  //       title: "About Digimedic Healthcare Solutions",
+  //       paragraphs: [
+  //         "Digimedic connects decentralized community health clinics with central regional hospital networks, enabling real-time remote telemetry and specialized physician consultation.",
+  //       ],
+  //     },
+  //     problemStatement: {
+  //       title: "Cognitive Overload in Emergency Triage",
+  //       client: "Digimedic Health Systems",
+  //       distribution: "Web Dashboard & Hospital Tablet Terminals",
+  //       paragraphs: [
+  //         "Interviews with 14 emergency room triage nurses and dispatchers revealed that cognitive fatigue during 12-hour shifts caused delayed recognition of vital deteriorations.",
+  //       ],
+  //       bottlenecks: [
+  //         {
+  //           title: "Alarm Fatigue",
+  //           description:
+  //             "Non-critical alerts triggered the same flashing banners as life-threatening cardiac alerts, desensitizing staff to genuine crises.",
+  //         },
+  //         {
+  //           title: "Deep Navigation Hierarchies",
+  //           description:
+  //             "Accessing patient medical history or dispatching an emergency ambulance required clicking through five separate sub-menus.",
+  //         },
+  //         {
+  //           title: "Poor Dark Room Ergonomics",
+  //           description:
+  //             "Blinding white backgrounds caused severe eye fatigue in dimly lit 24/7 monitoring hubs.",
+  //         },
+  //       ],
+  //     },
+  //     understandingInterface: {
+  //       title: "Shadowing Triage Shifts & Emergency Calls",
+  //       paragraphs: [
+  //         "I shadowed medical dispatchers through four overnight shifts to observe firsthand how information was received, verified, and acted upon.",
+  //       ],
+  //       insightQuote:
+  //         "In mission-critical software, design isn't about artistic flair; it is about cognitive economy. Every pixel must serve to reduce hesitation, eliminate ambiguity, and protect human life.",
+  //       observations: [
+  //         {
+  //           title: "Keyboard-First Speed",
+  //           description:
+  //             "Trained dispatchers navigate far faster with keyboard shortcuts than mouse clicks. Adding complete keyboard navigation reduced triage time by 45%.",
+  //         },
+  //         {
+  //           title: "Three-Tier Color Hierarchy",
+  //           description:
+  //             "Strictly reserving red for active patient emergencies and amber for impending thresholds restored alarm urgency.",
+  //         },
+  //         {
+  //           title: "Progressive Information Density",
+  //           description:
+  //             "Displaying summary health scores at a glance while keeping comprehensive ECG logs one click away kept the screen organized.",
+  //         },
+  //       ],
+  //     },
+  //     aligningStrategy: {
+  //       title: "Engineering Resilience & Human Safety",
+  //       paragraphs: [
+  //         "Working alongside clinical advisors, we adopted stringent accessibility and data-integrity principles to ensure zero data loss and maximum situational awareness.",
+  //       ],
+  //       pillars: [
+  //         {
+  //           title: "Sub-Millisecond UI Latency",
+  //           description:
+  //             "Optimized canvas rendering and WebSocket state updates that render incoming telemetry at 60fps.",
+  //           tag: "Performance",
+  //         },
+  //         {
+  //           title: "Tactile Audio-Visual Feedback",
+  //           description:
+  //             "Harmonized subtle visual pulses with distinct frequency-modulated auditory tones for clear alert classification.",
+  //           tag: "Accessibility",
+  //         },
+  //         {
+  //           title: "Fail-Safe Confirmation Dialogs",
+  //           description:
+  //             "Two-step tactile confirmation for medication dispatch to prevent accidental mouse slip inputs.",
+  //           tag: "Safety",
+  //         },
+  //       ],
+  //     },
+  //     finalProduct: {
+  //       title: "The Digimedic Telemetry Matrix",
+  //       paragraphs: [
+  //         "The redesigned interface organizes patient streams into modular telemetry cards with real-time waveform visualization, status indicators, and one-touch dispatch actions.",
+  //       ],
+  //       features: [
+  //         {
+  //           title: "Multi-Patient Live Waveform Grid",
+  //           description:
+  //             "Concurrent rendering of ECG, SpO2, and respiratory waves with real-time anomaly detection markers.",
+  //           tag: "Telemetry",
+  //         },
+  //         {
+  //           title: "Rapid Dispatch Command Bar",
+  //           description:
+  //             "Global command palette accessible via Cmd+K / Ctrl+K to immediately assign ambulances, notify specialists, or update patient triage levels.",
+  //           tag: "Workflows",
+  //         },
+  //         {
+  //           title: "Historical Trend Comparison",
+  //           description:
+  //             "Instant time-scrubber allowing clinicians to correlate vital dips with administered medication dosages.",
+  //           tag: "Analytics",
+  //         },
+  //       ],
+  //     },
+  //     interfaceCraft: {
+  //       title: "Ergonomic Contrast, Monospace Data, & Tactile Controls",
+  //       paragraphs: [
+  //         "Designed specifically for both 27-inch multi-monitor control centers and 10-inch rugged ambulance tablets.",
+  //       ],
+  //       highlights: [
+  //         {
+  //           title: "Tabular Monospace Numerics",
+  //           description:
+  //             "All clinical metrics utilize tabular figures to prevent jitter as numerical values update dynamically.",
+  //         },
+  //         {
+  //           title: "Glanceable Health Score Badges",
+  //           description:
+  //             "Custom geometric badge shapes allowing colorblind clinicians to discern triage states without relying solely on hue.",
+  //         },
+  //         {
+  //           title: "Adaptive Ambient Dark Mode",
+  //           description:
+  //             "Deep charcoal surfaces with low-glare borders engineered to prevent screen reflections in dark clinical control stations.",
+  //         },
+  //       ],
+  //     },
+  //     impact: {
+  //       title: "Real-World Clinical Speed & Error Reduction",
+  //       metrics: [
+  //         {
+  //           value: "-45%",
+  //           label: "Triage Response Time",
+  //           detail: "Dispatchers triage and mobilize emergency resources in nearly half the previous time",
+  //         },
+  //         {
+  //           value: "100%",
+  //           label: "Emergency Protocol Compliance",
+  //           detail: "Zero missed mandatory verification steps since deploying the guided checklist",
+  //         },
+  //         {
+  //           value: "12,000+",
+  //           label: "Patients Monitored",
+  //           detail: "Platform reliably handles multi-clinic loads across three regional healthcare networks",
+  //         },
+  //         {
+  //           value: "< 50ms",
+  //           label: "State Synchronization",
+  //           detail: "Real-time WebSocket data updates render seamlessly across connected devices",
+  //         },
+  //       ],
+  //     },
+  //     reflection: {
+  //       title: "Pausing to Reflect",
+  //       learnings: [
+  //         "01 / Designing for experts requires deep restraint. Healthcare dispatchers do not want decorative whitespace or oversized cards; they want high information density and keyboard predictability.",
+  //         "02 / Color coding is dangerous when used casually. In medical interfaces, red must be protected at all costs—if everything is highlighted, nothing is urgent.",
+  //         "03 / Micro-interactions can prevent real mistakes. Adding intentional physical resistance to irreversible dispatch actions saved operators from unintentional clicks.",
+  //       ],
+  //     },
+  //     testimonials: {
+  //       title: "What They Said",
+  //       quotes: [
+  //         {
+  //           quote:
+  //             "The new interface brought order to what used to be pure chaos. In our control room, the dark ergonomic dashboard reduced eye strain immediately, and the command palette lets our dispatchers act in seconds.",
+  //           author: "Dr. Ananya Sharma",
+  //           role: "Chief Medical Officer & Triage Director",
+  //         },
+  //         {
+  //           quote:
+  //             "The attention to monospace figures, waveform clarity, and keyboard navigation showed a rare depth of engineering craft.",
+  //           author: "Vikram R.",
+  //           role: "Senior Systems Architect, Digimedic",
+  //         },
+  //       ],
+  //     },
+  //   },
+  // },
+  // {
+  //   id: "04",
+  //   slug: "chronicle-journal",
+  //   title: "Chronicle Journal",
+  //   displayTitle: "Chronicle Journal: Editorial Typography Engine",
+  //   subtitle: "High-density editorial writing platform with typography-first hierarchy",
+  //   category: "Branding",
+  //   categoryLabel: "Editorial Design",
+  //   year: "2024",
+  //   readTime: "5 min read",
+  //   description:
+  //     "A high-density publication layout system built around optical typography sizing, modular column geometry, and minimal distraction reading modes for long-form essays and architectural criticism.",
+  //   metric: "99.8% Read Completion",
+  //   metricSub: "2024, PUBLISHING",
+  //   tags: ["Typography", "Grid Systems", "Accessibility"],
+  //   image: "",
+  //   hasAsset: false,
+  //   caseStudy: {
+  //     heroTagline:
+  //       "Crafting a minimal distraction, high-density editorial publication engine optimized for deep reading, optical typographic rhythm, and architectural discourse.",
+  //     role: "Lead Editorial & Typography Designer",
+  //     timeline: "4 Weeks (Type Exploration, Layout Grids, Web Engine)",
+  //     team: "1 Typography Designer, 1 Editorial Director, 1 Frontend Engineer",
+  //     deliverables: "Custom Grid System, Typography Engine, Reading Experience",
+  //     summary: {
+  //       tldr:
+  //         "Chronicle Journal is an independent digital publication dedicated to architecture, urbanism, and design philosophy. Modern web publications often sacrifice reading depth for intrusive ads, erratic column widths, and jarring animations. I designed a typography-first editorial platform centered on classical book layout proportions, optical line lengths, and distraction-free dark/light reading palettes.",
+  //       keyStats: [
+  //         { value: "99.8%", label: "Reading Completion", subtext: "For Long-Form Essays" },
+  //         { value: "8.5 min", label: "Average Session", subtext: "Deep Focus Reading" },
+  //         { value: "65ch", label: "Optical Measure", subtext: "Golden Ratio Layout" },
+  //         { value: "0", label: "Third-Party Ads", subtext: "Purity of Editorial Focus" },
+  //       ],
+  //     },
+  //     requirementContext: {
+  //       title: "Reclaiming the Quiet Dignity of the Printed Page",
+  //       paragraphs: [
+  //         "The modern internet has largely eroded the contemplative pacing of traditional print publications. Sticky video overlays, floating newsletter modals, and low-contrast typography distract from deep intellectual engagement.",
+  //         "Chronicle Journal sought to establish a sanctuary for essays of substance: architectural criticism, philosophical inquiries, and monograph reviews spanning 3,000 to 10,000 words.",
+  //         "Our design brief was simple yet uncompromising: create a digital reading environment so serene and typographically refined that readers forget they are looking at an electronic display.",
+  //       ],
+  //     },
+  //     aboutProject: {
+  //       title: "About Chronicle Journal of Architecture",
+  //       paragraphs: [
+  //         "Founded by architectural historians and urban critics, Chronicle Journal publishes quarterly monographs dissecting spatial memory, structural craft, and material culture.",
+  //       ],
+  //     },
+  //     problemStatement: {
+  //       title: "Reader Fatigue in Digital Long-Form Publishing",
+  //       client: "Chronicle Publishing Collective",
+  //       distribution: "Web Publication & Digital Reader",
+  //       paragraphs: [
+  //         "Surveying over 400 dedicated readers revealed that 78% preferred reading on paper or dedicated e-ink devices due to poor line-measure formatting and eye strain on contemporary web layouts.",
+  //       ],
+  //       bottlenecks: [
+  //         {
+  //           title: "Excessive Measure (Line Length)",
+  //           description:
+  //             "Web articles stretched to 120+ characters per line on widescreen displays, forcing readers' eyes to wander and lose their place between line wraps.",
+  //         },
+  //         {
+  //           title: "Neglected Typographic Rhythm",
+  //           description:
+  //             "Inconsistent leading, lack of optical margin alignment, and harsh pure-black on pure-white contrast created rapid ocular fatigue.",
+  //         },
+  //         {
+  //           title: "Incoherent Footnote Interactions",
+  //           description:
+  //             "Navigating references jumped the user to the bottom of the page, completely breaking the narrative train of thought.",
+  //         },
+  //       ],
+  //     },
+  //     understandingInterface: {
+  //       title: "Analyzing Classical Book Proportion Grids",
+  //       paragraphs: [
+  //         "We turned to the timeless principles of Jan Tschichold's Golden Canon of book design and Bringhurst's The Elements of Typographic Style to establish our digital geometry.",
+  //       ],
+  //       insightQuote:
+  //         "Typography exists to honor content. A well-set page doesn't draw attention to its cleverness; it creates an invisible bridge between the author's mind and the reader's imagination.",
+  //       observations: [
+  //         {
+  //           title: "The 65-Character Golden Measure",
+  //           description:
+  //             "Constraining maximum prose width to 65-72 characters per line ensures optimal eye tracking without backtracking.",
+  //         },
+  //         {
+  //           title: "In-Margin Sidenotes",
+  //           description:
+  //             "Moving citations and commentary into adjacent margins on desktop allows uninterrupted reading without jump links.",
+  //         },
+  //         {
+  //           title: "Warm Paper Tokens",
+  //           description:
+  //             "Subtle off-white and warm charcoal color tokens mimic unbleached archival paper stock, drastically reducing glare.",
+  //         },
+  //       ],
+  //     },
+  //     aligningStrategy: {
+  //       title: "Balancing Print Purity with Modern Web Flexibility",
+  //       paragraphs: [
+  //         "While honoring classical book design, we embraced the unique strengths of responsive web technology: instant theme adaptation, font-size adjustment, and progressive asset loading.",
+  //       ],
+  //       pillars: [
+  //         {
+  //           title: "Fluid Typographic Scale",
+  //           description:
+  //             "CSS clamp-based font sizing that scales smoothly across mobile, tablet, and high-DPI desktop screens.",
+  //           tag: "Typography",
+  //         },
+  //         {
+  //           title: "Distraction-Free Focus Mode",
+  //           description:
+  //             "Optional reading mode that dims non-active paragraphs and hides peripheral UI during sustained reading.",
+  //           tag: "Reading UX",
+  //         },
+  //         {
+  //           title: "Zero-Jank Image Galleries",
+  //           description:
+  //             "Architectural drawings and blueprints render with high-definition deep zoom without layout shifts.",
+  //           tag: "Media Engine",
+  //         },
+  //       ],
+  //     },
+  //     finalProduct: {
+  //       title: "The Editorial Reading System",
+  //       paragraphs: [
+  //         "The resulting platform delivers a reading experience celebrated by readers and critics alike for its calm visual authority and typographic grace.",
+  //       ],
+  //       features: [
+  //         {
+  //           title: "Dual-Column Sidenote Grid",
+  //           description:
+  //             "Desktop layouts pair the main text column with an intelligent margin column that positions footnotes beside their references.",
+  //           tag: "Layout",
+  //         },
+  //         {
+  //           title: "Archival Paper Dark & Light Modes",
+  //           description:
+  //             "Carefully calibrated warm-tinted dark and light color palettes optimized for day and nighttime reading.",
+  //           tag: "Tokens",
+  //         },
+  //         {
+  //           title: "Estimated Time-to-Read Progress",
+  //           description:
+  //             "A delicate, unobtrusive hairline reading bar at the top of the viewport indicating chapter progression.",
+  //           tag: "Navigation",
+  //         },
+  //       ],
+  //     },
+  //     interfaceCraft: {
+  //       title: "Optical Kerning, Vertical Baseline Rhythm, & Serifs",
+  //       paragraphs: [
+  //         "Every element sits on a strict 4px/8px vertical rhythm baseline. Heading margins, blockquotes, and pull-quotes harmonize with paragraph leading.",
+  //       ],
+  //       highlights: [
+  //         {
+  //           title: "Drop Caps & Editorial Openers",
+  //           description:
+  //             "Classically proportioned initial caps aligned perfectly to three lines of body text with zero horizontal overhang.",
+  //         },
+  //         {
+  //           title: "True Small Caps & Ligatures",
+  //           description:
+  //             "OpenType font features enabled for historical ligatures, old-style figures, and true small caps.",
+  //         },
+  //         {
+  //           title: "Subtle Paragraph Spacing",
+  //           description:
+  //             "Paragraph indentation replaces blank vertical gaps in continuous reading mode, preserving visual flow.",
+  //         },
+  //       ],
+  //     },
+  //     impact: {
+  //       title: "Unprecedented Reader Engagement & Longevity",
+  //       metrics: [
+  //         {
+  //           value: "99.8%",
+  //           label: "Reading Completion",
+  //           detail: "Readers who begin an essay read past 80% scroll depth on average",
+  //         },
+  //         {
+  //           value: "8.5 min",
+  //           label: "Average Reading Time",
+  //           detail: "Unusually high engagement metric for digital long-form articles",
+  //         },
+  //         {
+  //           value: "42,000+",
+  //           label: "Monthly Readers",
+  //           detail: "Global audience of architects, designers, and cultural theorists",
+  //         },
+  //         {
+  //           value: "100%",
+  //           label: "Lighthouse Performance",
+  //           detail: "Zero external ad trackers or bloated scripts; lightning-fast page delivery",
+  //         },
+  //       ],
+  //     },
+  //     reflection: {
+  //       title: "Pausing to Reflect",
+  //       learnings: [
+  //         "01 / The best digital design is often what you choose to remove. Eliminating sidebar distractions, popups, and clickbait widgets immediately transformed the perceived quality of the writing.",
+  //         "02 / Typography is software. Setting up a bulletproof CSS baseline rhythm and optical type scale required as much mathematical precision as writing complex application state.",
+  //         "03 / Readers crave quiet spaces. In an internet dominated by algorithmic feeds and visual noise, a dignified, typography-focused publication stands out like an oasis.",
+  //       ],
+  //     },
+  //     testimonials: {
+  //       title: "What They Said",
+  //       quotes: [
+  //         {
+  //           quote:
+  //             "Chronicle Journal is the first website in ten years that makes reading an essay on a screen feel like holding a beautifully bound monograph. The typography and layout pacing are masterclasses in editorial design.",
+  //           author: "Elena Rostova",
+  //           role: "Professor of Architectural Theory",
+  //         },
+  //         {
+  //           quote:
+  //             "The margin sidenotes and warm paper tones make reading long essays effortless. A remarkable achievement in digital typography.",
+  //           author: "Marcus Lindqvist",
+  //           role: "Contributing Editor, Chronicle",
+  //         },
+  //       ],
+  //     },
+  //   },
+  // },
 ];

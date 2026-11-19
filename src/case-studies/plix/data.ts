@@ -190,4 +190,3 @@ export const PLIX_CASE_STUDY = {
     } satisfies PlixAsset,
   },
 };
-

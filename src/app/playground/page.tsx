@@ -1,7 +1,8 @@
-import { Sidebar } from "@/components/Sidebar";
-import { TopNav } from "@/components/TopNav";
-import { MobileNav } from "@/components/MobileNav";
-import { PlaygroundGallery } from "@/components/PlaygroundGallery";
+import { Sidebar } from "@/components/layout/Sidebar";
+import { TopNav } from "@/components/layout/TopNav";
+import { MobileNav } from "@/components/layout/MobileNav";
+import { Footer } from "@/components/layout/Footer";
+import { PlaygroundGallery } from "@/components/playground/PlaygroundGallery";
 
 export const metadata = {
   title: "Playground · Shravani Sutar",
@@ -28,21 +29,9 @@ export default function PlaygroundPage() {
           <PlaygroundGallery />
 
           {/* Footer Colophon */}
-          <footer className="pt-8 pb-16 border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-subtle-foreground">
-            <div>
-              <span>Shravani Sutar Portfolio </span>
-              <span className="mx-2">&bull;</span>
-              <span>2026</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-foreground transition-colors">
-                Back to top &uarr;
-              </a>
-            </div>
-          </footer>
+          <Footer />
         </main>
       </div>
     </div>
   );
 }
-

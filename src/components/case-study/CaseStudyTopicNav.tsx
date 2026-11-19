@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import Link from "next/link";
-import { useTheme } from "@/context/ThemeContext";
 
 export interface TopicItem {
   id: string;
@@ -90,7 +88,6 @@ export function CaseStudyMobileBar({ topics }: { topics: TopicItem[] }) {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const pillRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
-  const { theme, toggleTheme } = useTheme();
 
   // Sliding pill indicator position state
   const [indicator, setIndicator] = useState<{
@@ -170,42 +167,11 @@ export function CaseStudyMobileBar({ topics }: { topics: TopicItem[] }) {
   }, [activeId]);
 
   return (
-    <div className="lg:hidden sticky top-0 z-40 w-full bg-background/95 backdrop-blur-md border-b border-border-subtle select-none">
-      {/* Top action row */}
-      <div className="h-12 px-4 flex items-center justify-between border-b border-border-subtle/60">
-        <Link
-          href="/#work"
-          className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
-        >
-          <span>&larr;</span>
-          <span>back</span>
-        </Link>
-
-        {/* Cup Icon Theme Toggle with Circular Reveal */}
-        <button
-          type="button"
-          suppressHydrationWarning
-          onClick={(e) => toggleTheme(e)}
-          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-          title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-          className="p-1.5 text-muted-foreground hover:text-foreground transition-all duration-200 rounded-md cursor-pointer hover:bg-surface-hover active:scale-95"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="17"
-            height="17"
-            viewBox="0 0 256 256"
-            fill="currentColor"
-          >
-            <path d="M80,56V32a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0Zm32,0V32a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0Zm32,0V32a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0ZM232,96v8a16,16,0,0,1-16,16h-8v8a64.07,64.07,0,0,1-64,64H96a64.07,64.07,0,0,1-64-64V80a8,8,0,0,1,8-8H200a8,8,0,0,1,8,8v8h8A16,16,0,0,1,232,96Zm-40,8V96H176v16a48.05,48.05,0,0,1,0,8h16A8,8,0,0,0,192,104Zm-32,32a48.05,48.05,0,0,0,48-48V88H48v48a48.05,48.05,0,0,0,48,48h64ZM224,208a8,8,0,0,1-8,8H24a8,8,0,0,1,0-16H216A8,8,0,0,1,224,208Z" />
-          </svg>
-        </button>
-      </div>
-
+    <div className="lg:hidden sticky top-[var(--topbar-height)] z-30 w-full bg-background/95 backdrop-blur-md border-b border-border-subtle select-none">
       {/* Horizontal Scroll Container for topic tags */}
       <div
         ref={scrollContainerRef}
-        className="w-full max-w-full overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [-webkit-overflow-scrolling:touch] overscroll-x-contain no-scrollbar py-2 px-4"
+        className="w-full max-w-full overflow-x-auto overflow-y-hidden [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [-webkit-overflow-scrolling:touch] overscroll-x-contain no-scrollbar py-2.5 px-4"
         style={{ WebkitOverflowScrolling: "touch" }}
       >
         <div ref={trackRef} className="relative flex items-center gap-1.5 w-max">
@@ -271,22 +237,8 @@ export function CaseStudyDesktopSidebar({ topics }: { topics: TopicItem[] }) {
       aria-label="Case Study Topics Navigation"
       className="hidden lg:block w-48 xl:w-56 shrink-0 select-none"
     >
-      <div className="sticky top-12 flex flex-col gap-8">
-        {/* Top `← back` link matching Image 1 */}
-        <Link
-          href="/#work"
-          className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-sans text-muted-foreground hover:text-foreground transition-colors w-fit"
-        >
-          <span
-            aria-hidden="true"
-            className="transition-transform duration-200 group-hover:-translate-x-1"
-          >
-            &larr;
-          </span>
-          <span>back</span>
-        </Link>
-
-        {/* Vertical Topic Links matching Image 1 */}
+      <div className="sticky top-20 flex flex-col gap-6">
+        {/* Vertical Topic Links */}
         <nav className="flex flex-col gap-2">
           {topics.map((topic) => {
             const isActive = activeId === topic.id;

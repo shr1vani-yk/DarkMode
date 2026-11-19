@@ -87,7 +87,7 @@ html.dark {
 html[data-theme="light"],
 html.light {
   /* Colors - Editorial Minimalist Palette (Explicit Light Mode) */
-  --background: #f8f8f8;
+  --background: #fafaf8;
   --foreground: #121214;
   --surface: #ffffff;
   --surface-elevated: #ffffff;

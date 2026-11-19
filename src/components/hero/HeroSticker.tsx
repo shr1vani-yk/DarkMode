@@ -27,11 +27,11 @@ const APP_ICONS: AppIconConfig[] = [
     id: "figma",
     name: "Figma",
     src: "/hero-assets/figma.png",
-    targetX: -100,
-    targetY: -22,
+    targetX: -52,
+    targetY: -36,
     rotate: -13,
     delayIndex: 0,
-    sizeClassName: "w-[29px] h-[29px] sm:w-[31px] sm:h-[31px]",
+    sizeClassName: "w-[27px] h-[27px] sm:w-[31px] sm:h-[31px]",
     width: 31,
     height: 31,
   },
@@ -39,11 +39,11 @@ const APP_ICONS: AppIconConfig[] = [
     id: "claude",
     name: "Claude",
     src: "/hero-assets/claude.png",
-    targetX: -63,
-    targetY: -45,
+    targetX: -17,
+    targetY: -54,
     rotate: -6,
     delayIndex: 1,
-    sizeClassName: "w-[33px] h-[33px] sm:w-[35px] sm:h-[35px]",
+    sizeClassName: "w-[31px] h-[31px] sm:w-[35px] sm:h-[35px]",
     width: 35,
     height: 35,
   },
@@ -51,11 +51,11 @@ const APP_ICONS: AppIconConfig[] = [
     id: "blender",
     name: "Blender",
     src: "/hero-assets/blender.png",
-    targetX: -20,
-    targetY: -45,
-    rotate: 7,
+    targetX: 17,
+    targetY: -52,
+    rotate: 6,
     delayIndex: 2,
-    sizeClassName: "w-[33px] h-[33px] sm:w-[35px] sm:h-[35px]",
+    sizeClassName: "w-[31px] h-[31px] sm:w-[35px] sm:h-[35px]",
     width: 35,
     height: 35,
   },
@@ -63,11 +63,11 @@ const APP_ICONS: AppIconConfig[] = [
     id: "suite",
     name: "Adobe Creative Suite",
     src: "/hero-assets/suite.png",
-    targetX: 18,
-    targetY: -30,
+    targetX: 52,
+    targetY: -34,
     rotate: 16,
     delayIndex: 3,
-    sizeClassName: "w-[31px] h-[31px] sm:w-[33px] sm:h-[33px]",
+    sizeClassName: "w-[29px] h-[29px] sm:w-[33px] sm:h-[33px]",
     width: 33,
     height: 33,
   },
@@ -75,35 +75,35 @@ const APP_ICONS: AppIconConfig[] = [
 
 export function HeroSticker({ className = "", forceExpanded }: HeroStickerProps) {
   const [isHovered, setIsHovered] = useState(false);
-  const [isMobileScreen, setIsMobileScreen] = useState(false);
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
-  // Detect mobile screen to show complete composition by default on touch devices
+  // Detect tablet/mobile screen (< 1280px / xl) to show complete composition by default
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const checkMobile = () => {
-      setIsMobileScreen(window.innerWidth < 768);
+    const checkBreakpoint = () => {
+      setIsMobileOrTablet(window.innerWidth < 1280);
     };
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile, { passive: true });
-    return () => window.removeEventListener("resize", checkMobile);
+    checkBreakpoint();
+    window.addEventListener("resize", checkBreakpoint, { passive: true });
+    return () => window.removeEventListener("resize", checkBreakpoint);
   }, []);
 
-  // Show popped-out icons if forceExpanded is set, or automatically on mobile, or on hover
-  const isOpen = forceExpanded ?? (isMobileScreen || isHovered);
+  // Show popped-out icons: forced, or by default on tablet/mobile (< 1280px), or on hover on desktop (>= 1280px)
+  const isOpen = forceExpanded ?? (isMobileOrTablet || isHovered);
 
   return (
     <div
-      className={`relative inline-flex flex-col items-center md:items-end justify-end select-none w-full ${className}`}
+      className={`relative inline-flex flex-col items-center select-none ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       role="region"
       aria-label="Interactive design skills avatar and tools"
     >
       {/* Outer bounding canvas for icons and folder */}
-      <div className="relative w-[160px] h-[145px] sm:w-[170px] sm:h-[152px] flex items-end justify-center pb-2.5 sm:pb-3.5">
+      <div className="relative w-[136px] h-[122px] sm:w-[150px] sm:h-[135px] md:w-[165px] md:h-[148px] flex items-end justify-center pb-1 sm:pb-2">
         {/* Relative anchor centered at folder top */}
         <div className="relative flex flex-col items-center">
           {/* Floating App Icons Layer (z-10, behind folder when collapsed) */}
@@ -124,29 +124,29 @@ export function HeroSticker({ className = "", forceExpanded }: HeroStickerProps)
                     animate={
                       prefersReducedMotion
                         ? {
-                          x: isOpen ? icon.targetX : 0,
-                          y: isOpen ? icon.targetY : 16,
-                          opacity: isOpen ? 1 : 0,
-                          rotate: isOpen ? icon.rotate : 0,
-                        }
+                            x: isOpen ? icon.targetX : 0,
+                            y: isOpen ? icon.targetY : 16,
+                            opacity: isOpen ? 1 : 0,
+                            rotate: isOpen ? icon.rotate : 0,
+                          }
                         : {
-                          x: isOpen ? icon.targetX : 0,
-                          y: isOpen ? icon.targetY : 16,
-                          scale: isOpen ? 1 : 0.35,
-                          opacity: isOpen ? 1 : 0,
-                          rotate: isOpen ? icon.rotate : 0,
-                        }
+                            x: isOpen ? icon.targetX : 0,
+                            y: isOpen ? icon.targetY : 16,
+                            scale: isOpen ? 1 : 0.35,
+                            opacity: isOpen ? 1 : 0,
+                            rotate: isOpen ? icon.rotate : 0,
+                          }
                     }
                     transition={
                       prefersReducedMotion
                         ? { duration: 0.1 }
                         : {
-                          type: "spring",
-                          stiffness: 280,
-                          damping: 18,
-                          mass: 0.8,
-                          delay,
-                        }
+                            type: "spring",
+                            stiffness: 280,
+                            damping: 18,
+                            mass: 0.8,
+                            delay,
+                          }
                     }
                   >
                     <Image
@@ -165,18 +165,18 @@ export function HeroSticker({ className = "", forceExpanded }: HeroStickerProps)
 
           {/* Avatar Folder Illustration Layer (z-20) */}
           <motion.div
-            className="relative z-20 w-[96px] sm:w-[100px] lg:w-[106px] cursor-pointer"
+            className="relative z-20 w-[88px] sm:w-[96px] md:w-[102px] lg:w-[106px] cursor-pointer"
             animate={{
               rotate: -4,
-              x: -28,
-              y: -2,
+              x: 0,
+              y: 0,
             }}
-            whileHover={prefersReducedMotion ? {} : { scale: 1.04, rotate: -8 }}
+            whileHover={prefersReducedMotion ? {} : { scale: 1.04, rotate: -7 }}
             whileTap={prefersReducedMotion ? {} : { scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 22 }}
             onClick={() => {
               // Allow tap toggle on touch devices
-              if (isMobileScreen) {
+              if (isMobileOrTablet) {
                 setIsHovered((prev) => !prev);
               }
             }}
@@ -195,3 +195,5 @@ export function HeroSticker({ className = "", forceExpanded }: HeroStickerProps)
     </div>
   );
 }
+
+export default HeroSticker;

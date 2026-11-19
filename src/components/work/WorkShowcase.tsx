@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS, ProjectItem } from "@/data/projects";
-
+import * as Phosporous from '@phosphor-icons/react/ssr'
 type CategoryFilter = "all" | "Product" | "Branding";
 
 export function WorkShowcase() {
@@ -104,9 +104,8 @@ export function WorkShowcase() {
       {/* Floating Custom Cursor Label ("View Case Study") */}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed z-50 hidden md:block select-none transition-opacity duration-150 ease-out ${
-          isCursorVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
-        }`}
+        className={`pointer-events-none fixed z-50 hidden md:block select-none transition-opacity duration-150 ease-out ${isCursorVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+          }`}
         style={{
           left: cursorPos.x,
           top: cursorPos.y,
@@ -155,11 +154,10 @@ export function WorkShowcase() {
                 key={item.value}
                 type="button"
                 onClick={() => handleFilterChange(item.value)}
-                className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all duration-200 cursor-pointer ${
-                  isActive
+                className={`px-4 py-1.5 rounded-full text-xs font-sans transition-all duration-200 cursor-pointer ${isActive
                     ? "bg-foreground text-background font-medium border border-border-strong shadow-xs"
                     : "bg-transparent text-muted-foreground border border-border-subtle hover:text-foreground hover:border-border-strong"
-                }`}
+                  }`}
               >
                 {item.label}
               </button>
@@ -185,23 +183,11 @@ export function WorkShowcase() {
             {/* Read Time & Outbound Arrow */}
             <Link
               href={`/work/${currentProject.slug}`}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-regular text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors group/link w-fit"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-light text-[#e8590c] dark:text-[#f97316] hover:underline transition-colors group/link w-fit"
             >
               <span>{currentProject.readTime}</span>
-              <svg
-                className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M7 17L17 7M17 7H7M17 7V17"
-                />
-              </svg>
-            </Link>
+              <Phosporous.ArrowUpRightIcon size={16}  />            
+              </Link>
 
             {/* Display Title (Clickable) */}
             <Link href={`/work/${currentProject.slug}`}>
@@ -259,11 +245,10 @@ export function WorkShowcase() {
                 onPointerMove={handlePointerMove}
                 onPointerEnter={handlePointerEnter}
                 onPointerLeave={handlePointerLeave}
-                className={`group relative w-full aspect-[16/10] rounded-2xl lg:rounded-3xl overflow-hidden border bg-surface transition-all duration-300 block cursor-pointer ${
-                  isCurrentlyActive
+                className={`group relative w-full aspect-[16/10] rounded-2xl lg:rounded-3xl overflow-hidden border bg-surface transition-all duration-300 block cursor-pointer ${isCurrentlyActive
                     ? "border-border-strong shadow-lg"
                     : "border-border-subtle shadow-xs hover:border-border-strong/60"
-                }`}
+                  }`}
                 style={{ aspectRatio: "16 / 10" }}
               >
                 {project.hasAsset ? (

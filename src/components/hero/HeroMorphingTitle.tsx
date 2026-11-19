@@ -16,14 +16,14 @@ export function HeroMorphingTitle({
   className = "",
   words = DEFAULT_WORDS,
   staticWord = "DESIGNER",
-  greetingLeft = "Hola I'm",
-  greetingRight = "From India",
+  greetingLeft = "नमस्ते मी",
+  greetingRight = "From भारत",
 }: HeroMorphingTitleProps) {
   return (
     <div className={`w-full flex flex-col gap-3 sm:gap-4 ${className}`}>
-      {/* Top Labels: Positioned at opposite ends */}
+      {/* Top Labels: Positioned at opposite ends (left and right) */}
       <div className="flex items-center justify-between w-full select-none">
-        <span className="font-sans text-base sm:text-lg md:text-xl font-light text-foreground tracking-normal">
+        <span className="font-sans font-medium text-base sm:text-lg md:text-xl text-foreground tracking-normal">
           {greetingLeft}
         </span>
         <span className="font-sans text-base sm:text-lg md:text-xl font-light text-foreground tracking-normal">
@@ -33,9 +33,18 @@ export function HeroMorphingTitle({
 
       {/* Main Headline: Dominant typography occupying the hero */}
       <div className="w-full flex flex-col justify-center select-none pt-1">
-        <h1 className="w-full text-foreground font-sans font-regular tracking-tight uppercase leading-[0.92] text-[clamp(2.75rem,7.5vw,7.75rem)] flex flex-col md:flex-row md:items-baseline md:gap-x-[0.28em] gap-y-1">
-          {/* Morphing Word Slot with Zero Layout Shift */}
-          <span className="relative inline-block text-left align-baseline">
+        <h1
+          className="w-full text-foreground font-sans font-regular tracking-tight uppercase
+          leading-[0.88] md:leading-[0.92]
+          text-[clamp(2.85rem,12.5vw,4.5rem)]
+          md:text-[clamp(2.4rem,4.2vw,5.25rem)]
+          lg:text-[clamp(2.8rem,4.6vw,6rem)]
+          xl:text-[clamp(3.2rem,4.8vw,6.5rem)]
+          flex flex-col md:flex-row md:items-baseline md:justify-between
+          gap-y-0.5 sm:gap-y-1"
+        >
+          {/* Morphing Word Slot with Zero Layout Shift (Occupies Left Position) */}
+          <span className="relative inline-block text-left align-baseline shrink-0">
             {/* Invisible sizer using the widest word ('ORDINARY') to lock the bounding box */}
             <span
               aria-hidden="true"
@@ -56,8 +65,8 @@ export function HeroMorphingTitle({
             </span>
           </span>
 
-          {/* Static Second Word: DESIGNER remains completely static */}
-          <span className="inline-block shrink-0 align-baseline text-foreground mr-20">
+          {/* Static Second Word: DESIGNER aligned to the far right on tablet/desktop */}
+          <span className="inline-block shrink-0 align-baseline text-foreground text-left md:text-right">
             {staticWord}
           </span>
         </h1>
@@ -65,3 +74,5 @@ export function HeroMorphingTitle({
     </div>
   );
 }
+
+export default HeroMorphingTitle;

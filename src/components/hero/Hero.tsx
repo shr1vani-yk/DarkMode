@@ -15,47 +15,49 @@ export function Hero({ className = "", audioSrc }: HeroProps) {
     <section
       id="hero"
       aria-label="Hero Introduction"
-      className={`w-full flex flex-col gap-8 sm:gap-10 lg:gap-12 pt-2 sm:pt-4 pb-10 sm:pb-14 select-none ${className}`}
+      className={`relative isolate w-full flex flex-col gap-6 sm:gap-8 lg:gap-10 pt-1 sm:pt-3 pb-8 sm:pb-12 select-none ${className}`}
     >
-      {/* Morphing Headline & Top Greeting Labels */}
-      <HeroMorphingTitle />
+      {/* 
+        Parent-controlled CSS Grid:
+        - Mobile & Tablet (< 1280px / < xl):
+          2-column grid:
+          Row 1: [title] spans both columns
+          Row 2: [note] on col 1, [enter] on col 2 (spanning rows 2-3)
+          Row 3: [sticker] directly below note on col 1, [enter] aligned to bottom on col 2
+        - Desktop (>= 1280px / xl:):
+          3-column grid:
+          Row 1: [title] spans all 3 columns
+          Row 2: [sticker] on col 1 (left), [note] on col 2 (center), [enter] on col 3 (right)
+      */}
+      <div
+        className="grid w-full items-end gap-x-3 sm:gap-x-6 md:gap-x-8 gap-y-3 sm:gap-y-4 xl:gap-y-6
+          grid-cols-[minmax(0,1fr)_auto]
+          [grid-template-areas:'title_title'_'note_enter'_'sticker_enter']
+          xl:grid-cols-[auto_1fr_auto]
+          xl:[grid-template-areas:'title_title_title'_'sticker_note_enter']"
+      >
+        {/* Child 1: Headline */}
+        <div className="[grid-area:title] w-full">
+          <HeroMorphingTitle />
+        </div>
 
-      {/* Desktop & Tablet Composition (>= 768px) */}
-      <div className="hidden md:flex items-end justify-between w-full pt-2 lg:pt-6 gap-4 lg:gap-8">
-        {/* Left: Floating App-Icon Sticker */}
-        <div className="w-[180px] lg:w-[210px] shrink-0 flex justify-start">
+        {/* Child 2: Blue Personal Note */}
+        <div className="[grid-area:note] w-full max-w-[170px] sm:max-w-[240px] md:max-w-[280px] xl:max-w-[420px] 2xl:max-w-[460px] xl:mx-auto">
+          <HeroNote />
+        </div>
+
+        {/* Child 3: Interactive Sticker Folder */}
+        {/* <div className="[grid-area:sticker] w-fit -mt-3 sm:-mt-5 md:-mt-6 xl:mt-0 xl:self-end">
           <HeroSticker />
-        </div>
+        </div> */}
 
-        {/* Center: Blue Personal Note with Hanging Notebook Punched Holes */}
-        <div className="flex-1 max-w-[380px] lg:max-w-[440px] mx-auto">
-          <HeroNote />
-        </div>
-
-        {/* Right: Irregular ISO Enter Keycap Button */}
-        <div className="w-[140px] lg:w-[170px] shrink-0 flex justify-end">
+        {/* Child 4: ISO Keycap Enter Button */}
+        <div className="[grid-area:enter] self-end justify-self-end pb-1 sm:pb-2 xl:pb-0">
           <HeroEnterButton audioSrc={audioSrc} />
-        </div>
-      </div>
-
-      {/* Mobile Composition (< 768px) */}
-      <div className="flex md:hidden flex-col gap-6 w-full pt-1">
-        {/* Blue Personal Note positioned directly below the wrapped headline */}
-        <div className="w-full">
-          <HeroNote />
-        </div>
-
-        {/* Lower Row: Sticker on Left, Enter Button on Right */}
-        <div className="flex items-end justify-between w-full pt-1">
-          <div className="shrink-0 -ml-2">
-            <HeroSticker forceExpanded />
-          </div>
-          <div className="shrink-0">
-            <HeroEnterButton audioSrc={audioSrc} />
-          </div>
         </div>
       </div>
     </section>
   );
 }
+
 export default Hero;

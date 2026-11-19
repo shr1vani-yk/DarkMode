@@ -1,29 +1,15 @@
 "use client";
+
 import * as PhosphorIcons from "@phosphor-icons/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Cat } from "./Cat";
-
-const NAV_ITEMS = [
-  { id: "work", label: "Selected Work", count: "04", href: "/#work" },
-  { id: "about", label: "About Me", count: "", href: "/about" },
-  { id: "playground", label: "Playground", count: "12", href: "/playground" },
-  // { id: "archive", label: "Writing & Notes", count: "", href: "#archive" },
-];
-
-const SOCIAL_LINKS = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/shravanisutar", external: true, icon: PhosphorIcons.LinkedinLogoIcon },
-  { label: "Instagram", href: "https://www.instagram.com/designft.shrav?mdxt=ZDNlZDc0MzIxNw==", external: true, icon: PhosphorIcons.InstagramLogoIcon },
-  { label: "Email", href: "mailto:digital.shravanisutar@gmail.com", external: true, icon: PhosphorIcons.EnvelopeIcon },
-];
+import { NAV_ITEMS, SOCIAL_LINKS } from "@/data/navigation";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 export function Sidebar() {
   const pathname = usePathname();
-  const activeSection = pathname?.startsWith("/about")
-    ? "about"
-    : pathname?.startsWith("/playground")
-    ? "playground"
-    : "work";
+  const { activeSection } = useActiveSection();
 
   return (
     <aside
@@ -32,7 +18,18 @@ export function Sidebar() {
     >
       {/* Top Identity Block */}
       <div className="p-5 lg:p-8 border-b border-border-subtle flex flex-col gap-3">
-        <Link href="/" className="group flex flex-col gap-1">
+        <Link
+          href="/"
+          onClick={() => {
+            if (pathname === "/") {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              if (window.history && window.history.pushState) {
+                window.history.pushState(null, "", "/");
+              }
+            }
+          }}
+          className="group flex flex-col gap-1"
+        >
           <div className="flex items-center justify-between">
             <span className="font-sans font-regular tracking-tight text-[1.05rem] text-foreground group-hover:text-muted-foreground transition-colors">
               Shravani Sutar
@@ -64,10 +61,11 @@ export function Sidebar() {
               <Link
                 key={item.id}
                 href={item.href}
-                className={`group flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-sans transition-all duration-150 ${isActive
+                className={`group flex items-center justify-between px-2.5 py-2 rounded-md text-xs font-sans transition-all duration-150 ${
+                  isActive
                     ? "bg-surface-hover text-foreground font-medium"
                     : "text-muted-foreground hover:text-foreground hover:bg-surface-hover/60"
-                  }`}
+                }`}
               >
                 <div className="flex items-center gap-2.5">
                   <span className="font-mono text-[0.6875rem] text-subtle-foreground group-hover:text-foreground transition-colors">
@@ -112,8 +110,6 @@ export function Sidebar() {
             })}
           </div>
         </div>
-
-
       </nav>
 
       {/* Footer Colophon */}
@@ -126,3 +122,4 @@ export function Sidebar() {
   );
 }
 
+export default Sidebar;

@@ -2,45 +2,17 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { Cat } from "./Cat";
+import { NAV_ITEMS, SOCIAL_LINKS } from "@/data/navigation";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 interface MobileNavProps {
   currentSection?: string;
 }
 
-const NAV_ITEMS = [
-  { id: "work", label: "Selected Work", count: "04", href: "/#work" },
-  { id: "about", label: "About Me", count: "", href: "/about" },
-  { id: "playground", label: "Playground", count: "12", href: "/playground" },
-];
-
-const SOCIAL_LINKS = [
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/shravanisutar",
-    external: true,
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/designft.shrav?mdxt=ZDNlZDc0MzIxNw==",
-    external: true,
-  },
-  {
-    label: "Email",
-    href: "mailto:digital.shravanisutar@gmail.com",
-    external: true,
-  },
-];
-
 export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) {
-  const pathname = usePathname();
-  const activeSection = pathname?.startsWith("/about")
-    ? "about"
-    : pathname?.startsWith("/playground")
-    ? "playground"
-    : "work";
+  const { activeSection } = useActiveSection();
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -144,19 +116,6 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
           >
             {/* Profile / Intro with Cat Mascot */}
             <div className="flex items-center justify-between pb-4 border-b border-border-subtle">
-              {/* <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <span className="font-sans font-semibold tracking-tight text-sm text-foreground">
-                    Shravani Sutar
-                  </span>
-                  <span className="font-mono text-[0.625rem] px-1.5 py-0.5 rounded bg-surface-hover text-subtle-foreground border border-border-subtle">
-                    ’26
-                  </span>
-                </div>
-                <p className="text-xs text-muted-foreground font-sans">
-                  Product Designer &amp; Design Engineer
-                </p>
-              </div> */}
               <div className="shrink-0 flex items-center justify-center">
                 <Cat forceActive className="w-[60px] h-[50px]" />
               </div>
@@ -244,3 +203,5 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
     </div>
   );
 }
+
+export default MobileNav;

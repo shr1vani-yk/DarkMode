@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import CursorLoader from "@/components/cursor-loader";
+import CursorLoader from "@/components/ui/cursor-loader";
 
 const stackSans = localFont({
   src: [
@@ -68,7 +68,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col font-sans">
-          <CursorLoader />
+        <CursorLoader />
 
         <ThemeProvider>{children}</ThemeProvider>
       </body>

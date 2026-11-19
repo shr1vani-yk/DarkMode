@@ -1,12 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { PLIX_CASE_STUDY, PlixAsset } from "@/data/plixCaseStudy";
+import { PLIX_CASE_STUDY } from "./data";
+import { PlixFigure } from "./components/PlixFigure";
 import {
   CaseStudyDesktopSidebar,
   CaseStudyMobileBar,
   TopicItem,
-} from "@/components/CaseStudyTopicNav";
-import { CaseStudyThemeToggle } from "@/components/CaseStudyThemeToggle";
+} from "@/components/case-study/CaseStudyTopicNav";
+import { TopNav } from "@/components/layout/TopNav";
 
 const PLIX_TOPICS: TopicItem[] = [
   { id: "overview", label: "Overview", shortLabel: "Overview" },
@@ -38,48 +41,6 @@ const PLIX_TOPICS: TopicItem[] = [
   },
 ];
 
-interface PlixFigureProps {
-  asset: PlixAsset;
-  sizes: string;
-  priority?: boolean;
-  hasLightEdgeShadow?: boolean;
-  className?: string;
-}
-
-/**
- * Renders a supplied Plix showcase asset at its exact intrinsic aspect ratio
- * to eliminate layout shift (CLS = 0) while preserving rounded alpha corners.
- */
-function PlixFigure({
-  asset,
-  sizes,
-  priority = false,
-  hasLightEdgeShadow = false,
-  className = "",
-}: PlixFigureProps) {
-  return (
-    <div
-      className={`relative w-full overflow-hidden rounded-2xl lg:rounded-[30px] ${className}`}
-      style={{ aspectRatio: `${asset.width} / ${asset.height}` }}
-    >
-      <Image
-        src={asset.src}
-        alt={asset.alt}
-        width={asset.width}
-        height={asset.height}
-        sizes={sizes}
-        priority={priority}
-        loading={priority ? undefined : "lazy"}
-        className={`w-full h-auto block object-cover ${
-          hasLightEdgeShadow
-            ? "drop-shadow-[0_1px_4px_rgba(0,0,0,0.08)] dark:drop-shadow-none"
-            : ""
-        }`}
-      />
-    </div>
-  );
-}
-
 export function PlixCaseStudy() {
   const {
     heroImage,
@@ -96,8 +57,16 @@ export function PlixCaseStudy() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-[#e8590c]/15">
-      {/* Desktop theme toggle matching existing case study chrome */}
-      <CaseStudyThemeToggle />
+      {/* Global Consistent Header */}
+      <TopNav
+        showOnMobile
+        maxWidthClassName="max-w-[1320px] px-5 sm:px-8 md:px-12 lg:px-14"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Selected Work", href: "/#work" },
+          { label: "PlixLife" },
+        ]}
+      />
 
       {/* Mobile / tablet sticky horizontal topic bar */}
       <CaseStudyMobileBar topics={PLIX_TOPICS} />
@@ -127,8 +96,6 @@ export function PlixCaseStudy() {
             <div className="flex flex-col gap-3 sm:gap-4 lg:max-w-[78%]">
               <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] sm:text-xs text-muted-foreground tracking-wider uppercase">
                 <span>case study</span>
-                {/* <span aria-hidden="true">/</span> */}
-                {/* <span>{overview.discipline}</span> */}
                 <span aria-hidden="true">&middot;</span>
                 <span>{overview.readTime}</span>
               </div>
@@ -206,7 +173,7 @@ export function PlixCaseStudy() {
             className="scroll-mt-24 flex flex-col gap-6 sm:gap-8"
           >
             <div className="flex flex-col gap-2 lg:max-w-[78%]">
-              <span className="font-pixel text-[11px]  tracking-wider text-muted-foreground">
+              <span className="font-pixel text-[11px] tracking-wider text-muted-foreground">
                 {concept.eyebrow}
               </span>
               <h2
@@ -215,7 +182,7 @@ export function PlixCaseStudy() {
               >
                 {concept.title}
               </h2>
-              <p className="font-sans font-light text-sm sm:text-[14 px] text-muted-foreground leading-[1.7] pt-1">
+              <p className="font-sans font-light text-sm sm:text-[14px] text-muted-foreground leading-[1.7] pt-1">
                 {concept.body}
               </p>
             </div>
@@ -500,3 +467,5 @@ export function PlixCaseStudy() {
     </div>
   );
 }
+
+export default PlixCaseStudy;

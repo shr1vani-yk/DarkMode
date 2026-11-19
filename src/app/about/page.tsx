@@ -1,7 +1,8 @@
-import { Sidebar } from "@/components/Sidebar";
-import { TopNav } from "@/components/TopNav";
-import { MobileNav } from "@/components/MobileNav";
-import { AboutGrid } from "@/components/AboutGrid";
+import { Sidebar } from "@/components/layout/Sidebar";
+import { TopNav } from "@/components/layout/TopNav";
+import { MobileNav } from "@/components/layout/MobileNav";
+import { Footer } from "@/components/layout/Footer";
+import { AboutGrid } from "@/components/about/AboutGrid";
 
 export const metadata = {
   title: "About · Shravani Sutar",
@@ -27,22 +28,10 @@ export default function AboutPage() {
         <main className="flex-1 w-full max-w-[var(--content-max-width)] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-8 sm:pt-10 pb-24 flex flex-col gap-12 sm:gap-16">
           <AboutGrid />
 
-          {/* Footer Colophon matching screenshots */}
-          <footer className="pt-8 pb-16 border-t border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-subtle-foreground">
-            <div>
-              <span>Shravani Sutar Portfolio </span>
-              <span className="mx-2">&bull;</span>
-              <span>2026</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-foreground transition-colors">
-                Back to top &uarr;
-              </a>
-            </div>
-          </footer>
+          {/* Footer Colophon */}
+          <Footer />
         </main>
       </div>
     </div>
   );
 }
-
