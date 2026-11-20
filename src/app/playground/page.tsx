@@ -13,14 +13,14 @@ export const metadata = {
 export default function PlaygroundPage() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-[#e8590c]/15">
-      {/* Mobile Top Navigation (< 768px) */}
+      {/* Mobile & Tablet Collapsed Navigation (< 1024px) */}
       <MobileNav currentSection="Playground" />
 
-      {/* Desktop & Tablet Fixed Vertical Sidebar (>= 768px) */}
+      {/* Desktop Fixed Vertical Sidebar (>= 1024px) */}
       <Sidebar />
 
-      {/* Independent Main Content Canvas (Offset for Tablet & Desktop) */}
-      <div className="flex-1 flex flex-col w-full md:pl-[var(--sidebar-width-md)] lg:pl-[var(--sidebar-width)] transition-all duration-300">
+      {/* Independent Main Content Canvas (Offset for Desktop) */}
+      <div className="flex-1 flex flex-col w-full lg:pl-[var(--sidebar-width)] transition-all duration-300">
         {/* Top Navigation Bar Across Main Content */}
         <TopNav currentSection="Playground" />
 

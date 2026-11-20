@@ -7,8 +7,14 @@ import {
   CaseStudyMobileBar,
 } from "@/components/case-study/CaseStudyTopicNav";
 import { TopNav } from "@/components/layout/TopNav";
+import { NextProjectCard } from "@/components/case-study/NextProjectCard";
+import { ProjectItem } from "@/data/projects";
 
-export function RedbusCaseStudy() {
+interface RedbusCaseStudyProps {
+  nextProject?: ProjectItem;
+}
+
+export function RedbusCaseStudy({ nextProject }: RedbusCaseStudyProps) {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-[#e8590c]/15">
       <TopNav
@@ -75,6 +81,8 @@ export function RedbusCaseStudy() {
               Coming soon. A complete case study detailing user interviews, edge-case routing, and high-conversion checkout flows.
             </p>
           </section>
+
+          <NextProjectCard project={nextProject} />
 
           <footer className="pt-10 pb-12 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
             <div>

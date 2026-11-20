@@ -30,7 +30,7 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
   }, [isOpen]);
 
   return (
-    <div className="md:hidden sticky top-0 z-30 w-full bg-background border-b border-border-subtle select-none">
+    <div className="lg:hidden sticky top-0 z-30 w-full bg-background border-b border-border-subtle select-none">
       {/* 1. Mobile Top Bar */}
       <div className="h-14 px-4 sm:px-6 flex items-center justify-between">
         {/* Left: Brand Identity */}

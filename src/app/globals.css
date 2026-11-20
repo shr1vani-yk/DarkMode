@@ -3,9 +3,9 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *, .dark, .dark *));
 
-/* * {
-  cursor: none !important;
-}  */
+* {
+  cursor: none 
+} 
 
 :root,
 html[data-theme="light"],

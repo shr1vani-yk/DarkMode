@@ -1,109 +1,91 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ProjectItem } from "@/data/projects";
+import { usePathname } from "next/navigation";
+import * as PhosphorIcons from "@phosphor-icons/react/ssr";
+import { PROJECTS, ProjectItem } from "@/data/projects";
 
-interface NextProjectCardProps {
-  project: ProjectItem;
+export interface NextProjectCardProps {
+  project?: ProjectItem;
+  className?: string;
 }
 
-export function NextProjectCard({ project }: NextProjectCardProps) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [isPixelatedReady, setIsPixelatedReady] = useState(false);
+export function NextProjectCard({
+  project,
+  className = "",
+}: NextProjectCardProps) {
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+  // Dynamically resolve the next project if not directly supplied
+  const nextProject = useMemo(() => {
+    if (project) return project;
+    const currentSlug = pathname?.split("/").filter(Boolean).pop();
+    const currentIndex = PROJECTS.findIndex((p) => p.slug === currentSlug);
+    if (currentIndex !== -1) {
+      return PROJECTS[(currentIndex + 1) % PROJECTS.length];
+    }
+    return PROJECTS[0];
+  }, [project, pathname]);
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  if (!nextProject) return null;
 
-    const img = new window.Image();
-    img.crossOrigin = "anonymous";
-    img.src = project.image || "/images/projects/nepaliTalesThumbnail.jpg";
+  // Title formatting: "Plix" for plixlife, "Nepali Tales" for nepali-tales, etc.
+  const title =
+    nextProject.shortTitle ||
+    (nextProject.slug === "plixlife" ? "Plix" : nextProject.title);
 
-    img.onload = () => {
-      // Downscale to very low resolution to produce the authentic chunky mosaic pixels from Image 2
-      const pixelWidth = 64;
-      const pixelHeight = 22;
+  // Role formatting: "Product Designer" for nepali-tales, "Visual Designer" for plix, etc.
+  const role =
+    nextProject.roleLabel ||
+    (nextProject.slug === "nepali-tales"
+      ? "Product Designer"
+      : nextProject.slug === "plixlife"
+      ? "Visual Designer"
+      : "Product Designer");
 
-      canvas.width = pixelWidth;
-      canvas.height = pixelHeight;
-
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(img, 0, 0, pixelWidth, pixelHeight);
-      setIsPixelatedReady(true);
-    };
-
-    img.onerror = () => {
-      // Fallback procedural mosaic pattern if image is missing
-      const pixelWidth = 64;
-      const pixelHeight = 22;
-      canvas.width = pixelWidth;
-      canvas.height = pixelHeight;
-
-      const colors = ["#2a2a2e", "#3a3a40", "#4f4f58", "#1c1c20", "#e8590c"];
-      for (let x = 0; x < pixelWidth; x++) {
-        for (let y = 0; y < pixelHeight; y++) {
-          ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-          ctx.fillRect(x, y, 1, 1);
-        }
-      }
-      setIsPixelatedReady(true);
-    };
-  }, [project.image]);
+  const coverImage = nextProject.coverImage || nextProject.image;
 
   return (
-    <Link
-      href={`/work/${project.slug}`}
-      className="group block w-full pt-16 sm:pt-24 border-t border-border-subtle select-none"
+    <section
+      aria-label="Next Project"
+      className={`w-full pt-10 sm:pt-14 border-t border-border-subtle/70 ${className}`}
     >
-      {/* Header Row matching Image 2 */}
-      <div className="flex items-baseline justify-between gap-4 mb-4 sm:mb-6">
-        <span className="font-sans text-xs sm:text-sm text-foreground/80 shrink-0">
-          ( Next Project )
-        </span>
+      <Link
+        href={`/work/${nextProject.slug}`}
+        className="group flex flex-col gap-3 sm:gap-3.5 w-full select-none cursor-pointer"
+        aria-label={`Next Project: ${title} : ${role}`}
+      >
+        {/* Header row: Project Name & Role on the left, "Next Project" + Phosphor arrow on the right */}
+        <div className="flex items-center justify-between gap-4 text-xs sm:text-sm font-sans text-muted-foreground">
+          <span className="font-normal truncate group-hover:text-foreground transition-colors">
+            {title} : {role}
+          </span>
 
-        <h3 className="font-sans font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-foreground tracking-tight text-center truncate group-hover:text-muted-foreground transition-colors px-2">
-          {project.slug === "plixlife" ? "PlixLife : The Plant Fix" : project.title}
-        </h3>
-
-        <span className="font-mono text-xs sm:text-sm text-foreground/80 shrink-0">
-          ( {project.id} )
-        </span>
-      </div>
-
-      {/* Wide Banner Image Container matching Image 2 */}
-      <div className="relative w-full aspect-[21/9] sm:aspect-[24/8] md:aspect-[32/10] overflow-hidden rounded-xl sm:rounded-2xl bg-surface border border-border-subtle shadow-xs">
-        {/* Pixelated Canvas (Visible on Idle, Fades on Hover) */}
-        <canvas
-          ref={canvasRef}
-          aria-hidden="true"
-          className={`absolute inset-0 w-full h-full object-cover [image-rendering:pixelated] transition-opacity duration-500 ease-out ${
-            isPixelatedReady ? "opacity-100 group-hover:opacity-0" : "opacity-0"
-          }`}
-        />
-
-        {/* Clear High-Res Image (Hidden on Idle, Fades in on Hover) */}
-        {project.hasAsset ? (
-          <Image
-            src={project.image}
-            alt={project.displayTitle}
-            fill
-            sizes="(max-width: 1200px) 100vw, 1200px"
-            className="object-cover object-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"
-          />
-        ) : (
-          <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-surface-elevated opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out">
-            <span className="font-mono text-xs text-muted-foreground uppercase tracking-widest">
-              {project.displayTitle}
-            </span>
+          <div className="inline-flex items-center gap-1.5 shrink-0 group-hover:text-foreground transition-colors">
+            <span>Next Project</span>
+            <PhosphorIcons.CaretRightIcon
+              size={13}
+              weight="bold"
+              className="transition-transform duration-200 ease-out group-hover:translate-x-1"
+            />
           </div>
-        )}
-      </div>
-    </Link>
+        </div>
+
+        {/* Primary Visual: Cover Image with subtle rounded corners */}
+        <div className="relative w-full aspect-[3.5/1] rounded-xl overflow-hidden bg-surface border border-border-subtle/40 shadow-xs">
+          <Image
+            src={coverImage}
+            alt={`${title} : ${role}`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 960px, 1200px"
+            className="object-cover object-center w-full h-full transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+          />
+        </div>
+      </Link>
+    </section>
   );
 }
 
+export default NextProjectCard;

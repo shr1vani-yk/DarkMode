@@ -84,7 +84,7 @@ export const PLAYGROUND_ITEMS: PlaygroundItem[] = [
   },
   {
     id: "sign-up-card-prototype",
-    title: "Sign-Up Flow",
+    title: "Card Prototype",
     category: "interface",
     categoryLabel: "Interface",
     image: "/images/playground/Interfaces/sign up.png",

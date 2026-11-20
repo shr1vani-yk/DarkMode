@@ -8,14 +8,14 @@ import { Hero } from "@/components/hero/Hero";
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col font-sans">
-      {/* Mobile Top Navigation (< 768px) */}
+      {/* Mobile & Tablet Collapsed Navigation (< 1024px) */}
       <MobileNav />
 
-      {/* Desktop & Tablet Fixed Vertical Sidebar (>= 768px) */}
+      {/* Desktop Fixed Vertical Sidebar (>= 1024px) */}
       <Sidebar />
 
-      {/* Independent Main Content Canvas (Offset for Tablet & Desktop) */}
-      <div className="flex-1 flex flex-col w-full md:pl-[var(--sidebar-width-md)] lg:pl-[var(--sidebar-width)] transition-all duration-300">
+      {/* Independent Main Content Canvas (Offset for Desktop) */}
+      <div className="flex-1 flex flex-col w-full lg:pl-[var(--sidebar-width)] transition-all duration-300">
         {/* Top Navigation Bar Across Main Content */}
         <TopNav />
 

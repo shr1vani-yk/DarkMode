@@ -1,18 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import { NEPALI_TALES_TOPICS } from "./data";
-import { Hero } from "./components/Hero";
-import { ProblemSection } from "./components/ProblemSection";
-import { SolutionSection } from "./components/SolutionSection";
-import { ResultsSection } from "./components/ResultsSection";
-import {
-  CaseStudyDesktopSidebar,
-  CaseStudyMobileBar,
-} from "@/components/case-study/CaseStudyTopicNav";
+import { CaseStudyHeader } from "@/components/case-study/CaseStudyHeader";
 import { NextProjectCard } from "@/components/case-study/NextProjectCard";
-import { TopNav } from "@/components/layout/TopNav";
 import { PROJECTS, ProjectItem } from "@/data/projects";
+
+import { Hero } from "./components/Hero";
+import { GridShowcase } from "./components/GridShowcase";
+import { MyRole } from "./components/MyRole";
+import { Storyboard } from "./components/Storyboard";
+import { Insights } from "./components/Insights";
+import { UserFlow } from "./components/UserFlow";
+import { Iterations } from "./components/Iterations";
+import { Outcome } from "./components/Outcome";
+import { Learnings } from "./components/Learnings";
 
 interface NepaliTalesCaseStudyProps {
   nextProject?: ProjectItem;
@@ -29,63 +29,66 @@ export function NepaliTalesCaseStudy({
   const nextProject = customNextProject || fallbackNext;
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-[#e8590c]/15">
-      {/* Global Consistent Header */}
-      <TopNav
-        showOnMobile
-        maxWidthClassName="max-w-[1240px] px-6 sm:px-10 md:px-14 lg:px-16"
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Selected Work", href: "/#work" },
-          { label: "Nepali Tales" },
-        ]}
+    <div className="min-h-screen bg-background text-foreground flex flex-col font-sans selection:bg-[#DA2122]/15">
+      {/* Retained CaseStudyHeader with Solid White Scroll-Progress Indicator */}
+      <CaseStudyHeader
+        projectName="Nepali Tales"
+        maxWidthClassName="max-w-[960px] px-5 sm:px-8 md:px-12"
       />
 
-      {/* Sticky top navigation bar for mobile / tablet screens (< 1024px) */}
-      <CaseStudyMobileBar topics={NEPALI_TALES_TOPICS} />
+      {/* Centered Single-Column Case Study Canvas matching Figma single source of truth */}
+      <main className="w-full max-w-[960px] mx-auto px-5 sm:px-8 md:px-12 pt-8 sm:pt-12 pb-24 flex flex-col gap-14 sm:gap-20">
+        {/* Section A: Hero & Metadata */}
+        <Hero />
 
-      {/* Main Two-Column Case Study Layout matching the reference blueprint */}
-      <div className="w-full max-w-[1240px] mx-auto px-6 sm:px-10 md:px-14 lg:px-16 pt-8 sm:pt-14 lg:pt-16 pb-24 grid grid-cols-1 lg:grid-cols-[180px_1fr] xl:grid-cols-[210px_1fr] gap-10 lg:gap-16 xl:gap-20">
-        {/* Sticky Left Sidebar with `← back` and topics matching blueprint */}
-        <CaseStudyDesktopSidebar topics={NEPALI_TALES_TOPICS} />
+        {/* Section B: Background Context & Grid Showcase */}
+        <GridShowcase />
 
-        {/* Right Reading Canvas */}
-        <main className="min-w-0 max-w-[760px] flex flex-col gap-14 sm:gap-20">
-          <Hero />
-          <ProblemSection />
-          <SolutionSection />
-          <ResultsSection />
+        {/* Section C: My Role */}
+        <MyRole />
 
-          {/* Signature Sign-off matching screenshot: thanks for reading <3 ✿ */}
-          <div className="pt-8 pb-4 flex items-center justify-center text-center">
-            <p className="font-signature text-2xl sm:text-3xl text-foreground select-none font-normal">
-              thanks for reading &lt;3 &#10047;
+        {/* Section D & E: Storyboard & Problem Statement */}
+        <Storyboard />
+
+        {/* Section F: Insights Tabs & Sticky Notes */}
+        <Insights />
+
+        {/* Section G: User Flow & Sitemap */}
+        <UserFlow />
+
+        {/* Section H: Iterations & Tradeoffs */}
+        <Iterations />
+
+        {/* Section I: Final Outcome Showcase */}
+        <Outcome />
+
+        {/* Section J & K: Learnings & Kind Words From Client */}
+        <Learnings />
+
+        {/* Colophon Section matching Figma design */}
+        <div className="pt-12 border-t border-border-subtle/70 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 font-mono text-[11px] text-muted-foreground uppercase leading-relaxed">
+          <div>
+            <p className="font-semibold text-foreground/90">&copy;SHRAVANI SUTAR</p>
+            <p>MULTIDISCIPLINARY ARTIST</p>
+          </div>
+          <div className="max-w-md sm:text-right">
+            <p>STILL MAKING THINGS, STILL LOOKING FOR THINGS TO MAKE.</p>
+            <p>
+              IF SOMETHING HERE CAUGHT YOUR ATTENTION, SAY HELLO. [
+              <a
+                href="mailto:shravanisutar.99@gmail.com"
+                className="text-foreground hover:underline ml-1"
+              >
+                SHRAVANISUTAR.99@GMAIL.COM
+              </a>
+              ]
             </p>
           </div>
+        </div>
 
-          {/* Next Project Section matching Image 2 & screenshot */}
-          {nextProject && <NextProjectCard project={nextProject} />}
-
-          {/* Minimalist Colophon Footer */}
-          <footer className="pt-10 pb-12 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">
-            <div>
-              <span>Shravani Sutar Portfolio &middot; 2026</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <Link
-                href="/#work"
-                className="hover:text-foreground transition-colors"
-              >
-                &larr; Back to Selected Work
-              </Link>
-              <span>&bull;</span>
-              <a href="#" className="hover:text-foreground transition-colors">
-                Back to Top &uarr;
-              </a>
-            </div>
-          </footer>
-        </main>
-      </div>
+        {/* Next Project Card (Plix) */}
+        {nextProject && <NextProjectCard project={nextProject} />}
+      </main>
     </div>
   );
 }

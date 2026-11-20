@@ -10,6 +10,8 @@ import {
   TopicItem,
 } from "@/components/case-study/CaseStudyTopicNav";
 import { TopNav } from "@/components/layout/TopNav";
+import { NextProjectCard } from "@/components/case-study/NextProjectCard";
+import { ProjectItem } from "@/data/projects";
 
 const PLIX_TOPICS: TopicItem[] = [
   { id: "overview", label: "Overview", shortLabel: "Overview" },
@@ -41,7 +43,11 @@ const PLIX_TOPICS: TopicItem[] = [
   },
 ];
 
-export function PlixCaseStudy() {
+interface PlixCaseStudyProps {
+  nextProject?: ProjectItem;
+}
+
+export function PlixCaseStudy({ nextProject }: PlixCaseStudyProps) {
   const {
     heroImage,
     overview,
@@ -52,7 +58,6 @@ export function PlixCaseStudy() {
     reflection,
     testimonials,
     signoff,
-    nextWork,
   } = PLIX_CASE_STUDY;
 
   return (
@@ -415,34 +420,8 @@ export function PlixCaseStudy() {
             </div>
           </div>
 
-          {/* 9. Next Work Card (`Kora | Branding` / `( 02 )`) */}
-          <Link
-            href="/#work"
-            aria-label="Back to Selected Work — Next Work: Kora Branding"
-            className="group block w-full pt-2 select-none"
-          >
-            <div className="flex items-center justify-between gap-4 font-mono text-xs text-muted-foreground mb-3 sm:mb-4">
-              <span>{nextWork.leftLabel}</span>
-              <span>{nextWork.rightLabel}</span>
-            </div>
-
-            <div
-              className="relative w-full overflow-hidden rounded-2xl lg:rounded-[28px]"
-              style={{
-                aspectRatio: `${nextWork.image.width} / ${nextWork.image.height}`,
-              }}
-            >
-              <Image
-                src={nextWork.image.src}
-                alt={nextWork.image.alt}
-                width={nextWork.image.width}
-                height={nextWork.image.height}
-                loading="lazy"
-                sizes="(max-width: 1024px) 100vw, 920px"
-                className="w-full h-auto block object-cover transition-transform duration-300 ease-out group-hover:scale-[1.01]"
-              />
-            </div>
-          </Link>
+          {/* 9. Shared Next Project Card */}
+          <NextProjectCard project={nextProject} />
 
           {/* 10. Minimalist Colophon Footer */}
           <footer className="pt-8 pb-6 border-t border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-muted-foreground">

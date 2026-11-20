@@ -14,7 +14,7 @@ export function Sidebar() {
   return (
     <aside
       aria-label="Sidebar Navigation"
-      className="hidden md:flex flex-col fixed inset-y-0 left-0 z-30 w-[var(--sidebar-width-md)] lg:w-[var(--sidebar-width)] border-r border-border-subtle bg-background/90 backdrop-blur-md select-none transition-all duration-300"
+      className="hidden lg:flex flex-col fixed inset-y-0 left-0 z-30 w-[var(--sidebar-width)] border-r border-border-subtle bg-background/90 backdrop-blur-md select-none transition-all duration-300"
     >
       {/* Top Identity Block */}
       <div className="p-5 lg:p-8 border-b border-border-subtle flex flex-col gap-3">
@@ -44,7 +44,7 @@ export function Sidebar() {
         </Link>
 
         {/* Animated Cat Mascot from Framer reference */}
-        <div className="hidden md:flex items-center pt-1">
+        <div className="hidden lg:flex items-center pt-1">
           <Cat className="w-[70px] h-[58px] lg:w-24 lg:h-20" />
         </div>
       </div>

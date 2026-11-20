@@ -99,7 +99,7 @@ export function TopNav({
     }
   };
 
-  const displayClass = showOnMobile ? "block" : "hidden md:block";
+  const displayClass = showOnMobile ? "block" : "hidden lg:block";
 
   return (
     <header

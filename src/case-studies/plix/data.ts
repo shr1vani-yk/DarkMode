@@ -15,8 +15,8 @@ export const PLIX_CASE_STUDY = {
   heroImage: {
     src: "/images/case-studies/plix/hero/thumbnail.webp",
     alt: "Plix — Brand communication, campaigns and creatives hero showcase",
-    width: 2748,
-    height: 1671,
+    width: 1000,
+    height: 500,
   } satisfies PlixAsset,
 
   overview: {

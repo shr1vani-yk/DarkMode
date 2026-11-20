@@ -22,7 +22,7 @@ export function PlixFigure({
 }: PlixFigureProps) {
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-2xl lg:rounded-[30px] ${className}`}
+      className={`relative w-full overflow-hidden rounded-2xl  ${className}`}
       style={{ aspectRatio: `${asset.width} / ${asset.height}` }}
     >
       <Image

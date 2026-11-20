@@ -58,7 +58,7 @@ export function Cat({
   const isComponentActive = forceActive || isSidebarVisible;
 
   useEffect(() => {
-    const sidebarQuery = window.matchMedia("(min-width: 768px)");
+    const sidebarQuery = window.matchMedia("(min-width: 1024px)");
     const updateSidebarVisibility = () => setIsSidebarVisible(sidebarQuery.matches);
     updateSidebarVisibility();
 

@@ -107,6 +107,9 @@ export interface ProjectItem {
   metricSub: string;
   tags: string[];
   image: string;
+  coverImage?: string;
+  roleLabel?: string;
+  shortTitle?: string;
   hasAsset: boolean;
   caseStudy: CaseStudyData;
 }
@@ -128,6 +131,9 @@ export const PROJECTS: ProjectItem[] = [
     metricSub: "2026, FOODTECH",
     tags: ["Visuals", "NextJS", "Prototyped"],
     image: "/images/projects/thumbnails/nepaliTalesThumbnail.jpg",
+    coverImage: "/images/projects/thumbnails/nepaliTalesCover.png",
+    roleLabel: "Product Designer",
+    shortTitle: "Nepali Tales",
     hasAsset: true,
     caseStudy: {
       heroTagline:
@@ -355,6 +361,9 @@ export const PROJECTS: ProjectItem[] = [
     metricSub: "2026, WELLNESS / D2C",
     tags: ["Generative UI", "Spatial Canvas", "TypeScript"],
     image: "/images/projects/thumbnails/plixThumbnail.png",
+    coverImage: "/images/projects/thumbnails/plixThumbnail.png",
+    roleLabel: "Visual Designer",
+    shortTitle: "Plix",
     hasAsset: true,
     caseStudy: {
       heroTagline:
