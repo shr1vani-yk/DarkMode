@@ -40,13 +40,20 @@ const ITERATIONS: IterationSlide[] = [
 export function Iterations() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  // Sync active indicator based on scroll position (supporting touch swipe & drag)
+  // Sync active indicator & edge fades based on scroll position (supporting touch swipe & drag)
   const handleScroll = useCallback(() => {
     const el = containerRef.current;
     if (!el) return;
 
     const scrollLeft = el.scrollLeft;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+
+    setCanScrollLeft(scrollLeft > 8);
+    setCanScrollRight(scrollLeft < maxScroll - 8);
+
     const card = el.firstElementChild as HTMLElement | null;
     if (!card) return;
 
@@ -66,8 +73,13 @@ export function Iterations() {
     const el = containerRef.current;
     if (!el) return;
 
+    handleScroll();
     el.addEventListener("scroll", handleScroll, { passive: true });
-    return () => el.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll, { passive: true });
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [handleScroll]);
 
   // Smooth scroll to target slide
@@ -120,15 +132,29 @@ export function Iterations() {
 
       {/* Carousel Wrapper */}
       <div className="relative w-full my-4">
-        {/* Navigation Arrows: Desktop & Tablet only (Hidden on mobile) */}
-        <div className="hidden md:flex items-center justify-between absolute -left-3 lg:-left-5 -right-3 lg:-right-5 top-[32%] sm:top-[35%] -translate-y-1/2 z-20 pointer-events-none">
+        {/* Subtle Edge Gradient Fades (Theme-matched, softens clipped peek cards on mobile, tablet & desktop) */}
+        <div
+          aria-hidden="true"
+          className={`absolute left-0 top-0 bottom-14 sm:bottom-16 w-8 sm:w-12 lg:w-16 bg-gradient-to-r from-background via-background/60 to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
+            canScrollLeft ? "opacity-100" : "opacity-0"
+          }`}
+        />
+        <div
+          aria-hidden="true"
+          className={`absolute right-0 top-0 bottom-14 sm:bottom-16 w-8 sm:w-12 lg:w-16 bg-gradient-to-l from-background via-background/60 to-transparent pointer-events-none z-10 transition-opacity duration-300 ${
+            canScrollRight ? "opacity-100" : "opacity-0"
+          }`}
+        />
+
+        {/* Navigation Arrows: Desktop only (Hidden on mobile & tablet per requirement) */}
+        <div className="hidden lg:flex items-center justify-between absolute -left-3 lg:-left-5 -right-3 lg:-right-5 top-[32%] sm:top-[35%] -translate-y-1/2 z-20 pointer-events-none">
           <button
             type="button"
             onClick={prevSlide}
             aria-label="Previous iteration direction"
             className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-surface/90 backdrop-blur-md border border-border-subtle text-foreground flex items-center justify-center shadow-md hover:bg-surface-hover pointer-events-auto transition-transform active:scale-95 cursor-pointer"
           >
-            <PhosphorIcons.CaretLeft size={16} weight="bold" />
+            <PhosphorIcons.CaretLeftIcon size={16} weight="bold" />
           </button>
           <button
             type="button"
@@ -150,7 +176,7 @@ export function Iterations() {
             <article
               key={item.direction}
               onClick={() => scrollToIndex(idx)}
-              className="w-[82%] sm:w-[72%] md:w-[65%] shrink-0 snap-start flex flex-col gap-4 select-none cursor-pointer"
+              className="w-[82%] sm:w-[72%] lg:w-[65%] shrink-0 snap-start flex flex-col gap-4 select-none cursor-pointer"
             >
               {/* Visual Preview Box */}
               <div className="relative w-full aspect-[16/9] rounded overflow-hidden border border-border-subtle/80 bg-[#E7E7E7] shadow-xs">
@@ -170,7 +196,7 @@ export function Iterations() {
                   {item.direction}
                 </span>
 
-                <h3 className="font-sans font-medium sm:font-regulaar text-lg sm:text-xl text-foreground ">
+                <h3 className="font-sans font-medium sm:font-regular text-lg sm:text-xl text-foreground ">
                   {item.name}
                 </h3>
 

@@ -1,8 +1,58 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import * as PhosphorIcons from "@phosphor-icons/react/ssr";
 import { NEPALI_TALES_METADATA } from "../data";
 
+const OUTCOME_STATS = [
+  {
+    value: "450+",
+    label: "Monthly Orders",
+    description: "Reduced WhatsApp Dropoff",
+  },
+  {
+    value: "3.4x",
+    label: "Peak Capacity",
+    description: "Handled Seamlessly",
+  },
+  {
+    value: "80.2%",
+    label: "Order Accuracy",
+    description: "Up from 74%",
+  },
+  {
+    value: "< 1.2s",
+    label: "Checkout Time",
+    description: "Optimized Mobile UX",
+  },
+];
+
 export function Outcome() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Autoplay, loop continuously, and pause when outside viewport
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {
+            // Autoplay prevented by browser policy
+          });
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="outcome"
@@ -11,50 +61,80 @@ export function Outcome() {
     >
       {/* Section Header */}
       <div className="flex flex-col gap-1.5">
-        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground font-medium">
+        <span className="font-pixel text-xs uppercase tracking-wider text-muted-foreground">
           FINAL OUTCOME
         </span>
         <h2
           id="heading-outcome"
-          className="text-lg sm:text-xl font-semibold text-foreground tracking-tight leading-snug"
+          className="text-lg sm:text-xl font-light text-foreground leading-snug"
         >
           The platform is live and operational, bringing together a customer friendly ordering experience
         </h2>
       </div>
 
-      {/* Row 1: 2-Column Grid (Timesaving Red Card + Outcome Photo) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 items-stretch">
-        {/* Left: Red Brand Card */}
-        <div className="rounded-2xl bg-[#DA2122] p-8 sm:p-12 flex items-center justify-center min-h-[220px] sm:min-h-[260px] shadow-xs">
-          <span className="font-sans font-bold text-3xl sm:text-4xl md:text-5xl text-white tracking-tight text-center">
-            Timesaving
-          </span>
+      {/* Compact Horizontal Stats Layout */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-6 md:gap-8 pt-1">
+        {OUTCOME_STATS.map((stat, idx) => (
+          <div key={idx} className="flex flex-col">
+            <span className="font-sans text-2xl sm:text-3xl font-semibold text-foreground">
+              {stat.value}
+            </span>
+            <span className="font-sans text-xs sm:text-sm font-medium text-foreground mt-1">
+              {stat.label}
+            </span>
+            <p className="font-sans text-[11px] sm:text-xs text-muted-foreground font-light leading-snug mt-0.5">
+              {stat.description}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* 2. Horizontal Visual Showcase: Motion Video + img-2 Visual Asset */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 items-stretch w-full">
+        {/* Left: motion-1.mp4 continuous loop video (Timesaving motion brand piece) */}
+        <div className="relative rounded-xl bg-[#c10014] overflow-hidden shadow-xs flex items-center justify-center aspect-square sm:aspect-[1584/1068]">
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            className="w-full h-full object-cover object-center"
+            aria-label="Nepali Tales Timesaving brand motion visual"
+          >
+            <source
+              src="/images/case-studies/NepaliTales/Outcome/motion-1.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
-        {/* Right: Rectangle 207 Image Card */}
-        <div className="relative w-full aspect-[1584/1068] rounded-2xl overflow-hidden border border-border-subtle bg-surface shadow-xs">
+        {/* Right: img-2.png Visual Showcase Card */}
+        <div className="relative rounded-xl overflow-hidden border border-border-subtle bg-surface shadow-xs aspect-[357/194] sm:aspect-[1584/1068]">
           <Image
-            src="/images/case-studies/NepaliTales/Outcome/Rectangle 207.png"
-            alt="Nepali Tales live outcome showcase"
+            src="/images/case-studies/NepaliTales/Outcome/img-2.png"
+            alt="Nepali Tales digital pre-order visual showcase"
             fill
-            sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 64px), 450px"
-            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 450px"
+            className="object-cover object-center"
           />
         </div>
       </div>
 
-      {/* Row 2: Full Width Website Showcase Banner (Rectangle 208) */}
-      <div className="relative w-full aspect-[2757/1536] rounded-2xl overflow-hidden border border-border-subtle bg-surface shadow-xs my-1">
+      {/* 3. Centred Website Preview Below */}
+      <div className="relative w-full max-w-[800px] mx-auto aspect-[919/512] rounded-xl overflow-hidden bg-surface shadow-xs">
         <Image
-          src="/images/case-studies/NepaliTales/Outcome/Rectangle 208.png"
+          src="/images/case-studies/NepaliTales/Outcome/img3.png"
           alt="Nepali Tales live website experience"
           fill
-          sizes="(max-width: 640px) calc(100vw - 40px), (max-width: 768px) calc(100vw - 64px), (max-width: 960px) calc(100vw - 96px), 864px"
-          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 800px) 100vw, 800px"
+          className="object-cover object-center"
         />
       </div>
 
-      {/* Row 3: Centered Action Button */}
+      {/* Centered Action Button */}
       <div className="flex justify-center pt-2">
         <a
           href={NEPALI_TALES_METADATA.liveUrl}
