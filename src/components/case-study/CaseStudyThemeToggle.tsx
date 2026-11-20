@@ -3,16 +3,15 @@
 import { useTheme } from "@/context/ThemeContext";
 
 export function CaseStudyThemeToggle() {
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   return (
     <div className="hidden lg:flex fixed top-8 right-8 xl:right-12 z-40">
       <button
         type="button"
-        suppressHydrationWarning
         onClick={(e) => toggleTheme(e)}
-        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-        title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+        aria-label="Toggle theme"
+        title="Toggle theme"
         className="p-2 text-muted-foreground hover:text-foreground transition-all duration-200 rounded-lg cursor-pointer hover:bg-surface-hover/80 active:scale-95 border border-border-subtle/50 bg-background/70 backdrop-blur-xs shadow-2xs"
       >
         <svg

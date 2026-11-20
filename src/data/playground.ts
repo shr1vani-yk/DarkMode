@@ -16,6 +16,9 @@ export interface PlaygroundItem {
   category: "visuals" | "3d-models" | "interface" | "motion";
   categoryLabel: string;
   image: string;
+  video?: string;
+  poster?: string;
+  mediaType?: "image" | "video";
   width: number;
   height: number;
   aspectRatio: string;
@@ -31,6 +34,65 @@ export const PLAYGROUND_FILTERS: PlaygroundFilter[] = [
 ];
 
 export const PLAYGROUND_ITEMS: PlaygroundItem[] = [
+  // --- Interfaces ---
+  {
+    id: "ai-assisted-album",
+    title: "Ai-Assisted Album",
+    category: "interface",
+    categoryLabel: "Interface",
+    image: "/images/playground/Interfaces/pratice_ui.png",
+    width: 440,
+    height: 956,
+    aspectRatio: "153 / 316",
+    desktopColSpan: "third",
+  },
+  {
+    id: "search-experience",
+    title: "Search Experience",
+    category: "interface",
+    categoryLabel: "Interface",
+    image: "/images/playground/Interfaces/Home-search.png",
+    width: 402,
+    height: 1017,
+    aspectRatio: "153 / 316",
+    desktopColSpan: "third",
+  },
+  {
+    id: "card-prototype",
+    title: "Card Prototype",
+    category: "interface",
+    categoryLabel: "Interface",
+    mediaType: "video",
+    video: "/images/playground/Interfaces/unipayCardPrototype.mp4",
+    poster: "/images/playground/Interfaces/unipayCardPrototype-poster.webp",
+    image: "/images/playground/Interfaces/unipayCardPrototype-poster.webp",
+    width: 414,
+    height: 964,
+    aspectRatio: "153 / 316",
+    desktopColSpan: "third",
+  },
+  {
+    id: "story-preview-redesign",
+    title: "Story Preview Redesign",
+    category: "interface",
+    categoryLabel: "Interface",
+    image: "/images/playground/Interfaces/storyPreview.png",
+    width: 1440,
+    height: 824,
+    aspectRatio: "1440 / 670",
+    desktopColSpan: "half",
+  },
+  {
+    id: "sign-up-card-prototype",
+    title: "Sign-Up Flow",
+    category: "interface",
+    categoryLabel: "Interface",
+    image: "/images/playground/Interfaces/sign up.png",
+    width: 402,
+    height: 874,
+    aspectRatio: "153 / 316",
+    desktopColSpan: "third",
+  },
   // --- Visuals (Row 1: 3 cards, 1/3 width each) ---
   {
     id: "music-album-exploration",

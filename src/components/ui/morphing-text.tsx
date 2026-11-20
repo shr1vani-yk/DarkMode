@@ -21,7 +21,7 @@ export const useMorphingText = (
   const cooldownRef = useRef(cooldownTime);
   const timeRef = useRef<number | null>(null);
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLSpanElement>(null);
   const text1Ref = useRef<HTMLSpanElement>(null);
   const text2Ref = useRef<HTMLSpanElement>(null);
 
@@ -175,7 +175,7 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
   );
 
   return (
-    <div
+    <span
       ref={containerRef}
       className={cn(
         "relative inline-block w-full leading-none font-bold select-none",
@@ -200,6 +200,6 @@ export const MorphingText: React.FC<MorphingTextProps> = ({
         )}
       />
       <SvgFilters id="threshold" />
-    </div>
+    </span>
   );
 };

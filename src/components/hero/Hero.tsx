@@ -1,7 +1,6 @@
 "use client";
 
 import { HeroMorphingTitle } from "./HeroMorphingTitle";
-import { HeroSticker } from "./HeroSticker";
 import { HeroNote } from "./HeroNote";
 import { HeroEnterButton } from "./HeroEnterButton";
 
@@ -30,11 +29,7 @@ export function Hero({ className = "", audioSrc }: HeroProps) {
           Row 2: [sticker] on col 1 (left), [note] on col 2 (center), [enter] on col 3 (right)
       */}
       <div
-        className="grid w-full items-end gap-x-3 sm:gap-x-6 md:gap-x-8 gap-y-3 sm:gap-y-4 xl:gap-y-6
-          grid-cols-[minmax(0,1fr)_auto]
-          [grid-template-areas:'title_title'_'note_enter'_'sticker_enter']
-          xl:grid-cols-[auto_1fr_auto]
-          xl:[grid-template-areas:'title_title_title'_'sticker_note_enter']"
+        className="grid w-full items-end gap-x-3 sm:gap-x-6 md:gap-x-8 gap-y-3 sm:gap-y-4 xl:gap-y-6 grid-cols-[minmax(0,1fr)_auto] [grid-template-areas:'title_title'_'note_enter'_'sticker_enter'] xl:grid-cols-[auto_1fr_auto] xl:[grid-template-areas:'title_title_title'_'sticker_note_enter']"
       >
         {/* Child 1: Headline */}
         <div className="[grid-area:title] w-full">

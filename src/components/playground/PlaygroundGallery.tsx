@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import Image from "next/image";
 import * as PhosphorIcons from "@phosphor-icons/react";
 import {
@@ -9,6 +9,88 @@ import {
   PlaygroundFilterId,
   PlaygroundItem,
 } from "@/data/playground";
+
+interface PlaygroundVideoCardProps {
+  src: string;
+  poster?: string;
+  title: string;
+}
+
+function PlaygroundVideoCard({
+  src,
+  poster,
+  title,
+}: PlaygroundVideoCardProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // IntersectionObserver: Only allow playback when within or close to viewport
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.15, rootMargin: "50px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Manage playback:
+  // On desktop: plays on hover when in view.
+  // On touch/mobile: plays when in view.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (!isInView) {
+      video.pause();
+      return;
+    }
+
+    const isTouchDevice =
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: none)").matches;
+
+    if (isHovered || isTouchDevice) {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented by browser policy
+        });
+      }
+    } else {
+      video.pause();
+    }
+  }, [isInView, isHovered]);
+
+  return (
+    <div
+      ref={containerRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative w-full h-full"
+    >
+      <video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-label={title}
+        className="object-cover w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+      />
+    </div>
+  );
+}
 
 export function PlaygroundGallery() {
   const [activeFilter, setActiveFilter] = useState<PlaygroundFilterId>("all");
@@ -26,6 +108,52 @@ export function PlaygroundGallery() {
       return () => window.removeEventListener("keydown", handleKeyDown);
     }
   }, [selectedItem]);
+
+  // Curated sequence for the Pinterest-style "ALL" masonry grid to balance category mix,
+  // column heights, and orientation variation across Desktop (3 cols), Tablet (2 cols), and Mobile (1 col).
+  const allMixedItems = useMemo(() => {
+    const CURATED_ALL_ORDER = [
+      // Column 1 track (Desktop): Interface -> 3D -> Interface -> Visuals
+      "ai-assisted-album",
+      "low-poly-well",
+      "story-preview-redesign",
+      "portrait-practice",
+      "typography-style",
+      "subject-priority-space",
+
+      // Column 2 track (Desktop): Visual -> Interface Video -> Visual -> Interface -> Visual
+      "music-album-exploration",
+      "card-prototype",
+      "sketch",
+      "search-experience",
+      "dithered-effect",
+
+      // Column 3 track (Desktop): 3D -> Interface -> 3D -> Visuals
+      "topology-texture",
+      "sign-up-card-prototype",
+      "low-poly-sushi",
+      "typography-hero-image",
+      "subject-priority-red",
+    ];
+
+    const itemMap = new Map(PLAYGROUND_ITEMS.map((item) => [item.id, item]));
+    const ordered: PlaygroundItem[] = [];
+
+    for (const id of CURATED_ALL_ORDER) {
+      const item = itemMap.get(id);
+      if (item) {
+        ordered.push(item);
+        itemMap.delete(id);
+      }
+    }
+
+    // Append any extra or future items not explicitly in the curated list
+    for (const remaining of itemMap.values()) {
+      ordered.push(remaining);
+    }
+
+    return ordered;
+  }, []);
 
   const filteredItems = useMemo(() => {
     if (activeFilter === "all") return PLAYGROUND_ITEMS;
@@ -95,6 +223,177 @@ export function PlaygroundGallery() {
               : "Motion studies, interaction choreography, and animation experiments currently in the render queue."}
           </p>
         </div>
+      ) : activeFilter === "all" ? (
+        /* Pinterest-Style Masonry Mixed Grid for "ALL" filter */
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 sm:gap-7 w-full [column-fill:_balance]">
+          {allMixedItems.map((item, index) => (
+            <article
+              key={item.id}
+              className="break-inside-avoid inline-block w-full mb-6 sm:mb-8 group cursor-pointer"
+              onClick={() => setSelectedItem(item)}
+            >
+              <div className="flex flex-col gap-2 w-full">
+                {/* Image or Video Card Container with Defined Aspect Ratio */}
+                <div
+                  className="relative w-full overflow-hidden rounded-xl bg-surface-hover/60 border border-border-subtle/30 transition-shadow duration-200 group-hover:border-border-strong/50"
+                  style={{ aspectRatio: item.aspectRatio }}
+                >
+                  {item.mediaType === "video" && item.video ? (
+                    <PlaygroundVideoCard
+                      src={item.video}
+                      poster={item.poster || item.image}
+                      title={item.title}
+                    />
+                  ) : (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={`object-cover ${
+                        item.id === "story-preview-redesign" ? "object-top" : ""
+                      } w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]`}
+                      priority={index < 3}
+                      loading={index < 3 ? undefined : "lazy"}
+                    />
+                  )}
+                </div>
+
+                {/* Microcopy & Hierarchy */}
+                <div className="flex flex-col gap-0.5 pt-0.5">
+                  <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
+                    {item.categoryLabel}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : activeFilter === "interface" ? (
+        /* Category-specific Layout for Interfaces matching Figma Reference */
+        <div className="w-full max-w-4xl xl:max-w-[920px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8 sm:gap-x-7 sm:gap-y-9">
+          {/* Row 1: The first three project cards in a 3-column grid */}
+          {filteredItems.slice(0, 3).map((item, index) => (
+            <article
+              key={item.id}
+              className="group flex flex-col gap-2 cursor-pointer col-span-1"
+              onClick={() => setSelectedItem(item)}
+            >
+              {/* Image or Video Card Container with Defined Aspect Ratio */}
+              <div
+                className="relative w-full overflow-hidden rounded-xl bg-surface-hover/60 border border-border-subtle/30 transition-shadow duration-200 group-hover:border-border-strong/50"
+                style={{ aspectRatio: item.aspectRatio }}
+              >
+                {item.mediaType === "video" && item.video ? (
+                  <PlaygroundVideoCard
+                    src={item.video}
+                    poster={item.poster || item.image}
+                    title={item.title}
+                  />
+                ) : (
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                    priority={index < 3}
+                    loading={index < 3 ? undefined : "lazy"}
+                  />
+                )}
+              </div>
+
+              {/* Microcopy & Hierarchy */}
+              <div className="flex flex-col gap-0.5 pt-0.5">
+                <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                  {item.title}
+                </h3>
+                <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
+                  {item.categoryLabel}
+                </p>
+              </div>
+            </article>
+          ))}
+
+          {/* Row 2: The fourth project on the next row, aligned left and spanning approximately 2 column widths */}
+          {filteredItems[3] && (
+            <article
+              key={filteredItems[3].id}
+              className="group flex flex-col gap-2 cursor-pointer col-span-1 sm:col-span-2 lg:col-span-2"
+              onClick={() => setSelectedItem(filteredItems[3])}
+            >
+              {/* Image Card Container with Defined Aspect Ratio */}
+              <div
+                className="relative w-full overflow-hidden rounded-xl bg-surface-hover/60 border border-border-subtle/30 transition-shadow duration-200 group-hover:border-border-strong/50"
+                style={{ aspectRatio: filteredItems[3].aspectRatio }}
+              >
+                <Image
+                  src={filteredItems[3].image}
+                  alt={filteredItems[3].title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 66vw"
+                  className="object-cover object-top w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Microcopy & Hierarchy */}
+              <div className="flex flex-col gap-0.5 pt-0.5">
+                <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                  {filteredItems[3].title}
+                </h3>
+                <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
+                  {filteredItems[3].categoryLabel}
+                </p>
+              </div>
+            </article>
+          )}
+
+          {/* Row 2 (Column 3): The fifth project in the 3rd column */}
+          {filteredItems[4] && (
+            <article
+              key={filteredItems[4].id}
+              className="group flex flex-col gap-2 cursor-pointer col-span-1"
+              onClick={() => setSelectedItem(filteredItems[4])}
+            >
+              {/* Image or Video Card Container with Defined Aspect Ratio */}
+              <div
+                className="relative w-full overflow-hidden rounded-xl bg-surface-hover/60 border border-border-subtle/30 transition-shadow duration-200 group-hover:border-border-strong/50"
+                style={{ aspectRatio: filteredItems[4].aspectRatio }}
+              >
+                {filteredItems[4].mediaType === "video" && filteredItems[4].video ? (
+                  <PlaygroundVideoCard
+                    src={filteredItems[4].video}
+                    poster={filteredItems[4].poster || filteredItems[4].image}
+                    title={filteredItems[4].title}
+                  />
+                ) : (
+                  <Image
+                    src={filteredItems[4].image}
+                    alt={filteredItems[4].title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+                    loading="lazy"
+                  />
+                )}
+              </div>
+
+              {/* Microcopy & Hierarchy */}
+              <div className="flex flex-col gap-0.5 pt-0.5">
+                <h3 className="font-sans font-regular text-xs sm:text-sm text-foreground tracking-tight transition-colors">
+                  {filteredItems[4].title}
+                </h3>
+                <p className="font-sans font-light text-xs sm:text-sm text-subtle-foreground">
+                  {filteredItems[4].categoryLabel}
+                </p>
+              </div>
+            </article>
+          )}
+        </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-4 gap-y-7 sm:gap-x-5 sm:gap-y-9 w-full">
           {filteredItems.map((item, index) => {
@@ -108,20 +407,30 @@ export function PlaygroundGallery() {
                 } sm:col-span-1 col-span-1`}
                 onClick={() => setSelectedItem(item)}
               >
-                {/* Image Card Container with Defined Aspect Ratio */}
+                {/* Image or Video Card Container with Defined Aspect Ratio */}
                 <div
                   className="relative w-full overflow-hidden rounded-xl bg-surface-hover/60 border border-border-subtle/30 transition-shadow duration-200 group-hover:border-border-strong/50"
                   style={{ aspectRatio: item.aspectRatio }}
                 >
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]"
-                    priority={index < 3}
-                    loading={index < 3 ? undefined : "lazy"}
-                  />
+                  {item.mediaType === "video" && item.video ? (
+                    <PlaygroundVideoCard
+                      src={item.video}
+                      poster={item.poster || item.image}
+                      title={item.title}
+                    />
+                  ) : (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className={`object-cover ${
+                        item.id === "story-preview-redesign" ? "object-top" : ""
+                      } w-full h-full transition-transform duration-300 ease-out group-hover:scale-[1.02]`}
+                      priority={index < 3}
+                      loading={index < 3 ? undefined : "lazy"}
+                    />
+                  )}
                 </div>
 
                 {/* Microcopy & Hierarchy matching screenshots */}
@@ -173,7 +482,7 @@ export function PlaygroundGallery() {
               </button>
             </div>
 
-            {/* Modal Image Display */}
+            {/* Modal Media Display */}
             <div
               className="relative w-full max-h-[75vh] flex items-center justify-center my-3 overflow-hidden rounded-lg bg-surface-hover/40"
               style={{
@@ -181,14 +490,27 @@ export function PlaygroundGallery() {
                 maxHeight: "75vh",
               }}
             >
-              <Image
-                src={selectedItem.image}
-                alt={selectedItem.title}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1200px) 90vw, 1000px"
-                priority
-              />
+              {selectedItem.mediaType === "video" && selectedItem.video ? (
+                <video
+                  src={selectedItem.video}
+                  poster={selectedItem.poster || selectedItem.image}
+                  controls
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="max-h-[75vh] w-auto h-auto object-contain rounded-lg"
+                />
+              ) : (
+                <Image
+                  src={selectedItem.image}
+                  alt={selectedItem.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1200px) 90vw, 1000px"
+                  priority
+                />
+              )}
             </div>
           </div>
         </div>

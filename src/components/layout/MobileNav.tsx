@@ -14,7 +14,7 @@ interface MobileNavProps {
 export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) {
   const { activeSection } = useActiveSection();
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   // Close navigation on Escape key
   useEffect(() => {
@@ -56,10 +56,9 @@ export function MobileNav({ currentSection = "Selected Work" }: MobileNavProps) 
         <div className="flex items-center gap-1 shrink-0">
           <button
             type="button"
-            suppressHydrationWarning
             onClick={(e) => toggleTheme(e)}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-            title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            aria-label="Toggle theme"
+            title="Toggle theme"
             className="p-2 text-muted-foreground hover:text-foreground transition-all duration-200 rounded-md cursor-pointer hover:bg-surface-hover active:scale-95"
           >
             <svg

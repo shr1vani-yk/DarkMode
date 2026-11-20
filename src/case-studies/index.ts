@@ -33,6 +33,6 @@ export function renderCaseStudy(
   return createElement(Component, { nextProject });
 }
 
-export { NepaliTalesCaseStudy } from "./nepali-tales";
+// export { NepaliTalesCaseStudy } from "./nepali-tales";
 export { PlixCaseStudy } from "./plix";
 export { RedbusCaseStudy } from "./redbus";

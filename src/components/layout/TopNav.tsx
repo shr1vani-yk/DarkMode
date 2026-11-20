@@ -30,7 +30,7 @@ export function TopNav({
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrolledToWork } = useActiveSection();
   const pathname = usePathname();
-  const { theme, toggleTheme } = useTheme();
+  const { toggleTheme } = useTheme();
 
   // Scroll detection for header background blur/shadow
   useEffect(() => {
@@ -155,10 +155,9 @@ export function TopNav({
         <div className="flex items-center">
           <button
             type="button"
-            suppressHydrationWarning
             onClick={(e) => toggleTheme(e)}
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-            title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            aria-label="Toggle theme"
+            title="Toggle theme"
             className="p-2 text-muted-foreground hover:text-foreground transition-all duration-200 rounded-md cursor-pointer hover:bg-surface-hover active:scale-95"
           >
             <svg

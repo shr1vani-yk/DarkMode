@@ -34,14 +34,7 @@ export function HeroMorphingTitle({
       {/* Main Headline: Dominant typography occupying the hero */}
       <div className="w-full flex flex-col justify-center select-none pt-1">
         <h1
-          className="w-full text-foreground font-sans font-regular tracking-tight uppercase
-          leading-[0.88] md:leading-[0.92]
-          text-[clamp(2.85rem,12.5vw,4.5rem)]
-          md:text-[clamp(2.4rem,4.2vw,5.25rem)]
-          lg:text-[clamp(2.8rem,4.6vw,6rem)]
-          xl:text-[clamp(3.2rem,4.8vw,6.5rem)]
-          flex flex-col md:flex-row md:items-baseline md:justify-between
-          gap-y-0.5 sm:gap-y-1"
+          className="w-full text-foreground font-sans font-regular tracking-tight uppercase leading-[0.88] md:leading-[0.92] text-[clamp(2.85rem,12.5vw,4.5rem)] md:text-[clamp(2.4rem,4.2vw,5.25rem)] lg:text-[clamp(2.8rem,4.6vw,6rem)] xl:text-[clamp(3.2rem,4.8vw,6.5rem)] flex flex-col md:flex-row md:items-baseline md:justify-between gap-y-0.5 sm:gap-y-1"
         >
           {/* Morphing Word Slot with Zero Layout Shift (Occupies Left Position) */}
           <span className="relative inline-block text-left align-baseline shrink-0">

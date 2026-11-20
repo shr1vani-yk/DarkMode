@@ -123,7 +123,7 @@ export const PROJECTS: ProjectItem[] = [
     year: "2026",
     readTime: "3 min read",
     description:
-      "Nepali Tales was outgrowing its manual ordering process. We built a unified digital ordering platform to simplify preorders, streamline operations and improve discoverability helping the business turn growing demand into a more scalable experience.",
+      "Nepali Tales is a cloud kitchen serving freshly prepared food through a preorder-based model. As demand grew, the founders needed a better way to manage orders, customizations, etc  while keeping the experience simple for customers.",
     metric: "5k+ Visitors",
     metricSub: "2026, FOODTECH",
     tags: ["Visuals", "NextJS", "Prototyped"],
