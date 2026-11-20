@@ -58,39 +58,35 @@ export function ResultsSection() {
             <div className="flex items-center justify-between gap-3">
               <div className="flex items-center gap-2.5">
                 {/* Blue VISA badge matching screenshot */}
-                <span className="px-2 py-1 rounded text-[11px] font-bold font-sans bg-[#1a1f71] text-white tracking-wider">
-                  VISA
+                <span className="px-2 py-1 rounded text-[11px] font-medium font-sans uppercase bg-[#DA2122] text-white tracking-wider">
+                  Nepali Tales
                 </span>
-                <span className="font-sans text-sm font-semibold text-foreground">
-                  Thomas, Amal &lt;amthoos...&gt;
+                <span className="font-sans text-sm font-regular text-foreground">
+                  Ashika & Dipesh &lt;nepalitales&gt;
                 </span>
               </div>
 
               {/* Timestamp & action icons */}
               <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
                 <span>Jul 6, 2026, 12:38 PM</span>
-                <span>&star;</span>
                 <span>&bull;&bull;&bull;</span>
               </div>
             </div>
 
             {/* Recipient list */}
             <div className="text-xs text-muted-foreground font-sans">
-              to aditya-thakur, Eliot, Raghunandhan, anur, s. dhananjai, Devika, jagoot.sidhu, me, Adi &blacktriangledown;
+              to Kairos Team, Ankit, Shravani, Cyril, Pratiksha
             </div>
           </div>
 
           {/* Email Body Text */}
-          <div className="flex flex-col gap-3 text-xs sm:text-sm text-foreground/90 font-sans leading-relaxed">
-            <p>Hello Team and Team,</p>
+          <div className="flex flex-col gap-3 text-xs sm:text-sm text-foreground/90 font-sans font-light leading-relaxed">
+            <p>Hello Team</p>
             <p>
-              A big thank you from the Visa team for your outstanding efforts on the agentic store showcase. Your
-              work made the showcase the focal point of the event, and thanks to your dedication, we delivered an
-              exceptionally smooth experience for merchandise distribution. The attention to detail and adaptability
-              in handling a large volume of clients did not go unnoticed.
+              A huge thankyou to the brilliant team behind our website for making this possible. Your hard work, patience and expertise have helped us create a better experience for everyone
             </p>
             <p>
-              I want to extend special recognition to Amal and Udit for their remarkable contributions on site. Thanks
+              I want to extend special recognition to Ankit and Shravani for their remarkable contributions on site. Thanks
               much for your support, its truly appreciated.
             </p>
             <p>

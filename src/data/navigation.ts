@@ -39,4 +39,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
     external: true,
     icon: PhosphorIcons.EnvelopeIcon,
   },
+  {
+    label: "Resume",
+    href: "https://drive.google.com/file/d/1D8LmDQdgNLIhqxxLEuo_14XzhWxc4TtY/view?usp=sharing",
+    external: true,
+    icon: PhosphorIcons.FileCIcon,
+  },
 ];
