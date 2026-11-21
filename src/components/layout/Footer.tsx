@@ -36,53 +36,19 @@ function PixelTopography({ mouseOffset }: { mouseOffset: { x: number; y: number 
 
         {/* 1. Main Central Stepped Island (Layer 1: Outer soft contour) */}
         <path
-          d="
-            M 520 40 
-            H 600 V 65 
-            H 630 V 90 
-            H 660 V 130 
-            H 650 V 175 
-            H 630 V 210 
-            H 615 V 245 
-            H 590 V 280 
-            H 550 V 290 
-            H 515 V 265 
-            H 495 V 225 
-            H 475 V 170 
-            H 485 V 115 
-            H 510 V 75 
-            H 520 Z
-          "
+          d="M 520 40 H 600 V 65 H 630 V 90 H 660 V 130 H 650 V 175 H 630 V 210 H 615 V 245 H 590 V 280 H 550 V 290 H 515 V 265 H 495 V 225 H 475 V 170 H 485 V 115 H 510 V 75 H 520 Z"
           className="fill-[#7C5CE9]/[0.08] dark:fill-[#A78BFA]/[0.09]"
         />
 
         {/* 1. Main Central Stepped Island (Layer 2: Middle elevation) */}
         <path
-          d="
-            M 535 75 
-            H 585 V 100 
-            H 615 V 130 
-            H 605 V 170 
-            H 585 V 210 
-            H 560 V 235 
-            H 530 V 220 
-            H 510 V 175 
-            H 520 V 125 
-            H 535 Z
-          "
+          d="M 535 75 H 585 V 100 H 615 V 130 H 605 V 170 H 585 V 210 H 560 V 235 H 530 V 220 H 510 V 175 H 520 V 125 H 535 Z"
           className="fill-[#7C5CE9]/[0.14] dark:fill-[#A78BFA]/[0.15]"
         />
 
         {/* 1. Main Central Stepped Island (Layer 3: Inner core nucleus) */}
         <path
-          d="
-            M 545 110 
-            H 575 V 135 
-            H 565 V 165 
-            H 540 V 150 
-            H 530 V 125 
-            H 545 Z
-          "
+          d="M 545 110 H 575 V 135 H 565 V 165 H 540 V 150 H 530 V 125 H 545 Z"
           className="fill-[#7C5CE9]/[0.22] dark:fill-[#A78BFA]/[0.22]"
         />
 
@@ -101,30 +67,11 @@ function PixelTopography({ mouseOffset }: { mouseOffset: { x: number; y: number 
 
         {/* 3. Right Stepped Island (Behind / around Navigation) */}
         <path
-          d="
-            M 780 65 
-            H 835 V 85 
-            H 865 V 125 
-            H 885 V 180 
-            H 865 V 225 
-            H 830 V 245 
-            H 790 V 225 
-            H 765 V 175 
-            H 755 V 115 
-            H 780 Z
-          "
+          d="M 780 65 H 835 V 85 H 865 V 125 H 885 V 180 H 865 V 225 H 830 V 245 H 790 V 225 H 765 V 175 H 755 V 115 H 780 Z"
           className="fill-[#7C5CE9]/[0.08] dark:fill-[#A78BFA]/[0.09]"
         />
         <path
-          d="
-            M 800 95 
-            H 840 V 125 
-            H 850 V 160 
-            H 830 V 195 
-            H 800 V 180 
-            H 780 V 135 
-            H 800 Z
-          "
+          d="M 800 95 H 840 V 125 H 850 V 160 H 830 V 195 H 800 V 180 H 780 V 135 H 800 Z"
           className="fill-[#7C5CE9]/[0.13] dark:fill-[#A78BFA]/[0.14]"
         />
         <rect
