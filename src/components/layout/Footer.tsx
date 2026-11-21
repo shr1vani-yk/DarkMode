@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import Link from "next/link";
 import * as PhosphorIcons from "@phosphor-icons/react";
 
 interface FooterProps {
